@@ -32,4 +32,35 @@ RTI
 
 Main:
 ;--------
+
+; Some noise to indicate Main
+NOP
+NOP
+NOP
+NOP
+NOP
+NOP
+NOP
+NOP
+
+LDY #$00 ; loop counter
+Loop:
+  LDX #$EA ; NOP sled! but to where..?
+  STX $00,Y
+  INY
+  TYA
+  CMP #$10
+  BNE Loop ; exit loop when Y == 16 ($10)
+
+LDX #$4C  ; JMP
+STX $10
+LDX #$10  ; low address of main-ish (NOPS)
+STX $11
+LDX #$E0  ; high address of main-ish (NOPS)
+STX $12
+
+JMP $00 ; jump to NOP sled, it should jump us back to main
+
+
+
 JMP Main

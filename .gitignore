@@ -1,0 +1,5 @@
+# Transient build artifacts.
+*.o
+
+# Final build artifacts.
+/build/*

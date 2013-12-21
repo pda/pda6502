@@ -33,6 +33,19 @@ RTI
 Main:
 ;--------
 
+;;; VIA at 0xD000
+; Write to data direction registers:
+LDX #$FF
+STX $D003  ; DDRA
+LDX #$AA
+STX $D002  ; DDRB
+; Write to output registers:
+LDX #$DE
+STX $D001  ; ORA
+LDX #$AD
+STX $D000  ; ORB
+
+
 ; Some noise to indicate Main
 ; (and a large address range to estimate a jump into)
 NOP

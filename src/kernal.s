@@ -50,15 +50,15 @@ Loop:
   STX $00,Y
   INY
   TYA
-  CMP #$10
-  BNE Loop ; exit loop when Y == 16 ($10)
+  CMP #$20
+  BNE Loop ; exit loop when Y == 32 ($10)
 
 LDX #$4C  ; JMP
-STX $10
+STX $20
 LDX #$10  ; low address of main-ish (NOPS)
-STX $11
+STX $21
 LDX #$E0  ; high address of main-ish (NOPS)
-STX $12
+STX $22
 
 JMP $00 ; jump to NOP sled, it should jump us back to main
 

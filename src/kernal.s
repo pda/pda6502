@@ -15,11 +15,11 @@
 
 ColdStart:
 ;--------
-SEI ; mask interrupts during start-up
-LDX #$FF
-TXS ; set stack pointer to $ff (zeropage)
-CLI ; resume interrupts
-CLD ; don't be in crazy decimal mode.
+SEI          ; mask interrupts during start-up
+LDX #$FF     ;
+TXS          ; set stack pointer to $ff (zeropage)
+CLI          ; resume interrupts
+CLD          ; don't be in crazy decimal mode.
 JMP Main
 
 Interrupt:
@@ -34,6 +34,7 @@ Main:
 ;--------
 
 ; Some noise to indicate Main
+; (and a large address range to estimate a jump into)
 NOP
 NOP
 NOP
@@ -60,7 +61,5 @@ LDX #$E0  ; high address of main-ish (NOPS)
 STX $12
 
 JMP $00 ; jump to NOP sled, it should jump us back to main
-
-
 
 JMP Main

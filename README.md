@@ -15,7 +15,7 @@ Considerations:
 * Zero-page (0x0000..0x00FF) must be RAM, used as external registers.
 * Stack (0x0100..0x00FF) must be RAM.
 * PC (program counter) is initialized from 0xFFFC, so must be ROM.
-* 6522 VIA (I/O) wants 16 bytes mapped.
+* 6522 VIA (I/O) has 4-bit RS (register select), needs 16 bytes mapped.
 * AT28C64 EEPROMs are 8kb. I have some.
 * Nice to have:
   * Fancy bank-switching (e.g. ROMs overlaying RAM, C64-style).

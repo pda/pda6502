@@ -33,46 +33,42 @@ RTI
 Main:
 ;--------
 
-;;; VIA at 0xD000
-; Write to data direction registers:
-LDX #$FF
-STX $D003  ; DDRA
-LDX #$AA
-STX $D002  ; DDRB
-; Write to output registers:
-LDX #$DE
-STX $D001  ; ORA
-LDX #$AD
-STX $D000  ; ORB
-
-
 ; Some noise to indicate Main
 ; (and a large address range to estimate a jump into)
 NOP
 NOP
 NOP
 NOP
-NOP
-NOP
-NOP
-NOP
 
-LDY #$00 ; loop counter
-Loop:
-  LDX #$EA ; NOP sled! but to where..?
-  STX $00,Y
-  INY
-  TYA
-  CMP #$20
-  BNE Loop ; exit loop when Y == 32 ($10)
+;;; VIA at 0xC000
+; Configure PORT A write handshake
+LDX #$0A   ; 00001010 (pulse output)
+STX $C00C  ; PCR register
+; Write to data direction registers:
+LDX #$FF   ; direction: output
+STX $C003  ; DDRA
 
-LDX #$4C  ; JMP
-STX $20
-LDX #$10  ; low address of main-ish (NOPS)
-STX $21
-LDX #$E0  ; high address of main-ish (NOPS)
-STX $22
+; Write to output registers:
+LDX #$00
+NextChar:
+  LDY Message,X
+  STY $C001  ; ORA
+  INX
+  CPX #14  ; Length of message
+  BEQ Halt
+  JMP NextChar
 
-JMP $00 ; jump to NOP sled, it should jump us back to main
+
+
+JMP Halt
+
 
 JMP Main
+
+
+Halt:
+;--------
+JMP Halt
+
+Message:
+.asciiz "Hello pda6502"

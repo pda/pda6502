@@ -39,19 +39,34 @@ A simple RAM+ROM+IO scheme:
 Allows for future extensions e.g. upper 32K RAM, with ROMs and I/O overlaid.
 
 * 0x0000..0x7FFF: 32K RAM, uninterrupted. Contains zero-page and stack.
-* 0x8000..0xCFFF: Unused (reserved)
-* 0xD000..0xDFFF: 4K I/O (initially only 16 bytes used by 6522 VIA)
+* 0x8000..0xBFFF: (reserved)
+* 0xC000..0xCFFF: 4K I/O (initially only 16 bytes used by 6522 VIA)
+* 0xD000..0xDFFF: (reserved)
 * 0xE000..0xFFFF: 8K ROM ("kernal" [sic])
 
 Address table for upper 3 bits of address bus:
 
+NOTE: A15 can directly control RAM's CE/OE.
+      This means a 74HC138 decoder can run on A12..14
+      (With A15 as the '138 active-high enable input)
+
 ```
-000: RAM
-001: RAM
-010: RAM
-011: RAM
-100: (invalid)
-101: (invalid)
-110: IO
-111: KERNAL
+Address bus 4 KB chunks:
+0000: RAM (0x0000)
+0001: RAM
+0010: RAM
+0011: RAM
+0100: RAM
+0101: RAM
+0110: RAM
+0111: RAM
+1000:
+1001:
+1010:
+1011:
+1100: IO (0xC000)
+1101:
+1110: KERNAL (0xE000)
+1111: KERNAL
 ```
+

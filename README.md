@@ -81,16 +81,17 @@ Seg  Bits    In  Out  Base    Function
 8kb segment memory map - upper 3 bits to 74HC138.
 
 ```
-Seg  Bits  Base    Function
--------------------------------
-  0   000  0x0000
-  1   001  0x2000
-  2   010  0x4000
-  3   011  0x6000
-  4   100  0x8000
-  5   101  0xA000
-  6   110  0xC000  IO (VIA)
-  7   111  0xE000  ROM (KERNAL)
+     High   Dec  Dec
+Seg  Bits    In  Out  Base    Function
+--------------------------------------------
+  0   000   000    0  0x0000
+  1   001   001    1  0x2000
+  2   010   010    2  0x4000
+  3   011   011    3  0x6000
+  4   100   100    4  0x8000
+  5   101   101    5  0xA000
+  6   110   110    6  0xC000  IO (VIA)
+  7   111   111    7  0xE000  ROM (KERNAL)
 ```
 
 * VIA 6522

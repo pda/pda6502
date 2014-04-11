@@ -74,6 +74,31 @@ Seg  Bits    In  Out  Base    Function
   F  1111   111    7  0xF000  ROM (KERNAL)
 ```
 
+* 74HC138 (3-to-8 decoder)
+    * G1 (active-high enable) driven by A15 (only active 0x8000 and above)
+    * G2 (active-low enable) permanently LOW/enabled.
+    * Inputs A, B, C driven by A12, A13, A14.
+    * Output Y4 enables VIA.
+    * Output Y6 & Y7 drive KERNAL ROM via AND gate.
+* 74HC08 (Quad 2-input AND gates)
+    * Input A1, A2 from 74HC138 Y6, Y7, output Y1 to KERNAL ROM CE/OE.
+    * Three spare AND gates.
+* VIA 6522
+    * CS1 permanently HIGH/active.
+    * CS2B to 74HC138 Y4 (LOW/active for `0b1110____`).
+    * Data 0..7 to data bus D0..7.
+    * Address 0..3 to address bus A0..3.
+    * RWB to 6502 RWB.
+    * PHI2 to system oscillator, same as 6502.
+    * RESB to reset button, same as 6502.
+* ROM AT28C64
+    * CE and OE both active-low, tied together.
+    * CE/OE to 74HC08 Y1, (LOW/active for `0b111_____`)
+    * WE permanently HIGH/inactive.
+    * I/O 0..7 to data bus D0..7.
+    * Address 0..12 to address bus A0..12.
+
+
 *Initial, minimal implementation*
 
 6502, 74HC138, 8KB ROM, VIA 6522. No RAM.

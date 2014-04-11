@@ -70,3 +70,30 @@ Address bus 4 KB chunks:
 1111: KERNAL
 ```
 
+*Initial, minimal implementation*
+
+6502, 74HC138, 8KB ROM, VIA 6522. No RAM.
+
+8kb segment memory map - upper 3 bits to 74HC138.
+
+```
+Seg  Bits  Base    Function
+-------------------------------
+  0   000  0x0000
+  1   001  0x2000
+  2   010  0x4000
+  3   011  0x6000
+  4   100  0x8000
+  5   101  0xA000
+  6   110  0xC000  IO (VIA)
+  7   111  0xE000  ROM (KERNAL)
+```
+
+* VIA 6522
+    * To access registers; CS1: HIGH, CS2B: LOW.
+    * CS1 permanently HIGH/active.
+    * CS2B to 74HC138 Y6 (LOW/active for `0b110_____`).
+* ROM AT28C64
+    * CE and OE both active-low, tied together.
+    * CE/OE to 74HC138 Y7 (LOW/active for `0b111_____`)
+    * WE permanently HIGH/inactive.

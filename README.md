@@ -50,24 +50,28 @@ NOTE: A15 can directly control RAM's CE/OE.
       This means a 74HC138 decoder can run on A12..14
       (With A15 as the '138 active-high enable input)
 
-```
 Address bus 4 KB chunks:
-0000: RAM (0x0000)
-0001: RAM
-0010: RAM
-0011: RAM
-0100: RAM
-0101: RAM
-0110: RAM
-0111: RAM
-1000:
-1001:
-1010:
-1011:
-1100: IO (0xC000)
-1101:
-1110: KERNAL (0xE000)
-1111: KERNAL
+
+```
+     High   Dec  Dec
+Seg  Bits    In  Out  Base    Function
+------------------------------------------------
+  0  0000             0x0000  RAM
+  1  0001             0x1000  RAM
+  2  0010             0x2000  RAM
+  3  0011             0x3000  RAM
+  4  0100             0x4000  RAM
+  5  0101             0x5000  RAM
+  6  0110             0x6000  RAM
+  7  0111             0x7000  RAM
+  8  1000   000    0  0x8000
+  9  1001   001    1  0x9000
+  A  1010   010    2  0xA000
+  B  1011   011    3  0xB000
+  C  1100   100    4  0xC000  IO (VIA)
+  D  1101   101    5  0xD000
+  E  1110   110    6  0xE000  ROM (KERNAL)
+  F  1111   111    7  0xF000  ROM (KERNAL)
 ```
 
 *Initial, minimal implementation*

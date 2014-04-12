@@ -49,12 +49,6 @@ HelloMessageLoop:
 HelloNextChar:
   LDA Message,Y
   STA $C001  ; VIA ORA
-
-  LDX #$00
-HelloSleepLoop:
-  INX
-  BNE HelloSleepLoop
-
   INY
   CPY #14  ; length of message with \n, but not \0
   BNE HelloNextChar ; Next char if more..

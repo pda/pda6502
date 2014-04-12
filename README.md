@@ -89,6 +89,11 @@ Seg  Bits    In  Out  Base    Function
     * WE permanently HIGH/inactive.
     * I/O 0..7 to data bus D0..7.
     * Address 0..12 to address bus A0..12.
+* RAM (32Kx8 CMOS SRAM; UM61256AK-12)
+    * CE and OE both active-low, tied together.
+    * CE/OE driven by A15 (LOW/active for `0b0_______`)
+    * WE (active low) to 6502 RWB.
+    * Address 0..14 to address bus A0..14.
 
 
 *Initial, minimal implementation*

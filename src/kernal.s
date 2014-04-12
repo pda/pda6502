@@ -17,7 +17,7 @@ ColdStart:
 ;--------
 SEI          ; mask interrupts during start-up
 LDX #$FF     ;
-TXS          ; set stack pointer to $ff (zeropage)
+TXS          ; set stack pointer to $ff (0x01FF)
 CLI          ; resume interrupts
 CLD          ; don't be in crazy decimal mode.
 JMP Main
@@ -33,42 +33,40 @@ RTI
 Main:
 ;--------
 
-; Some noise to indicate Main
-; (and a large address range to estimate a jump into)
-NOP
-NOP
-NOP
-NOP
+  ;;; VIA at 0xC000
+  ; Configure PORT A write handshake
+  LDX #$0A   ; 00001010 (CA2 pulse output)
+  STX $C00C  ; PCR register
+  ; Write to data direction registers:
+  LDX #$FF   ; direction: output
+  STX $C003  ; DDRA
 
-;;; VIA at 0xC000
-; Configure PORT A write handshake
-LDX #$0A   ; 00001010 (pulse output)
-STX $C00C  ; PCR register
-; Write to data direction registers:
-LDX #$FF   ; direction: output
-STX $C003  ; DDRA
 
-; Write to output registers:
-LDX #$00
-NextChar:
-  LDY Message,X
-  STY $C001  ; ORA
+HelloMessageLoop:
+
+  ; Hello
+  LDY #$00
+HelloNextChar:
+  LDA Message,Y
+  STA $C001  ; VIA ORA
+
+  LDX #$00
+HelloSleepLoop:
   INX
-  CPX #14  ; Length of message
-  BEQ Halt
-  JMP NextChar
+  BNE HelloSleepLoop
 
+  INY
+  CPY #14  ; length of message with \n, but not \0
+  BNE HelloNextChar ; Next char if more..
 
-
-JMP Halt
-
-
-JMP Main
+  JMP HelloMessageLoop ; Otherwise, back to the start.
 
 
 Halt:
 ;--------
 JMP Halt
 
-Message:
-.asciiz "Hello pda6502"
+; Data
+;-----
+
+Message: .byte "Hello pda6502", $0A, $00

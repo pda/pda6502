@@ -13,3 +13,6 @@ src/%.o: src/%.s
 
 clean:
 	$(RM) $(OBJECTS) build/*
+
+burn: build/kernal.rom
+	./tools/meepromer.py -c /dev/cu.usbmodem???? -w -f build/kernal.rom

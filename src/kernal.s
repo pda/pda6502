@@ -41,17 +41,46 @@ Main:
   LDX #$FF   ; direction: output
   STX $C003  ; DDRA
 
+;;; Copy message to RAM at 0x2000.
+  LDX #$00
+StoreHelloNextChar:
+  LDA Message,X
+  STA $2000,X
+  INX
+  CMP #0  ; string null terminator
+  BNE StoreHelloNextChar ; Next char if more..
+
+  ; s/pda/RAM/
+  LDA #$52
+  STA $2006
+  LDA #$41
+  STA $2007
+  LDA #$4D
+  STA $2008
 
 HelloMessageLoop:
 
-  ; Hello
-  LDY #$00
-HelloNextChar:
-  LDA Message,Y
-  STA $C001  ; VIA ORA
+  ; Hello ROM
+  LDY #$FF
+HelloRomNextChar:
   INY
-  CPY #14  ; length of message with \n, but not \0
-  BNE HelloNextChar ; Next char if more..
+  LDA Message,Y
+  CMP #0
+  BEQ HelloRomDone
+  STA $C001  ; VIA ORA
+  JMP HelloRomNextChar
+HelloRomDone:
+
+  ; Hello RAM
+  LDY #$FF
+HelloRamNextChar:
+  INY
+  LDA $2000,Y
+  CMP #0
+  BEQ HelloRamDone
+  STA $C001  ; VIA ORA
+  JMP HelloRamNextChar
+HelloRamDone:
 
   JMP HelloMessageLoop ; Otherwise, back to the start.
 

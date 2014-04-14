@@ -124,3 +124,14 @@ Seg  Bits    In  Out  Base    Function
     * CE and OE both active-low, tied together.
     * CE/OE to 74HC138 Y7 (LOW/active for `0b111_____`)
     * WE permanently HIGH/inactive.
+
+
+Zero Page
+---------
+
+The zero page (`0x0000..0x00FF`) is frequently used as "external registers".
+
+Note that Some 6502 derivatives dedicate the first few bytes to hardware ports and
+control registers, best avoid those? e.g. 6510 in C64 uses at least two.
+
+* `0x0010..0x0017` - local temporary data; subroutines can overwrite.

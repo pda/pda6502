@@ -195,26 +195,29 @@ Main:
   LDA #.HIBYTE(SplashData)
   STA $11
 
+  LDA #2 ; loop for two 256-byte pages
+  PHA      ; store page counter
+SsdWritePage:
   LDY #$00
 SsdDisplayLoop:
   LDA ($10),Y
   TAX
   JSR SpiWrite
-  ; ...
   TYA
-  CMP #$FF ; 256 bytes written
-  BEQ SsdDisplayDone
+  CMP #$FF ; 256 byte page written
+  BEQ SsdDisplayPageDone
   INY
   JMP SsdDisplayLoop
+SsdDisplayPageDone:
+  PLA
+  TAX ; restore page counter
+  DEX
+  BEQ SsdDisplayDone
+  TXA
+  PHA ; re-save page counter
+  INC $11 ; next segment of data
+  JMP SsdWritePage
 SsdDisplayDone:
-
-  ; Lower half of display blank for now.
-  LDX #$00 ; data
-  LDY #$00 ; loop index
-SsdWriteZeroLoop1:
-  JSR SpiWrite
-  INY
-  BNE SsdWriteZeroLoop1
 
   ; Ghetto writing of more zeros to fill 128x64 pixels.
   ; Adafruit code says: "i wonder why we have to do this (check datasheet)"
@@ -232,7 +235,6 @@ SsdWriteZeroLoop3:
   BNE SsdWriteZeroLoop3
 
 End:
-  NOP
   JMP Halt
 
 ; X: command data
@@ -327,6 +329,7 @@ SleepOneMsLoop:
 
 Halt:
 ;--------
+NOP
 JMP Halt
 
 ; Data

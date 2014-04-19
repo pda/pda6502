@@ -15,4 +15,4 @@ clean:
 	$(RM) $(OBJECTS) build/*
 
 burn: build/kernal.rom
-	./tools/meepromer.py -c /dev/cu.usbmodem???? -w -f build/kernal.rom
+	./tools/meepromer.py -c /dev/cu.usbmodem14* -w -f build/kernal.rom

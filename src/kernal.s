@@ -183,7 +183,7 @@ Main:
   JSR SsdCommand
 
   ; D/C: high
-  LDA ssd_mask_dc
+  LDA #ssd_mask_dc
   ORA ssd_port
   STA ssd_port
 

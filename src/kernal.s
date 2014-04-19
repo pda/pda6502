@@ -56,7 +56,7 @@ Main:
   ssd_mask_data  = %00000001
 
   SSD1306_LCDWIDTH = 128
-  SSD1306_LCDHEIGHT = 64
+  SSD1306_LCDHEIGHT = 32
   SSD1306_SETCONTRAST = $81
   SSD1306_DISPLAYALLON_RESUME = $A4
   SSD1306_DISPLAYALLON = $A5
@@ -85,16 +85,20 @@ Main:
   LDX #$FF
   STX ssd_ddr
 
-  ; Reset (high, low, high). Hope this is slow enough.
+  ; Reset (high, low, high).
   ; Okay to overwrite other pins for now.
   LDA #ssd_mask_reset
-  STA ssd_port
+  STA ssd_port         ; reset high (inactive)
+  JSR SleepOneMs       ; 1 ms
   LDA #%00000000
-  STA ssd_port
+  STA ssd_port         ; reset low (active)
+  LDX #10
+  JSR SleepXMs         ; 10 ms
   LDA #ssd_mask_reset
-  STA ssd_port
+  STA ssd_port         ; reset high (inactive)
 
   ; SSD1306 128x32 init lifted from adafruit C++ code.
+
 
   LDX #SSD1306_DISPLAYOFF
   JSR SsdCommand
@@ -164,24 +168,78 @@ Main:
 
   ; Finished SSD1306 init.
 
-BlargLoop:
-
   LDX #SSD1306_INVERTDISPLAY
   JSR SsdCommand
 
-  LDX #SSD1306_NORMALDISPLAY
+  ;;;
+  ; Write screen
+
+  ; Reset some things.
+  LDX #(SSD1306_SETLOWCOLUMN | $0)  ; low col = 0
+  JSR SsdCommand
+  LDX #(SSD1306_SETHIGHCOLUMN | $0)  ; hi col = 0
+  JSR SsdCommand
+  LDX #(SSD1306_SETSTARTLINE | $0)  ; line #0
   JSR SsdCommand
 
-  JMP BlargLoop
+  ; D/C: high
+  LDA ssd_mask_dc
+  ORA ssd_port
+  STA ssd_port
+
+  ; Write (SSD1306_LCDWIDTH * SSD1306_LCDHEIGHT / 8) bytes via SPI.
+
+  ; Store pointer to data at $10
+  LDA #.LOBYTE(SplashData)
+  STA $10
+  LDA #.HIBYTE(SplashData)
+  STA $11
+
+  LDY #$00
+SsdDisplayLoop:
+  LDA ($10),Y
+  TAX
+  JSR SpiWrite
+  ; ...
+  TYA
+  CMP #$FF ; 256 bytes written
+  BEQ SsdDisplayDone
+  INY
+  JMP SsdDisplayLoop
+SsdDisplayDone:
+
+  ; Lower half of display blank for now.
+  LDX #$00 ; data
+  LDY #$00 ; loop index
+SsdWriteZeroLoop1:
+  JSR SpiWrite
+  INY
+  BNE SsdWriteZeroLoop1
+
+  ; Ghetto writing of more zeros to fill 128x64 pixels.
+  ; Adafruit code says: "i wonder why we have to do this (check datasheet)"
+  LDX #$00 ; data
+  LDY #$00 ; loop index
+SsdWriteZeroLoop2:
+  JSR SpiWrite
+  INY
+  BNE SsdWriteZeroLoop2
+  LDX #$00 ; data
+  LDY #$00 ; loop index
+SsdWriteZeroLoop3:
+  JSR SpiWrite
+  INY
+  BNE SsdWriteZeroLoop3
 
 End:
+  NOP
   JMP Halt
 
 ; X: command data
 SsdCommand:
 
   ; DC = low
-  LDA #%00000100
+  LDA #ssd_mask_dc
   EOR #$FF
   AND ssd_port
   STA ssd_port
@@ -191,7 +249,16 @@ SsdCommand:
   RTS
 
 ; X: command data
+; Y: (preserved)
+; A: (preserved)
+; $10: (preserved)
 SpiWrite:
+  PHA
+  TYA
+  PHA
+  LDA $10
+  PHA
+
   LDY #%10000000
 SpiWriteLoop:
 
@@ -227,8 +294,36 @@ SpiWriteData:
   TAY
   BNE SpiWriteLoop
 
+  PLA
+  STA $10
+  PLA
+  TAY
+  PLA
   RTS
 
+; Sleep for X milliseconds (assuming 1 MHz).
+SleepXMs:
+  TXA
+  PHA
+SleepXMsLoop:
+  JSR SleepOneMs
+  DEX
+  BNE SleepXMsLoop
+  PLA
+  TAX
+  RTS
+
+; Sleep for 196*5=1280 (plus about 20) cycles == ~1 ms at 1 MHz
+SleepOneMs:
+  TXA
+  PHA
+  LDX #196
+SleepOneMsLoop:
+  DEX                  ; 2 cycles
+  BNE SleepOneMsLoop   ; 3 cycles (+2 if branching to new page)
+  PLA
+  TAX
+  RTS
 
 Halt:
 ;--------
@@ -238,3 +333,40 @@ JMP Halt
 ;-----
 
 Message: .byte "Hello pda6502", $0A, $00
+
+SplashData:
+;---------
+; Splash screen data from Adafruit_SSD1306.cpp
+; 128x32 pixels, 512 bytes.
+.byte $DE, $AD, $BE, $EF, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $80
+.byte $80, $80, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $80, $80, $C0, $C0, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $80, $C0, $E0, $F0, $F8, $FC, $F8, $E0, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $80, $80, $80
+.byte $80, $80, $00, $80, $80, $00, $00, $00, $00, $80, $80, $80, $80, $80, $00, $FF
+.byte $FF, $FF, $00, $00, $00, $00, $80, $80, $80, $80, $00, $00, $80, $80, $00, $00
+.byte $80, $FF, $FF, $80, $80, $00, $80, $80, $00, $80, $80, $80, $80, $00, $80, $80
+.byte $00, $00, $00, $00, $00, $80, $80, $00, $00, $8C, $8E, $84, $00, $00, $80, $F8
+.byte $F8, $F8, $80, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $F0, $F0, $F0, $F0, $F0, $F0, $F0, $F0, $F0, $F0, $F0, $F0, $E0, $E0, $C0, $80
+.byte $00, $E0, $FC, $FE, $FF, $FF, $FF, $7F, $FF, $FF, $FF, $FF, $FF, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $FE, $FF, $C7, $01, $01
+.byte $01, $01, $83, $FF, $FF, $00, $00, $7C, $FE, $C7, $01, $01, $01, $01, $83, $FF
+.byte $FF, $FF, $00, $38, $FE, $C7, $83, $01, $01, $01, $83, $C7, $FF, $FF, $00, $00
+.byte $01, $FF, $FF, $01, $01, $00, $FF, $FF, $07, $01, $01, $01, $00, $00, $7F, $FF
+.byte $80, $00, $00, $00, $FF, $FF, $7F, $00, $00, $FF, $FF, $FF, $00, $00, $01, $FF
+.byte $FF, $FF, $01, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $03, $0F, $3F, $7F, $7F, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $E7, $C7, $C7, $8F
+.byte $8F, $9F, $BF, $FF, $FF, $C3, $C0, $F0, $FF, $FF, $FF, $FF, $FF, $FC, $FC, $FC
+.byte $FC, $FC, $FC, $FC, $FC, $F8, $F8, $F0, $F0, $E0, $C0, $00, $01, $03, $03, $03
+.byte $03, $03, $01, $03, $03, $00, $00, $00, $00, $01, $03, $03, $03, $03, $01, $01
+.byte $03, $01, $00, $00, $00, $01, $03, $03, $03, $03, $01, $01, $03, $03, $00, $00
+.byte $00, $03, $03, $00, $00, $00, $03, $03, $00, $00, $00, $00, $00, $00, $00, $01
+.byte $03, $03, $03, $03, $03, $01, $00, $00, $00, $01, $03, $01, $00, $00, $00, $03
+.byte $03, $01, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00

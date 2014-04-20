@@ -16,3 +16,4 @@ clean:
 
 burn: build/kernal.rom
 	./tools/meepromer.py -c /dev/cu.usbmodem14* -w -f build/kernal.rom
+	./tools/meepromer.py -c /dev/cu.usbmodem14* -v -f build/kernal.rom

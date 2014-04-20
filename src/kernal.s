@@ -40,8 +40,10 @@ Main:
   via_base = $C000
   via_pcr  = via_base + $0C
 
-  ; CA2 handshake: pulse output (for logic analyzer)
-  LDX #$0A
+  ; PCR (Peripheral Control Register)
+  ; CB2: pulse output
+  ; CA2: pulse output
+  LDX #%10101010
   STX via_pcr
 
   ; SSD1306 128x32 OLED on VIA port A.

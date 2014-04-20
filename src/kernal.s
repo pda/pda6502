@@ -175,6 +175,7 @@ Main:
 
   ;;;
   ; Write screen
+SsdWriteScreen:
 
   ; Reset some things.
   LDX #(SSD1306_SETLOWCOLUMN | $0)  ; low col = 0
@@ -199,30 +200,31 @@ Main:
 
   LDA #2 ; loop for two 256-byte pages
   PHA      ; store page counter
-SsdWritePage:
+@eachPage:
   LDY #$00
-SsdDisplayLoop:
+@eachByte:
   LDA ($10),Y
   TAX
   JSR SpiWrite
   TYA
   CMP #$FF ; 256 byte page written
-  BEQ SsdDisplayPageDone
+  BEQ @donePage
   INY
-  JMP SsdDisplayLoop
-SsdDisplayPageDone:
+  JMP @eachByte
+@donePage:
   PLA
   TAX ; restore page counter
   DEX
-  BEQ SsdDisplayDone
+  BEQ @donePages
   TXA
   PHA ; re-save page counter
   INC $11 ; next segment of data
-  JMP SsdWritePage
-SsdDisplayDone:
+  JMP @eachPage
+@donePages:
 
   ; Ghetto writing of more zeros to fill 128x64 pixels.
   ; Adafruit code says: "i wonder why we have to do this (check datasheet)"
+  ; (probably resets data pointer to zero; must be a better way)
   LDX #$00 ; data
   LDY #$00 ; loop index
 SsdWriteZeroLoop2:
@@ -264,7 +266,7 @@ SpiWrite:
   PHA
 
   LDY #%10000000
-SpiWriteLoop:
+@eachBit:
 
   ; clock low
   LDA #ssd_mask_clock
@@ -276,16 +278,16 @@ SpiWriteLoop:
   TXA
   STY $10
   AND $10
-  BEQ SpiPrepareLow
-SpiPrepareHigh:
+  BEQ @prepareLow
+@prepareHigh:
   LDA #ssd_mask_data
   ORA ssd_port
-  JMP SpiWriteData
-SpiPrepareLow:
+  JMP @writeData
+@prepareLow:
   LDA #ssd_mask_data
   EOR #$FF
   AND ssd_port
-SpiWriteData:
+@writeData:
   STA ssd_port
 
   ; clock high
@@ -296,7 +298,7 @@ SpiWriteData:
   TYA
   LSR ; shift to next bit (or zero)
   TAY
-  BNE SpiWriteLoop
+  BNE @eachBit
 
   PLA
   STA $10
@@ -309,10 +311,10 @@ SpiWriteData:
 SleepXMs:
   TXA
   PHA
-SleepXMsLoop:
+@loop:
   JSR SleepOneMs
   DEX
-  BNE SleepXMsLoop
+  BNE @loop
   PLA
   TAX
   RTS
@@ -322,9 +324,9 @@ SleepOneMs:
   TXA
   PHA
   LDX #196
-SleepOneMsLoop:
-  DEX                  ; 2 cycles
-  BNE SleepOneMsLoop   ; 3 cycles (+2 if branching to new page)
+@loop:
+  DEX         ; 2 cycles
+  BNE @loop   ; 3 cycles (+2 if branching to new page)
   PLA
   TAX
   RTS

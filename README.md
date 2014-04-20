@@ -73,8 +73,12 @@ Seg  Bits    In  Out  Base    Function
     * Output Y4 enables VIA.
     * Output Y6 & Y7 drive KERNAL ROM via AND gate.
 * 74HC08 (Quad 2-input AND gates)
-    * Input A1, A2 from 74HC138 Y6, Y7, output Y1 to KERNAL ROM CE/OE.
+    * Input A1, B1 from 74HC138 Y6, Y7, output Y1 to KERNAL ROM CE/OE.
+    * Input A2, B2 from phase2, A15, output Y2 to RAM CS/OE.
     * Three spare AND gates.
+* 74HC00 (Quad 2-input NAND gates)
+    * Input A1, B1 from A15 (as inverter), output Y1 to A2.
+    * Input A2, B2 from Y1, phase2 clock, output Y2 to RAM CS/OE.
 * VIA 6522
     * CS1 permanently HIGH/active.
     * CS2B to 74HC138 Y4 (LOW/active for `0b1110____`).
@@ -91,7 +95,7 @@ Seg  Bits    In  Out  Base    Function
     * Address 0..12 to address bus A0..12.
 * RAM (32Kx8 CMOS SRAM; UM61256AK-12)
     * CE and OE both active-low, tied together.
-    * CE/OE driven by A15 (LOW/active for `0b0_______`)
+    * CE/OE driven by A15+phase2 via 74HC00 (LOW/active for `0b0_______`)
     * WE (active low) to 6502 RWB.
     * Address 0..14 to address bus A0..14.
 

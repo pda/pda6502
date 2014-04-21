@@ -22,8 +22,8 @@ ssd1306_mask_reset  = %00001000
 ssd1306_mask_dc     = %00000100
 ssd1306_mask_clock  = %00000010
 ssd1306_mask_data   = %00000001
-ssd1306_port        = via_base + $01 ; PB
-ssd1306_ddr         = via_base + $03 ; DDRB
+ssd1306_port        = via_base + $00 ; PB
+ssd1306_ddr         = via_base + $02 ; DDRB
 
 ; SSD1306 command constants
 SSD1306_SETCONTRAST         = $81

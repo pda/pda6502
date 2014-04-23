@@ -1,4 +1,4 @@
-SOURCES = src/kernal.s src/vectors.s src/ssd1306.s src/sleep.s src/splash_data.s src/memory.s
+SOURCES = src/kernal.s src/vectors.s src/ssd1306.s src/sleep.s src/splash_data.s src/memory.s src/font.s
 OBJECTS=$(SOURCES:.s=.o)
 
 CA      = ca65

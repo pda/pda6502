@@ -13,8 +13,6 @@ ssd1306_buffer = $7000 ; page-aligned 512 byte buffer
 Main:
 ;--------
 
-; Copy SplashData (ROM) to ssd1306_buffer (RAM).
-
   JSR Ssd1306Init
 
   JSR WriteLetter

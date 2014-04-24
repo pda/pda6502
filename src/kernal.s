@@ -12,8 +12,18 @@
 
 ssd1306_buffer = $7000 ; page-aligned 512 byte buffer
 
+; zero-page globals
+ssd1306_ptr = $A0
+ssd1306_ptr_hi = $A1
+
 Main:
 ;--------
+
+  ; Initialize pointer to an 8x8 screen segment.
+  LDA #.LOBYTE(ssd1306_buffer)
+  STA ssd1306_ptr
+  LDA #.HIBYTE(ssd1306_buffer)
+  STA ssd1306_ptr_hi
 
   JSR Ssd1306Init
 
@@ -40,7 +50,7 @@ WriteLetter:
 @eachByte:
   LDX #7 ; font x-coordinate (byte index); screen y-coordinate (bit index)
   LDA #0
-  STA ssd1306_buffer,Y ; zero the byte
+  STA (ssd1306_ptr),Y   ; zero the byte
 @eachBit:
   ; create font bit mask in tmp
   LDA #%10000000
@@ -71,8 +81,8 @@ WriteLetter:
   TAX
   LDA $12               ; resulting bitmask in A
   ; apply to ssd buffer
-  ORA ssd1306_buffer,Y  ; OR with destination data
-  STA ssd1306_buffer,Y  ; Store in destination data.
+  ORA (ssd1306_ptr),Y  ; OR with destination data
+  STA (ssd1306_ptr),Y  ; Store in destination data.
 
 @donePixel:
 

@@ -44,9 +44,10 @@ JMP Halt
 
 
 ; attempt to write the "@" char (first font char) to screen buffer.
-; Overwrites $12.
+; Overwrites $12, $14.
 WriteLetter:
   LDY #0 ; font y-coordinate (bit index); screen x-coordinate (byte index)
+  STY $14
 @eachByte:
   LDX #7 ; font x-coordinate (byte index); screen y-coordinate (bit index)
   LDA #0
@@ -58,6 +59,7 @@ WriteLetter:
   TXA
   PHA                   ; save X on stack
   LDX #$12              ; store ptr to $12 in X
+  LDY $14
   JSR ShiftZpXRightByY  ; right-shift value at X=$12 Y times.
   PLA                   ; restore X from stack
   TAX
@@ -67,20 +69,17 @@ WriteLetter:
   ; create display bit mask in tmp
   TXA
   PHA                   ; save X on stack
-  TYA
-  PHA                   ; save Y on stack
   TXA
   TAY                   ; Y <- X for shift function (restored later)
   LDA #1
   STA $12               ; store initial bitmask at $0012
   LDX #$12              ; store ptr to $12 in X
   JSR ShiftZpXLeftByY   ; left-shift value at X=$12 Y times.
-  PLA                   ; restore Y from stack
-  TAY
   PLA                   ; restore X from stack
   TAX
   LDA $12               ; resulting bitmask in A
   ; apply to ssd buffer
+  LDY $14
   ORA (ssd1306_ptr),Y  ; OR with destination data
   STA (ssd1306_ptr),Y  ; Store in destination data.
 
@@ -90,7 +89,9 @@ WriteLetter:
   CPX #$FF
   BNE @eachBit
 
+  LDY $14
   INY
+  STY $14
   CPY #7
   BNE @eachByte
 

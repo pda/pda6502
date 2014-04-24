@@ -13,8 +13,10 @@
 ssd1306_buffer = $7000 ; page-aligned 512 byte buffer
 
 ; zero-page globals
-ssd1306_ptr = $A0
+ssd1306_ptr    = $A0
 ssd1306_ptr_hi = $A1
+font_ptr       = $A2
+font_ptr_hi    = $A3
 
 Main:
 ;--------
@@ -24,6 +26,12 @@ Main:
   STA ssd1306_ptr
   LDA #.HIBYTE(ssd1306_buffer)
   STA ssd1306_ptr_hi
+
+  ; Initialize pointer to font data.
+  LDA #.LOBYTE(FontData)
+  STA font_ptr
+  LDA #.HIBYTE(FontData)
+  STA font_ptr_hi
 
   JSR Ssd1306Init
 
@@ -61,8 +69,8 @@ WriteLetter:
   LDY $14
   JSR ShiftZpXRightByY  ; right-shift value at X=$12 Y times.
   LDA $12               ; resulting bitmask in A
-  LDX $15
-  AND FontData,X        ; AND with font data
+  LDY $15
+  AND (font_ptr),Y      ; AND with font data
   BEQ @donePixel        ; branch if bit was clear
   ; create display bit mask in tmp
   LDA #1

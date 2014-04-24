@@ -5,6 +5,7 @@
 .import Ssd1306WriteScreen
 .import SsdNextSegment
 .import FontData
+.import FontSelectChar
 .import CopyPages
 .import ShiftZpXLeftByY
 .import ShiftZpXRightByY
@@ -28,23 +29,50 @@ Main:
   LDA #.HIBYTE(ssd1306_buffer)
   STA ssd1306_ptr_hi
 
-  ; Initialize pointer to font data.
-  LDA #.LOBYTE(FontData)
-  STA font_ptr
-  LDA #.HIBYTE(FontData)
-  STA font_ptr_hi
-
   JSR Ssd1306Init
 
-  JSR WriteLetter
+  LDX #ssd1306_ptr
+  LDY #16
+BlankLineLoop:
+  JSR SsdNextSegment
+  DEY
+  BNE BlankLineLoop
 
+  LDX #font_ptr
+  LDY #8 ; h
+  JSR FontSelectChar
+  JSR WriteLetter
   LDX #ssd1306_ptr
   JSR SsdNextSegment
-  JSR WriteLetter
 
+  LDX #font_ptr
+  LDY #5 ; e
+  JSR FontSelectChar
+  JSR WriteLetter
   LDX #ssd1306_ptr
   JSR SsdNextSegment
+
+  LDX #font_ptr
+  LDY #12 ; l
+  JSR FontSelectChar
   JSR WriteLetter
+  LDX #ssd1306_ptr
+  JSR SsdNextSegment
+
+  LDX #font_ptr
+  LDY #12 ; l
+  JSR FontSelectChar
+  JSR WriteLetter
+  LDX #ssd1306_ptr
+  JSR SsdNextSegment
+
+  LDX #font_ptr
+  LDY #15 ; o
+  JSR FontSelectChar
+  JSR WriteLetter
+  LDX #ssd1306_ptr
+  JSR SsdNextSegment
+
 
   ; Store pointer to data at $10
   LDA #.LOBYTE(ssd1306_buffer)

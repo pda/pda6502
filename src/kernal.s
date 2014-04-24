@@ -3,6 +3,7 @@
 .export Main
 .import Ssd1306Init
 .import Ssd1306WriteScreen
+.import SsdNextSegment
 .import FontData
 .import CopyPages
 .import ShiftZpXLeftByY
@@ -35,6 +36,14 @@ Main:
 
   JSR Ssd1306Init
 
+  JSR WriteLetter
+
+  LDX #ssd1306_ptr
+  JSR SsdNextSegment
+  JSR WriteLetter
+
+  LDX #ssd1306_ptr
+  JSR SsdNextSegment
   JSR WriteLetter
 
   ; Store pointer to data at $10

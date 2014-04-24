@@ -4,6 +4,7 @@
 
 .export Ssd1306Init
 .export Ssd1306WriteScreen
+.export SsdNextSegment
 
 .import SleepOneMs
 .import SleepXMs
@@ -298,3 +299,10 @@ SpiWrite:
   PLA
   RTS
 
+; X: zero-page address of pointer
+SsdNextSegment:
+  LDA $00,X
+  CLC
+  ADC #8
+  STA $00,X
+  RTS

@@ -23,6 +23,18 @@
   CLC
   SBC #$3F      ; subtract $3F for alpha chars
   TAY
+  JMP end
 notAlpha:
+  TYA
+  CLC
+  SBC #$1F
+  BCC notLow
+  TYA
+  CLC
+  ADC #64
+  TAY
+  JMP end
+notLow:
+end:
   RTS
 .ENDPROC

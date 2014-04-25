@@ -2,6 +2,9 @@
 
 .export Main
 
+; encoding
+.import AsciiToPetscii
+
 ; ssd1306
 .import Ssd1306Init
 .import Ssd1306WriteScreen
@@ -32,18 +35,12 @@ Main:
 
   JSR Ssd1306Init
 
-  LDY #16
-  LDX #ssd1306_ptr
-@blankLineLoop:
-  JSR SsdNextSegment
-  DEY
-  BNE @blankLineLoop
-
   LDA #0
   STA $10 ; loop counter = 0
 @writeLoop:
   LDX $10
   LDY Message,X
+  JSR AsciiToPetscii
   LDX #font_ptr
   JSR FontSelectChar         ; select character in font
   LDX #font_ptr
@@ -71,13 +68,9 @@ JMP Halt
 
 
 ; TODO: ASCII encoding.
-message_length = 27
+message_length = 64
 Message:
-  .byte 32, 32
-  .byte 8, 5, 12, 12, 15
-  .byte 32
-  .byte 23, 15, 18, 12, 4
-  .byte 33
-  .byte 32, 32, 32, 32
-  .byte 45, 32
-  .byte 16, 4, 1, 54, 53, 48, 50
+  .byte "////////////////"
+  .byte "-=( PDA 6502 )=-"
+  .byte "  HELLO WORLD!  "
+  .byte "////////////////"

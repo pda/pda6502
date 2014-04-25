@@ -70,7 +70,7 @@ JMP Halt
 ; TODO: ASCII encoding.
 message_length = 64
 Message:
-  .byte "////////////////"
-  .byte "-=( PDA 6502 )=-"
-  .byte "  HELLO WORLD!  "
-  .byte "////////////////"
+  .byte 21, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 9
+  .byte 2, " HELLO, WORLD!", 2
+  .byte 2, "   PDA-6502   ", 2
+  .byte 10, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 11

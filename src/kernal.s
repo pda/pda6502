@@ -31,48 +31,29 @@ Main:
 
   JSR Ssd1306Init
 
-  LDX #ssd1306_ptr
   LDY #16
-BlankLineLoop:
+  LDX #ssd1306_ptr
+@blankLineLoop:
   JSR SsdNextSegment
   DEY
-  BNE BlankLineLoop
+  BNE @blankLineLoop
 
+  LDA #0
+  STA $10 ; loop counter = 0
+WriteLoop:
+  ; ---
+  LDX $10
+  LDY Message,X
   LDX #font_ptr
-  LDY #8 ; h
   JSR FontSelectChar
   JSR WriteLetter
   LDX #ssd1306_ptr
   JSR SsdNextSegment
-
-  LDX #font_ptr
-  LDY #5 ; e
-  JSR FontSelectChar
-  JSR WriteLetter
-  LDX #ssd1306_ptr
-  JSR SsdNextSegment
-
-  LDX #font_ptr
-  LDY #12 ; l
-  JSR FontSelectChar
-  JSR WriteLetter
-  LDX #ssd1306_ptr
-  JSR SsdNextSegment
-
-  LDX #font_ptr
-  LDY #12 ; l
-  JSR FontSelectChar
-  JSR WriteLetter
-  LDX #ssd1306_ptr
-  JSR SsdNextSegment
-
-  LDX #font_ptr
-  LDY #15 ; o
-  JSR FontSelectChar
-  JSR WriteLetter
-  LDX #ssd1306_ptr
-  JSR SsdNextSegment
-
+  INC $10
+  LDA $10
+  CMP #message_length
+  BNE WriteLoop
+  ; ---
 
   ; Store pointer to data at $10
   LDA #.LOBYTE(ssd1306_buffer)
@@ -136,3 +117,16 @@ WriteLetter:
   BNE @eachByte
 
   RTS
+
+
+; TODO: ASCII encoding.
+message_length = 27
+Message:
+  .byte 32, 32
+  .byte 8, 5, 12, 12, 15
+  .byte 32
+  .byte 23, 15, 18, 12, 4
+  .byte 33
+  .byte 32, 32, 32, 32
+  .byte 45, 32
+  .byte 16, 4, 1, 54, 53, 48, 50

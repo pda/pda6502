@@ -1,14 +1,15 @@
 ; asmsyntax=asmM6502 (http://cc65.github.io/cc65/)
 
 .export Main
+
+; ssd1306
 .import Ssd1306Init
 .import Ssd1306WriteScreen
 .import SsdNextSegment
-.import FontData
+.import Ssd1306WriteCharacter
+
+; font
 .import FontSelectChar
-.import CopyPages
-.import ShiftZpXLeftByY
-.import ShiftZpXRightByY
 
 .segment "kernal"
 
@@ -40,20 +41,20 @@ Main:
 
   LDA #0
   STA $10 ; loop counter = 0
-WriteLoop:
-  ; ---
+@writeLoop:
   LDX $10
   LDY Message,X
   LDX #font_ptr
-  JSR FontSelectChar
-  JSR WriteLetter
+  JSR FontSelectChar         ; select character in font
+  LDX #font_ptr
+  LDY #ssd1306_ptr
+  JSR Ssd1306WriteCharacter  ; write character to screen buffer
   LDX #ssd1306_ptr
-  JSR SsdNextSegment
+  JSR SsdNextSegment         ; move to next screen buffer segment
   INC $10
   LDA $10
   CMP #message_length
-  BNE WriteLoop
-  ; ---
+  BNE @writeLoop
 
   ; Store pointer to data at $10
   LDA #.LOBYTE(ssd1306_buffer)
@@ -67,56 +68,6 @@ Halt:
 ;--------
 NOP
 JMP Halt
-
-
-; attempt to write the "@" char (first font char) to screen buffer.
-; Overwrites $12, $14, $15.
-WriteLetter:
-  LDY #0 ; font y-coordinate (bit index); screen x-coordinate (byte index)
-  STY $14
-@eachByte:
-  LDX #7 ; font x-coordinate (byte index); screen y-coordinate (bit index)
-  STX $15
-  LDA #0
-  STA (ssd1306_ptr),Y   ; zero the byte
-@eachBit:
-  ; create font bit mask in tmp
-  LDA #%10000000
-  STA $12               ; store initial bitmask at $0012
-  LDX #$12              ; store ptr to $12 in X
-  LDY $14
-  JSR ShiftZpXRightByY  ; right-shift value at X=$12 Y times.
-  LDA $12               ; resulting bitmask in A
-  LDY $15
-  AND (font_ptr),Y      ; AND with font data
-  BEQ @donePixel        ; branch if bit was clear
-  ; create display bit mask in tmp
-  LDA #1
-  STA $12               ; store initial bitmask at $0012
-  LDX #$12              ; store ptr to $12 in X
-  LDY $15               ; screen-Y (font-X) into Y
-  JSR ShiftZpXLeftByY   ; left-shift value at X=$12 Y times.
-  LDA $12               ; resulting bitmask in A
-  ; apply to ssd buffer
-  LDY $14
-  ORA (ssd1306_ptr),Y  ; OR with destination data
-  STA (ssd1306_ptr),Y  ; Store in destination data.
-
-@donePixel:
-
-  LDX $15
-  DEX
-  STX $15
-  CPX #$FF
-  BNE @eachBit
-
-  LDY $14
-  INY
-  STY $14
-  CPY #7
-  BNE @eachByte
-
-  RTS
 
 
 ; TODO: ASCII encoding.

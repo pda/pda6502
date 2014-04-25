@@ -5,9 +5,15 @@
 .export Ssd1306Init
 .export Ssd1306WriteScreen
 .export SsdNextSegment
+.export Ssd1306WriteCharacter
 
+; sleep
 .import SleepOneMs
 .import SleepXMs
+
+; bitwise
+.import ShiftZpXLeftByY
+.import ShiftZpXRightByY
 
 .segment "kernal"
 
@@ -309,3 +315,111 @@ SsdNextSegment:
   INC 1,X
 @done:
   RTS
+
+; Write a character to the screen buffer.
+; X: font_ptr
+; Y: ssd1306_ptr
+.PROC Ssd1306WriteCharacter
+
+  font_ptr       = $10
+  font_ptr_hi    = $11
+  ssd1306_ptr    = $12
+  ssd1306_ptr_hi = $13
+  screen_x       = $14
+  screen_y       = $15
+  tmp_bitmask    = $16
+
+  TXA
+  PHA
+  TYA
+  PHA
+  LDA font_ptr
+  PHA
+  LDA font_ptr_hi
+  PHA
+  LDA ssd1306_ptr
+  PHA
+  LDA ssd1306_ptr_hi
+  PHA
+  LDA screen_x
+  PHA
+  LDA screen_y
+  PHA
+  LDA tmp_bitmask
+  PHA
+
+  ; copy pointer to font to $10
+  LDA 0,X
+  STA font_ptr
+  LDA 1,X
+  STA font_ptr_hi
+
+  ; copy pointer to screen buffer to $12
+  TYA
+  TAX
+  LDA 0,X
+  STA ssd1306_ptr
+  LDA 1,X
+  STA ssd1306_ptr_hi
+
+  LDY #0 ; font y-coordinate (bit index); screen x-coordinate (byte index)
+  STY screen_x
+@eachByte:
+  LDX #7 ; font x-coordinate (byte index); screen y-coordinate (bit index)
+  STX screen_y
+  LDA #0
+  STA (ssd1306_ptr),Y   ; zero the byte
+@eachBit:
+  ; create font bit mask in tmp
+  LDA #%10000000
+  STA tmp_bitmask
+  LDX #tmp_bitmask              ; store bitmask address in X
+  LDY screen_x
+  JSR ShiftZpXRightByY          ; right-shift value at X=tmp_bitmask Y times.
+  LDA tmp_bitmask               ; resulting bitmask in A
+  LDY screen_y
+  AND (font_ptr),Y              ; AND with font data
+  BEQ @donePixel                ; branch if bit was clear
+  ; create display bit mask in tmp
+  LDA #1
+  STA tmp_bitmask               ; store initial bitmask at $0012
+  LDX #tmp_bitmask              ; store ptr to $12 in X
+  LDY screen_y                  ; screen-Y (font-X) into Y
+  JSR ShiftZpXLeftByY           ; left-shift value at X=$12 Y times.
+  LDA tmp_bitmask               ; resulting bitmask in A
+  ; apply to ssd buffer
+  LDY screen_x
+  ORA (ssd1306_ptr),Y           ; OR with destination data
+  STA (ssd1306_ptr),Y           ; Store in destination data.
+@donePixel:
+  LDX screen_y
+  DEX
+  STX screen_y
+  CPX #$FF
+  BNE @eachBit
+  LDY screen_x
+  INY
+  STY screen_x
+  CPY #7
+  BNE @eachByte
+
+  PLA
+  STA tmp_bitmask
+  PLA
+  STA screen_y
+  PLA
+  STA screen_x
+  PLA
+  STA ssd1306_ptr_hi
+  PLA
+  STA ssd1306_ptr
+  PLA
+  STA font_ptr_hi
+  PLA
+  STA font_ptr
+  PLA
+  TAY
+  PLA
+  TAX
+  RTS
+.ENDPROC

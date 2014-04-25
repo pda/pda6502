@@ -301,8 +301,11 @@ SpiWrite:
 
 ; X: zero-page address of pointer
 SsdNextSegment:
-  LDA $00,X
   CLC
+  LDA 0,X
   ADC #8
-  STA $00,X
+  STA 0,X
+  BCC @done
+  INC 1,X
+@done:
   RTS

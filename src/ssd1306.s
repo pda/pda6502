@@ -400,7 +400,7 @@ SsdNextSegment:
   LDY screen_x
   INY
   STY screen_x
-  CPY #7
+  CPY #8
   BNE @eachByte
 
   PLA

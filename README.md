@@ -1,9 +1,33 @@
 pda6502
 =======
 
-Code and notes for a 6502-based breadboard computer.
+pda6502 is a home-built computer powered by an 8-bit [6502][6502] CPU
+([WDC 65C02][65C02]), varitions of which powered the venerable Commodore 64,
+Apple II, Vic 20, Nintendo and lots more.
 
-NB: I have no idea what I'm doing.
+[74HC-series][7400] logic chips map the 64K address space to 32K RAM, 8K ROM, a
+[6522 VIA I/O controller][6522], and room for expansion.
+
+The first output device (beyond flashing LEDs) is a [128x32 pixel OLED][oled],
+connected to one of the VIA 6522 parallel ports, with bit-banged serial comms.
+
+It's currently exclusively running the 6502 assembly code which I've written in
+the `src/` directory of this project. As of April 2014, it can bit-bang SPI on
+the VIA parallel ports to drive the OLED display, rendering text using the old
+Commodore 64 font data.
+
+The code is assembled with [ca65][ca65], part of the [cc65][cc65] 6502
+development package.
+
+
+Emulator
+--------
+
+I've also written [go6502][go6502], an emulator for this system.
+
+go6502 features a stepping debugger with breakpoints on instruction type,
+register values and memory location. This makes it far easier to get code
+working correctly before writing it to an actual EEPROM.
 
 
 Address layout
@@ -100,36 +124,6 @@ Seg  Bits    In  Out  Base    Function
     * Address 0..14 to address bus A0..14.
 
 
-*Initial, minimal implementation*
-
-6502, 74HC138, 8KB ROM, VIA 6522. No RAM.
-
-8kb segment memory map - upper 3 bits to 74HC138.
-
-```
-     High   Dec  Dec
-Seg  Bits    In  Out  Base    Function
---------------------------------------------
-  0   000   000    0  0x0000
-  1   001   001    1  0x2000
-  2   010   010    2  0x4000
-  3   011   011    3  0x6000
-  4   100   100    4  0x8000
-  5   101   101    5  0xA000
-  6   110   110    6  0xC000  IO (VIA)
-  7   111   111    7  0xE000  ROM (KERNAL)
-```
-
-* VIA 6522
-    * To access registers; CS1: HIGH, CS2B: LOW.
-    * CS1 permanently HIGH/active.
-    * CS2B to 74HC138 Y6 (LOW/active for `0b110_____`).
-* ROM AT28C64
-    * CE and OE both active-low, tied together.
-    * CE/OE to 74HC138 Y7 (LOW/active for `0b111_____`)
-    * WE permanently HIGH/inactive.
-
-
 Zero Page
 ---------
 
@@ -138,4 +132,14 @@ The zero page (`0x0000..0x00FF`) is frequently used as "external registers".
 Note that Some 6502 derivatives dedicate the first few bytes to hardware ports and
 control registers, best avoid those? e.g. 6510 in C64 uses at least two.
 
-* `0x0010..0x0017` - local temporary data; subroutines can overwrite.
+
+
+[6502]: http://en.wikipedia.org/wiki/MOS_Technology_6502
+[65C02]: http://en.wikipedia.org/wiki/WDC_65C02
+[6522]: http://en.wikipedia.org/wiki/MOS_Technology_6522
+[7400]: http://en.wikipedia.org/wiki/List_of_7400_series_integrated_circuits
+[oled]: https://www.adafruit.com/products/661
+[golang]: http://golang.org/
+[go6502]: https://github.com/pda/go6502
+[ca65]: http://cc65.github.io/cc65/doc/ca65.html
+[cc65]: http://cc65.github.io/cc65/

@@ -12,26 +12,26 @@
 .PROC AsciiToPetscii
   ; ASCII $40 to $5A (@, A-Z) map to PETSCII $0 to $something
   TYA
-  CLC
+  SEC
   SBC #$40
-  BCS notAlpha
+  BCC notAlpha  ; if Y < $40: skip
   TYA
-  CLC
+  SEC
   SBC #$5A
-  BCC notAlpha
+  BCS notAlpha  ; if Y > $5A: skip
   TYA
-  CLC
-  SBC #$3F      ; subtract $3F for alpha chars
+  SEC
+  SBC #$40      ; subtract $40 for alpha chars
   TAY
   JMP end
 notAlpha:
   TYA
-  CLC
+  SEC
   SBC #$1F
-  BCC notLow
+  BCS notLow    ; if Y >= 32 (or 31?): skip
   TYA
   CLC
-  ADC #64
+  ADC #64       ; Y+=64 for 0..31
   TAY
   JMP end
 notLow:

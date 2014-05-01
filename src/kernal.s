@@ -39,8 +39,8 @@ Main:
   STA $10 ; loop counter = 0
 @writeLoop:
   LDX $10
-  LDY Message,X
-  JSR AsciiToPetscii
+  LDY Message,X              ; Y = ASCII-ish byte.
+  JSR AsciiToPetscii         ; convert Y to PETSCII font offset.
   LDX #font_ptr
   JSR FontSelectChar         ; select character in font
   LDX #font_ptr

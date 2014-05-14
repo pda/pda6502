@@ -14,6 +14,10 @@
 ; font
 .import FontSelectChar
 
+; SD card
+.import SdCardInit
+.import SdCardReset
+
 .segment "kernal"
 
 ssd1306_buffer = $7000 ; page-aligned 512 byte buffer
@@ -26,6 +30,12 @@ font_ptr_hi    = $A3
 
 Main:
 ;--------
+
+  JSR SdCardInit
+  JSR SdCardReset
+  JMP Halt
+
+  ;----------------------------------------
 
   ; Initialize pointer to an 8x8 screen segment.
   LDA #.LOBYTE(ssd1306_buffer)

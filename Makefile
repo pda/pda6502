@@ -2,14 +2,15 @@ SOURCES=$(wildcard src/*.s)
 OBJECTS=$(SOURCES:.s=.o)
 
 CA      = ca65
-LD      = cl65
-LDFLAGS = --mapfile build/memory.map --config memory.conf
+CAFLAGS = --debug-info
+LD      = ld65
+LDFLAGS = --mapfile build/memory.map --config memory.conf --dbgfile build/debug
 
 all: $(OBJECTS)
 	$(LD) $(LDFLAGS) $^
 
 src/%.o: src/%.s
-	$(CA) -o $@ $(@:.o=.s)
+	$(CA) $(CAFLAGS) -o $@ $(@:.o=.s)
 
 clean:
 	$(RM) $(OBJECTS) build/*

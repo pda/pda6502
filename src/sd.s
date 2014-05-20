@@ -24,6 +24,7 @@ sd_ddr = via_base + $03 ; DDRA
   ORA #(sd_mask_cs | sd_mask_clock | sd_mask_mosi) ; output
   AND #~(sd_mask_miso) ; input
   STA sd_ddr
+  JSR csHigh  ; deselect
   ; clock low
   LDA #~sd_mask_clock
   AND sd_port

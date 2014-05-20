@@ -160,7 +160,7 @@ loop:
 .PROC SpiByte
   TYA
   PHA
-  LDY #0
+  LDY #8
 eachBit:
   ; write MOSI
   TXA
@@ -204,8 +204,7 @@ read:
   AND sd_port
   STA sd_port
 
-  INY
-  CPY #8
+  DEY
   BNE eachBit
 
   PLA

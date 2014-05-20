@@ -32,20 +32,6 @@ sd_ddr = via_base + $03 ; DDRA
   RTS
 .ENDPROC
 
-.PROC csHigh
-  LDA sd_port
-  ORA #sd_mask_cs
-  STA sd_port
-  RTS
-.ENDPROC
-
-.PROC csLow
-  LDA sd_port
-  AND #~sd_mask_cs
-  STA sd_port
-  RTS
-.ENDPROC
-
 ; Switch to SPI mode, expect R1 response.
 .PROC SdCardReset
   TXA
@@ -226,3 +212,17 @@ read:
   TAY
   RTS
 .ENDPROC ; SpiByte
+
+.PROC csHigh
+  LDA sd_port
+  ORA #sd_mask_cs
+  STA sd_port
+  RTS
+.ENDPROC
+
+.PROC csLow
+  LDA sd_port
+  AND #~sd_mask_cs
+  STA sd_port
+  RTS
+.ENDPROC

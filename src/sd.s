@@ -10,10 +10,10 @@
 
 via_base = $C000
 
+sd_mask_clock = %00010000
+sd_mask_mosi = %00100000
+sd_mask_miso = %01000000
 sd_mask_cs = %10000000
-sd_mask_clock = %01000000
-sd_mask_miso = %00100000
-sd_mask_mosi = %00010000
 sd_port = via_base + $01 ; PA
 sd_ddr = via_base + $03 ; DDRA
 

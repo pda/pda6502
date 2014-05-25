@@ -3,6 +3,7 @@
 .segment "kernal"
 
 .export SdCardInit
+.export SdCardRead
 .export SdCardReset
 
 ;----------------------------------------
@@ -29,6 +30,42 @@ sd_ddr = via_base + $03 ; DDRA
   LDA #~sd_mask_clock
   AND sd_port
   STA sd_port
+  RTS
+.ENDPROC
+
+; SdCardRead reads a block from address zero into into a fixed address.
+; TODO: arguments for block number and destination pointer.
+.PROC SdCardRead
+  TXA
+  PHA
+  TYA
+  PHA
+  JSR csLow
+
+  LDX #17 ; READ_SINGLE_BLOCK (CMD17)
+  JSR sdCardCommandZeroArg
+  ; TODO: check R1 == 0x00 (ready)
+
+waitForDataBlock:
+  LDX #$FF  ; MOSI high
+  JSR SpiByte
+  CPX #$FE
+  BNE waitForDataBlock
+
+  LDY #0
+readLoop:
+  LDX #$FF  ; MOSI high
+  JSR SpiByte
+  TXA
+  STA $6000,Y  ; TODO: accept a ptr, store there.
+  INY
+  CPY #$FF  ; TODO: read entire block.
+  BNE readLoop
+
+  PLA
+  TAY
+  PLA
+  TAX
   RTS
 .ENDPROC
 

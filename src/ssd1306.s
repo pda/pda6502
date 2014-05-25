@@ -236,6 +236,7 @@ SsdWriteZeroLoop3:
   PLA
   TAX
   PLA
+  RTS
 
 
 ; Send a byte to SSD1306 in command mode.

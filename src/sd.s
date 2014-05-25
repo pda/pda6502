@@ -91,7 +91,8 @@ done:
   JSR csLow
   JSR waitNotBusy
   TXA
-  ORA #%01000000
+  AND #%00111111  ;
+  ORA #%01000000  ; command is 01______
   TAX
   JSR SpiByte  ; CMD
   LDX #$00

@@ -50,14 +50,7 @@ Main:
 @writeLoop:
   LDX $10
   LDY Message,X              ; Y = ASCII-ish byte.
-  JSR AsciiToPetscii         ; convert Y to PETSCII font offset.
-  LDX #font_ptr
-  JSR FontSelectChar         ; select character in font
-  LDX #font_ptr
-  LDY #ssd1306_ptr
-  JSR Ssd1306WriteCharacter  ; write character to screen buffer
-  LDX #ssd1306_ptr
-  JSR SsdNextSegment         ; move to next screen buffer segment
+  JSR writeAsciiToSsdBuffer
   INC $10
   LDA $10
   CMP #message_length
@@ -77,7 +70,20 @@ NOP
 JMP Halt
 
 
-; TODO: ASCII encoding.
+; Y: ASCII-ish char to write.
+; X: destroyed
+.PROC writeAsciiToSsdBuffer
+  JSR AsciiToPetscii         ; convert Y to PETSCII font offset.
+  LDX #font_ptr
+  JSR FontSelectChar         ; select character in font
+  LDX #font_ptr
+  LDY #ssd1306_ptr
+  JSR Ssd1306WriteCharacter  ; write character to screen buffer
+  LDX #ssd1306_ptr
+  JSR SsdNextSegment         ; move to next screen buffer segment
+  RTS
+.ENDPROC
+
 message_length = 64
 Message:
   .byte 21, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 9

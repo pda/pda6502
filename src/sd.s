@@ -36,42 +36,57 @@ sd_ddr = via_base + $03 ; DDRA
 .PROC SdCardReset
   TXA
   PHA
-
-  JSR csHigh
-
-  ; waste >= 74 SPI clocks.
-  LDY #10 ; 10 * 8 = 80 clocks
-initDelayLoop:
-  LDX #$FF
-  JSR SpiByte
-  DEY
-  BNE initDelayLoop
-
+  JSR wasteClock
   JSR csLow
 
-  ; GO_IDLE_STATE (CMD0); enter SPI mode.
-  LDX #0
+  LDX #0 ; GO_IDLE_STATE (CMD0); enter SPI mode.
   JSR sdCardCommandZeroArg
+  ; TODO: check R1 == 0x01
 
-  JSR readR1Response
+sd_send_op_cond_loop:
+  LDX #55 ; APP_CMD (CMD55)
+  JSR sdCardCommandZeroArg
+  ; TODO: check R1 == 0x01
+  LDX #41 ; SD_SEND_OP_COND (ACMD41)
+  JSR sdCardCommandZeroArg
+  CPX #0
+  BNE sd_send_op_cond_loop
 
-  ; TODO: SEND_OP_COND (CMD1)
-  JSR readR1Response
-
+  JSR csHigh
+  JSR wasteClock
 
   PLA
   TAX
   RTS
 .ENDPROC
 
-; X: destroyed
+; wasteClock sends 80 clock cycles with CS high (disabled).
+; This is necessary at startup (>= 74 SPI clocks), and after
+; receiving a final response (>= NCR clock cycles).
+.PROC wasteClock
+  TYA
+  PHA
+  JSR csHigh
+  LDY #10 ; 10 * 8 = 80 clocks
+initDelayLoop:
+  JSR SpiByte
+  DEY
+  BNE initDelayLoop
+  PLA
+  TAY
+  RTS
+.ENDPROC
+
+; X: preserved
 ; Y: preserved
 .PROC waitNotBusy
+  TXA
+  PHA
   TYA
   PHA
   LDY #8 ; Loop limit. Increase?
 loop:
-  LDX #$AA ; SPI debug sentinel
+  LDX #$FF
   JSR SpiByte
   CPX #$FF
   BEQ done
@@ -82,6 +97,8 @@ timeout:
 done:
   PLA
   TAY
+  PLA
+  TAX
   RTS
 .ENDPROC
 
@@ -109,11 +126,15 @@ done:
   RTS
 .ENDPROC
 
+; X out: R1 response.
 .PROC waitR1
+loop:
+  LDX #$FF
   JSR SpiByte
   TXA
-  AND #$80
-  ; ...
+  AND #$80 ; busy loop while MSB is high; valid r1 is 0_______.
+  BNE loop
+  RTS
 .ENDPROC
 
 ; Read Y bytes of data, plus start-byte and CRC bytes.
@@ -147,9 +168,7 @@ loop:
 ; Note:
 ; The host must keep the clock running for at least
 ; NCR clock cycles after the card response is received.
-.PROC readR1Response
-  JSR SpiByte
-  ; TODO: handle error bits.
+.PROC checkR1Response
   RTS
 .ENDPROC
 

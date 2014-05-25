@@ -56,12 +56,8 @@ Main:
   CMP #message_length
   BNE @writeLoop
 
-  ; Store pointer to data at $10
-  LDA #.LOBYTE(ssd1306_buffer)
-  STA $10
-  LDA #.HIBYTE(ssd1306_buffer)
-  STA $11
-
+  LDX #.LOBYTE(ssd1306_buffer)
+  LDY #.HIBYTE(ssd1306_buffer)
   JSR Ssd1306WriteScreen
 
 Halt:

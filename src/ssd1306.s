@@ -159,18 +159,16 @@ Ssd1306Init:
 
 
 ; Write data to SSD1306 display.
-; Treats $10 as a 16-bit pointer to the data.
-; Preserves A, X, Y and $10,$11.
+; X,Y is 16-bit pointer to the data. Both are destroyed.
 Ssd1306WriteScreen:
-  PHA
-  TXA
-  PHA
-  TYA
-  PHA
   LDA $10
   PHA
   LDA $11
   PHA
+
+  ; Store data buffer ptr at $10
+  STX $10
+  STY $11
 
   ; Reset some things.
   LDX #(SSD1306_SETLOWCOLUMN | $0)  ; low col = 0
@@ -231,11 +229,6 @@ SsdWriteZeroLoop3:
   STA $11
   PLA
   STA $10
-  PLA
-  TAY
-  PLA
-  TAX
-  PLA
   RTS
 
 

@@ -1,9 +1,35 @@
 ; asmsyntax=asmM6502 (http://cc65.github.io/cc65/)
 
-.export SleepXMs
 .export SleepOneMs
+.export SleepXMs
+.export SleepXSeconds
 
 .segment "kernal"
+
+.PROC SleepXSeconds
+  TXA
+  PHA
+  TYA
+  PHA
+  TXA ; move loop counter from X ..
+  TAY ; .. to Y
+  LDX #250 ; 250ms per SleepXMs
+loop:
+  CPY #0
+  BEQ done
+  JSR SleepXMs
+  JSR SleepXMs
+  JSR SleepXMs
+  JSR SleepXMs
+  DEY
+  JMP loop
+done:
+  PLA
+  TAY
+  PLA
+  TAX
+  RTS
+.ENDPROC
 
 ; Sleep for X milliseconds (assuming 1 MHz).
 SleepXMs:

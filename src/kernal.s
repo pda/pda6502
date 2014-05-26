@@ -2,6 +2,9 @@
 
 .export Main
 
+; timing
+.import SleepXSeconds
+
 ; encoding
 .import AsciiToPetscii
 
@@ -16,6 +19,7 @@
 
 ; SD card
 .import SdCardInit
+.import SdCardRead
 .import SdCardReset
 
 .segment "kernal"
@@ -30,12 +34,6 @@ font_ptr_hi    = $A3
 
 Main:
 ;--------
-
-  JSR SdCardInit
-  JSR SdCardReset
-  JMP Halt
-
-  ;----------------------------------------
 
   ; Initialize pointer to an 8x8 screen segment.
   LDA #.LOBYTE(ssd1306_buffer)
@@ -59,6 +57,40 @@ Main:
   LDX #.LOBYTE(ssd1306_buffer)
   LDY #.HIBYTE(ssd1306_buffer)
   JSR Ssd1306WriteScreen
+
+  ;----------------------------------------
+
+  LDX #1
+  JSR SleepXSeconds
+
+  JSR SdCardInit
+  JSR SdCardReset
+  JSR SdCardRead ; into $6000 for now.
+
+  ; Initialize pointer to an 8x8 screen segment.
+  LDA #.LOBYTE(ssd1306_buffer)
+  STA ssd1306_ptr
+  LDA #.HIBYTE(ssd1306_buffer)
+  STA ssd1306_ptr_hi
+
+  LDA #0
+  STA $10 ; loop counter = 0
+@writeLoop2:
+  LDX $10
+  LDY $6000,X              ; Y = ASCII-ish byte.
+  JSR writeAsciiToSsdBuffer
+  INC $10
+  LDA $10
+  CMP #message_length
+  BNE @writeLoop2
+
+  LDX #.LOBYTE(ssd1306_buffer)
+  LDY #.HIBYTE(ssd1306_buffer)
+  JSR Ssd1306WriteScreen
+
+  ;----------------------------------------
+  JMP Halt
+
 
 Halt:
 ;--------

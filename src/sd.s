@@ -6,6 +6,15 @@
 .export SdCardRead
 .export SdCardReset
 
+; Subroutines
+.import SpiByte
+
+; BSS vars
+.import SpiMaskClock
+.import SpiMaskMiso
+.import SpiMaskMosi
+.import SpiPort
+
 ;----------------------------------------
 ; SD card on port A of 6522 VIA at $C000
 
@@ -40,6 +49,7 @@ sd_ddr = via_base + $03 ; DDRA
   PHA
   TYA
   PHA
+  JSR configureSpi
   JSR csLow
 
   LDX #17 ; READ_SINGLE_BLOCK (CMD17)
@@ -73,6 +83,7 @@ readLoop:
 .PROC SdCardReset
   TXA
   PHA
+  JSR configureSpi
   JSR wasteClock
   JSR csLow
 
@@ -94,6 +105,21 @@ sd_send_op_cond_loop:
 
   PLA
   TAX
+  RTS
+.ENDPROC
+
+; Configure SPI driver parameters to use SD card.
+.PROC configureSpi
+  LDA #sd_mask_clock
+  STA SpiMaskClock
+  LDA #sd_mask_mosi
+  STA SpiMaskMosi
+  LDA #sd_mask_miso
+  STA SpiMaskMiso
+  LDA #.LOBYTE(sd_port)
+  STA SpiPort
+  LDA #.HIBYTE(sd_port)
+  STA SpiPort + 1
   RTS
 .ENDPROC
 
@@ -208,66 +234,6 @@ loop:
 .PROC checkR1Response
   RTS
 .ENDPROC
-
-
-; SpiByte exchanges an output byte for an input byte via SPI.
-; X: data input and output
-; Y: (preserved)
-; $10: (preserved)
-.PROC SpiByte
-  TYA
-  PHA
-  LDY #8
-eachBit:
-  ; write MOSI
-  TXA
-  AND #(1 << 7) ; MSB
-  BEQ writeZero
-writeOne:
-  LDA #sd_mask_mosi
-  ORA sd_port
-  JMP write
-writeZero:
-  LDA #~sd_mask_mosi
-  AND sd_port
-write:
-  STA sd_port
-
-  TXA
-  ASL ; push next most significant bit to front.
-  TAX
-
-  ; clock high
-  LDA #sd_mask_clock
-  ORA sd_port
-  STA sd_port
-
-  ; read MISO
-  LDA #sd_mask_miso
-  AND sd_port
-  BEQ readZero
-readOne:
-  TXA
-  ORA #1
-  JMP read
-readZero:
-  TXA
-  AND #~1
-read:
-  TAX ; new bit set into x[0], which will be shifted left until byte read.
-
-  ; clock low
-  LDA #~sd_mask_clock
-  AND sd_port
-  STA sd_port
-
-  DEY
-  BNE eachBit
-
-  PLA
-  TAY
-  RTS
-.ENDPROC ; SpiByte
 
 .PROC csHigh
   LDA sd_port

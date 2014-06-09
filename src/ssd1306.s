@@ -17,6 +17,9 @@
 .import SleepOneMs
 .import SleepXMs
 
+; spi
+.import SpiByte
+
 ; bitwise
 .import ShiftZpXLeftByY
 .import ShiftZpXRightByY
@@ -202,7 +205,7 @@ Ssd1306WriteScreen:
 @eachByte:
   LDA ($10),Y
   TAX
-  JSR SpiWrite
+  JSR SpiByte
   TYA
   CMP #$FF ; 256 byte page written
   BEQ @donePage
@@ -225,13 +228,13 @@ Ssd1306WriteScreen:
   LDX #$00 ; data
   LDY #$00 ; loop index
 SsdWriteZeroLoop2:
-  JSR SpiWrite
+  JSR SpiByte
   INY
   BNE SsdWriteZeroLoop2
   LDX #$00 ; data
   LDY #$00 ; loop index
 SsdWriteZeroLoop3:
-  JSR SpiWrite
+  JSR SpiByte
   INY
   BNE SsdWriteZeroLoop3
 
@@ -251,63 +254,10 @@ Ssd1306Command:
   EOR #$FF
   AND ssd1306_port
   STA ssd1306_port
-  JSR SpiWrite ; Send byte in X.
+  JSR SpiByte ; Send byte in X.
   PLA
   RTS
 
-
-; X: command data
-; Y: (preserved)
-; A: (preserved)
-; $10: (preserved)
-SpiWrite:
-  PHA
-  TYA
-  PHA
-  LDA $10
-  PHA
-
-  LDY #%10000000
-@eachBit:
-
-  ; clock low
-  LDA #ssd1306_mask_clock
-  EOR #$FF
-  AND ssd1306_port
-  STA ssd1306_port
-
-  ; write data bit
-  TXA
-  STY $10
-  AND $10
-  BEQ @prepareLow
-@prepareHigh:
-  LDA #ssd1306_mask_data
-  ORA ssd1306_port
-  JMP @writeData
-@prepareLow:
-  LDA #ssd1306_mask_data
-  EOR #$FF
-  AND ssd1306_port
-@writeData:
-  STA ssd1306_port
-
-  ; clock high
-  LDA #ssd1306_mask_clock
-  ORA ssd1306_port
-  STA ssd1306_port
-
-  TYA
-  LSR ; shift to next bit (or zero)
-  TAY
-  BNE @eachBit
-
-  PLA
-  STA $10
-  PLA
-  TAY
-  PLA
-  RTS
 
 ; X: zero-page address of pointer
 SsdNextSegment:

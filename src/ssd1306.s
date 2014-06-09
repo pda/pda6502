@@ -7,6 +7,12 @@
 .export SsdNextSegment
 .export Ssd1306WriteCharacter
 
+; BSS vars
+.import SpiMaskClock
+.import SpiMaskMiso
+.import SpiMaskMosi
+.import SpiPort
+
 ; sleep
 .import SleepOneMs
 .import SleepXMs
@@ -67,6 +73,8 @@ Ssd1306Init:
   PHA
   TYA
   PHA
+
+  JSR configureSpi
 
   ; Data direction output for all pins.
   LDX #$FF
@@ -165,6 +173,8 @@ Ssd1306WriteScreen:
   PHA
   LDA $11
   PHA
+
+  JSR configureSpi
 
   ; Store data buffer ptr at $10
   STX $10
@@ -301,6 +311,7 @@ SpiWrite:
 
 ; X: zero-page address of pointer
 SsdNextSegment:
+  JSR configureSpi
   CLC
   LDA 0,X
   ADC #8
@@ -341,6 +352,8 @@ SsdNextSegment:
   PHA
   LDA tmp_bitmask
   PHA
+
+  JSR configureSpi
 
   ; copy pointer to font to $10
   LDA 0,X
@@ -415,5 +428,20 @@ SsdNextSegment:
   TAY
   PLA
   TAX
+  RTS
+.ENDPROC
+
+; Configure SPI driver parameters to use SSD1306 display.
+.PROC configureSpi
+  LDA #ssd1306_mask_clock
+  STA SpiMaskClock
+  LDA #ssd1306_mask_data
+  STA SpiMaskMosi
+  LDA #ssd1306_mask_data ; (SSD1306 SPI has no MISO)
+  STA SpiMaskMiso
+  LDA #.LOBYTE(ssd1306_port)
+  STA SpiPort
+  LDA #.HIBYTE(ssd1306_port)
+  STA SpiPort + 1
   RTS
 .ENDPROC

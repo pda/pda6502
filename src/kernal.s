@@ -115,6 +115,6 @@ JMP Halt
 message_length = 64
 Message:
   .byte 21, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 9
-  .byte 2, " HELLO, WORLD!", 2
-  .byte 2, "   PDA-6502   ", 2
+  .byte 2, "PDA6502 READY ", 2
+  .byte 2, "RAM:32K ROM:8K", 2
   .byte 10, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 11

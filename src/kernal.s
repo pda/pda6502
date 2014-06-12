@@ -22,6 +22,9 @@
 .import SdCardRead
 .import SdCardReset
 
+; user-stack
+.import StackPush
+
 .segment "kernal"
 
 ssd1306_buffer = $7000 ; page-aligned 512 byte buffer
@@ -65,7 +68,17 @@ Main:
 
   JSR SdCardInit
   JSR SdCardReset
-  JSR SdCardRead ; into $6000 for now.
+
+  ; push 32-bit address onto user-stack.
+  LDA #$00 ; LSB
+  JSR StackPush
+  LDA #$00
+  JSR StackPush
+  LDA #$00
+  JSR StackPush
+  LDA #$00 ; MSB
+  JSR StackPush
+  JSR SdCardRead ; 512 byte block from address on user-stack into $6000.
 
   ; Initialize pointer to an 8x8 screen segment.
   LDA #.LOBYTE(ssd1306_buffer)

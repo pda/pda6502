@@ -55,15 +55,7 @@ sd_ddr = via_base + $03 ; DDRA
   JSR csLow
 
   LDX #17 ; READ_SINGLE_BLOCK (CMD17)
-  LDA #$00 ; LSB
-  JSR StackPush
-  LDA #$00
-  JSR StackPush
-  LDA #$00
-  JSR StackPush
-  LDA #$00 ; MSB
-  JSR StackPush
-  JSR sdCardCommand
+  JSR sdCardCommand ; expect 32-bit address on user stack
   ; TODO: check R1 == 0x00 (ready)
 
 waitForDataBlock:

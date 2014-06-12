@@ -8,6 +8,8 @@
 
 ; Subroutines
 .import SpiByte
+.import StackPop
+.import StackPush
 
 ; BSS vars
 .import SpiMaskClock
@@ -53,7 +55,15 @@ sd_ddr = via_base + $03 ; DDRA
   JSR csLow
 
   LDX #17 ; READ_SINGLE_BLOCK (CMD17)
-  JSR sdCardCommandZeroArg
+  LDA #$00 ; LSB
+  JSR StackPush
+  LDA #$00
+  JSR StackPush
+  LDA #$00
+  JSR StackPush
+  LDA #$00 ; MSB
+  JSR StackPush
+  JSR sdCardCommand
   ; TODO: check R1 == 0x00 (ready)
 
 waitForDataBlock:
@@ -88,15 +98,30 @@ readLoop:
   JSR csLow
 
   LDX #0 ; GO_IDLE_STATE (CMD0); enter SPI mode.
-  JSR sdCardCommandZeroArg
+  LDA #0
+  JSR StackPush
+  JSR StackPush
+  JSR StackPush
+  JSR StackPush
+  JSR sdCardCommand
   ; TODO: check R1 == 0x01
 
 sd_send_op_cond_loop:
   LDX #55 ; APP_CMD (CMD55)
-  JSR sdCardCommandZeroArg
+  LDA #0
+  JSR StackPush
+  JSR StackPush
+  JSR StackPush
+  JSR StackPush
+  JSR sdCardCommand
   ; TODO: check R1 == 0x01
   LDX #41 ; SD_SEND_OP_COND (ACMD41)
-  JSR sdCardCommandZeroArg
+  LDA #0
+  JSR StackPush
+  JSR StackPush
+  JSR StackPush
+  JSR StackPush
+  JSR sdCardCommand
   CPX #0
   BNE sd_send_op_cond_loop
 
@@ -167,7 +192,8 @@ done:
 
 ; X in: CMD, e.g. 0 for CMD0
 ; X out: R1
-.PROC sdCardCommandZeroArg
+; 4 byte argument popped from user stack MSByte first; push LSByte first.
+.PROC sdCardCommand
   JSR csLow
   JSR waitNotBusy
   TXA
@@ -175,13 +201,17 @@ done:
   ORA #%01000000  ; command is 01______
   TAX
   JSR SpiByte  ; CMD
-  LDX #$00
+  JSR StackPop
+  TAX
   JSR SpiByte  ; arg
-  LDX #$00
+  JSR StackPop
+  TAX
   JSR SpiByte  ; arg
-  LDX #$00
+  JSR StackPop
+  TAX
   JSR SpiByte  ; arg
-  LDX #$00
+  JSR StackPop
+  TAX
   JSR SpiByte  ; arg
   LDX #$95     ; static CRC + end bit for CMD0; ignored for other CMDs.
   JSR SpiByte  ; CRC

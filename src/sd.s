@@ -72,7 +72,6 @@ readLoop:
   TXA
   STA $6000,Y  ; TODO: accept a ptr, store there.
   INY
-  CPY #$FF
   BNE readLoop
 
   ; read second 256-byte page of 512-byte block
@@ -83,7 +82,6 @@ readLoop2:
   TXA
   STA $6100,Y  ; TODO: accept a ptr, store there.
   INY
-  CPY #$FF
   BNE readLoop2
 
   PLA

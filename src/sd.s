@@ -64,6 +64,7 @@ waitForDataBlock:
   CPX #$FE
   BNE waitForDataBlock
 
+  ; read first 256-byte page of 512-byte block
   LDY #0
 readLoop:
   LDX #$FF  ; MOSI high
@@ -71,8 +72,19 @@ readLoop:
   TXA
   STA $6000,Y  ; TODO: accept a ptr, store there.
   INY
-  CPY #$FF  ; TODO: read entire block.
+  CPY #$FF
   BNE readLoop
+
+  ; read second 256-byte page of 512-byte block
+  LDY #0
+readLoop2:
+  LDX #$FF  ; MOSI high
+  JSR SpiByte
+  TXA
+  STA $6100,Y  ; TODO: accept a ptr, store there.
+  INY
+  CPY #$FF
+  BNE readLoop2
 
   PLA
   TAY

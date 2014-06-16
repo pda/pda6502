@@ -38,28 +38,7 @@ font_ptr_hi    = $A3
 Main:
 ;--------
 
-  ; Initialize pointer to an 8x8 screen segment.
-  LDA #.LOBYTE(ssd1306_buffer)
-  STA ssd1306_ptr
-  LDA #.HIBYTE(ssd1306_buffer)
-  STA ssd1306_ptr_hi
-
-  JSR Ssd1306Init
-
-  LDA #0
-  STA $10 ; loop counter = 0
-@writeLoop:
-  LDX $10
-  LDY Message,X              ; Y = ASCII-ish byte.
-  JSR writeAsciiToSsdBuffer
-  INC $10
-  LDA $10
-  CMP #message_length
-  BNE @writeLoop
-
-  LDX #.LOBYTE(ssd1306_buffer)
-  LDY #.HIBYTE(ssd1306_buffer)
-  JSR Ssd1306WriteScreen
+  JSR splashScreen
 
   ;----------------------------------------
 
@@ -109,6 +88,33 @@ Halt:
 ;--------
 NOP
 JMP Halt
+
+.PROC splashScreen
+  ; Initialize pointer to an 8x8 screen segment.
+  LDA #.LOBYTE(ssd1306_buffer)
+  STA ssd1306_ptr
+  LDA #.HIBYTE(ssd1306_buffer)
+  STA ssd1306_ptr_hi
+
+  JSR Ssd1306Init
+
+  LDA #0
+  STA $10 ; loop counter = 0
+@writeLoop:
+  LDX $10
+  LDY Message,X              ; Y = ASCII-ish byte.
+  JSR writeAsciiToSsdBuffer
+  INC $10
+  LDA $10
+  CMP #message_length
+  BNE @writeLoop
+
+  LDX #.LOBYTE(ssd1306_buffer)
+  LDY #.HIBYTE(ssd1306_buffer)
+  JSR Ssd1306WriteScreen
+
+  RTS
+.ENDPROC
 
 
 ; Y: ASCII-ish char to write.

@@ -38,7 +38,11 @@ font_ptr_hi    = $A3
 Main:
 ;--------
 
-  JSR splashScreen
+  ; Initialize SSD1306 display.
+  JSR Ssd1306Init
+
+  JSR loadSplashScreen
+  JSR displayText
 
   LDX #1
   JSR SleepXSeconds ; sleep(1)
@@ -87,30 +91,17 @@ Halt:
 NOP
 JMP Halt
 
-.PROC splashScreen
-  ; Initialize pointer to an 8x8 screen segment.
-  LDA #.LOBYTE(ssd1306_buffer)
-  STA ssd1306_ptr
-  LDA #.HIBYTE(ssd1306_buffer)
-  STA ssd1306_ptr_hi
-
-  JSR Ssd1306Init
-
-  LDA #0
-  STA $10 ; loop counter = 0
+; Copy Message to $6000 for displayText
+.PROC loadSplashScreen
+  LDX #0
 loop:
-  LDX $10
-  LDY Message,X              ; Y = ASCII-ish byte.
-  JSR writeAsciiToSsdBuffer
-  INC $10
-  LDA $10
-  CMP #message_length
-  BNE loop
-
-  LDX #.LOBYTE(ssd1306_buffer)
-  LDY #.HIBYTE(ssd1306_buffer)
-  JSR Ssd1306WriteScreen
-
+  CPX #message_length
+  BEQ done
+  LDA Message,X   ; A <- ASCII-ish byte from Message.
+  STA $6000,X     ; $6000 <- A
+  INX
+  JMP loop
+done:
   RTS
 .ENDPROC
 

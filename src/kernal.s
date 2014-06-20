@@ -51,38 +51,6 @@ Main:
   JSR SdCardInit
   JSR SdCardReset
 
-  ; Display data from first block of SD card.
-  ; push (uint32)0 onto user-stack.
-  LDA #$00 ; LSB
-  JSR StackPush
-  LDA #$00
-  JSR StackPush
-  LDA #$00
-  JSR StackPush
-  LDA #$00 ; MSB
-  JSR StackPush
-  JSR SdCardRead ; 512 byte block from address on user-stack into $6000.
-  JSR displayText
-
-  LDX #1
-  JSR SleepXSeconds ; sleep(1)
-
-  ; Display data from first block of SD card.
-  ; push (uint32)512 onto user-stack.
-  LDA #$00 ; LSB
-  JSR StackPush
-  LDA #$02
-  JSR StackPush
-  LDA #$00
-  JSR StackPush
-  LDA #$00 ; MSB
-  JSR StackPush
-  JSR SdCardRead ; 512 byte block from address on user-stack into $6000.
-  JSR displayText
-
-  LDX #1
-  JSR SleepXSeconds ; sleep(1)
-
   JMP Halt
 
 

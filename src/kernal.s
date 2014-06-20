@@ -22,6 +22,9 @@
 .import SdCardRead
 .import SdCardReset
 
+; FAT filesystem
+.import FatInit
+
 ; user-stack
 .import StackPush
 
@@ -44,12 +47,11 @@ Main:
   JSR loadSplashScreen
   JSR displayText
 
-  LDX #1
-  JSR SleepXSeconds ; sleep(1)
-
   ; Initialize SD card
   JSR SdCardInit
   JSR SdCardReset
+
+  JSR FatInit
 
   JMP Halt
 

@@ -21,6 +21,7 @@ FatRootCluster: .dword 0
 FatFatOffset: .dword 0    ; location of first FAT
 FatFatSize: .dword 0      ; size in bytes of each FAT
 FatFatTotalSize: .dword 0 ; total size of FATs (count x size)
+FatDataAddress: .dword 0  ; location of data (first cluster)
 
 
 .segment "kernal"
@@ -109,6 +110,7 @@ FatFatTotalSize: .dword 0 ; total size of FATs (count x size)
   JSR calculateFatOffset
   JSR calculateFatSize
   JSR calculateFatTotalSize
+  JSR calculateDataAddress
   RTS
 .ENDPROC
 
@@ -152,6 +154,7 @@ storeHighByte:
 .ENDPROC
 
 ; Calculate the total size of the FATs.
+; FatFatCount * FatFatSize
 .PROC calculateFatTotalSize
   LDX FatFatCount
 loop:
@@ -171,5 +174,24 @@ loop:
   DEX
   JMP loop
 loopDone:
+  RTS
+.ENDPROC
+
+; Calculate the address of the first cluster.
+; (uint32)FatFatOffset + (uint32)FatFatTotalSize
+.PROC calculateDataAddress
+  CLC
+  LDA FatFatOffset + 0
+  ADC FatFatTotalSize + 0
+  STA FatDataAddress + 0
+  LDA FatFatOffset + 1
+  ADC FatFatTotalSize + 1
+  STA FatDataAddress + 1
+  LDA FatFatOffset + 2
+  ADC FatFatTotalSize + 2
+  STA FatDataAddress + 2
+  LDA FatFatOffset + 3
+  ADC FatFatTotalSize + 3
+  STA FatDataAddress + 3
   RTS
 .ENDPROC

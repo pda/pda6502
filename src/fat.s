@@ -22,6 +22,7 @@ FatFatOffset: .dword 0    ; location of first FAT
 FatFatSize: .dword 0      ; size in bytes of each FAT
 FatFatTotalSize: .dword 0 ; total size of FATs (count x size)
 FatDataAddress: .dword 0  ; location of data (first cluster)
+FatClusterSize: .word 0   ; size of each cluster in bytes
 
 
 .segment "kernal"
@@ -107,10 +108,12 @@ FatDataAddress: .dword 0  ; location of data (first cluster)
 .ENDPROC
 
 .PROC calculateFatParameters
+  ; calculations are order-sensitive; later ones depend on earlier ones.
   JSR calculateFatOffset
   JSR calculateFatSize
   JSR calculateFatTotalSize
   JSR calculateDataAddress
+  JSR calculateClusterSize
   RTS
 .ENDPROC
 
@@ -193,5 +196,19 @@ loopDone:
   LDA FatFatOffset + 3
   ADC FatFatTotalSize + 3
   STA FatDataAddress + 3
+  RTS
+.ENDPROC
+
+; Calculate the size of each cluster.
+; (uint8)FatSectorsPerCluster * (uint16)FatSectorSize
+; Assume FatSectorSize == 512
+; FatSectorsPerCluster * 512
+; FatSectorsPerCluster << 9
+.PROC calculateClusterSize
+  LDA #0
+  STA FatClusterSize + 0       ; product[0] <- 0
+  LDA FatSectorsPerCluster + 0 ; input LSB
+  ASL                          ; shift left one more bit to make <<9
+  STA FatClusterSize + 1       ; product[1] <- input[0]<<1
   RTS
 .ENDPROC

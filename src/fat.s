@@ -19,6 +19,7 @@ FatRootCluster: .dword 0
 
 ; Calculated parameters
 FatFatOffset: .dword 0
+FatFatSize: .dword 0
 
 
 .segment "kernal"
@@ -105,26 +106,45 @@ FatFatOffset: .dword 0
 
 .PROC calculateFatParameters
   JSR calculateFatOffset
+  JSR calculateFatSize
   RTS
 .ENDPROC
 
+; Calculate address of first FAT.
+; Assume sector size is 512.
 .PROC calculateFatOffset
-  ; FatFatOffset
-  ;   FatSectorSize [assume 512] * FatReservedSectors
-  ;   FatReservedSectors << 9
+  ; FatSectorSize [assume 512] * FatReservedSectors
+  ; FatReservedSectors << 9
   ; First left-shift by entire byte.
   LDA #0
   STA FatFatOffset + 0       ; product[0] <- 0
   LDA FatReservedSectors + 0 ; input LSB
   ASL                        ; shift left one more bit to make <<9
-  STA FatFatOffset + 1       ; product[1] <- input[0]
+  STA FatFatOffset + 1       ; product[1] <- input[0]<<1
   LDA FatReservedSectors + 1
   ROL                        ; shift left with carry from ASL
-  STA FatFatOffset + 2       ; product[2] <- input[1]
+  STA FatFatOffset + 2       ; product[2] <- input[1]<<1
   LDA #0                     ; if carry clear
   BCC storeHighByte
   LDA #1                     ; else if carry set
 storeHighByte:
   STA FatFatOffset + 3       ; product[3] <- carry ? 1 : 0
+  RTS
+.ENDPROC
+
+; Calculate size in bytes of each FAT.
+; Assume sector size is 512.
+.PROC calculateFatSize
+  LDA #0
+  STA FatFatSize + 0       ; product[0] <- 0
+  LDA FatSectorsPerFat + 0   ; input LSB
+  ASL                        ; shift left one more bit to make <<9
+  STA FatFatSize + 1       ; product[1] <- input[0]<<1
+  LDA FatSectorsPerFat + 1
+  ROL                        ; shift left with carry from ASL
+  STA FatFatSize + 2       ; product[2] <- input[1]<<1
+  LDA FatSectorsPerFat + 2
+  ROL                        ; shift left with carry from ASL
+  STA FatFatSize + 3       ; product[3] <- input[2]<<1
   RTS
 .ENDPROC

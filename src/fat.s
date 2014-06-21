@@ -17,11 +17,48 @@ FatFatCount: .byte 0
 FatSectorsPerFat: .dword 0
 FatRootCluster: .dword 0
 
+; Calculated parameters
+FatFatOffset: .dword 0
+
+
 .segment "kernal"
 
 ; Read and calculate FAT parameters.
 .PROC FatInit
+  JSR readFatParameters
+  JSR calculateFatParameters
+  RTS
+.ENDPROC
 
+.PROC readFirstBlock
+  ; push (uint32)0 onto user-stack.
+  LDA #$00 ; LSB
+  JSR StackPush
+  LDA #$00
+  JSR StackPush
+  LDA #$00
+  JSR StackPush
+  LDA #$00 ; MSB
+  JSR StackPush
+  JSR SdCardRead ; 512 byte block from address on user-stack into $6000.
+  RTS
+.ENDPROC
+
+.PROC readSecondBlock
+  ; push (uint32)$200 onto user-stack.
+  LDA #$00 ; LSB
+  JSR StackPush
+  LDA #$02
+  JSR StackPush
+  LDA #$00
+  JSR StackPush
+  LDA #$00 ; MSB
+  JSR StackPush
+  JSR SdCardRead ; 512 byte block from address on user-stack into $6000.
+  RTS
+.ENDPROC
+
+.PROC readFatParameters
   JSR readFirstBlock
 
   ; FatSectorSize
@@ -63,34 +100,31 @@ FatRootCluster: .dword 0
   STA FatRootCluster + 2
   LDA sd_buffer + $002C + 3
   STA FatRootCluster + 3
-
   RTS
 .ENDPROC
 
-.PROC readFirstBlock
-  ; push (uint32)0 onto user-stack.
-  LDA #$00 ; LSB
-  JSR StackPush
-  LDA #$00
-  JSR StackPush
-  LDA #$00
-  JSR StackPush
-  LDA #$00 ; MSB
-  JSR StackPush
-  JSR SdCardRead ; 512 byte block from address on user-stack into $6000.
+.PROC calculateFatParameters
+  JSR calculateFatOffset
   RTS
 .ENDPROC
 
-.PROC readSecondBlock
-  ; push (uint32)$200 onto user-stack.
-  LDA #$00 ; LSB
-  JSR StackPush
-  LDA #$02
-  JSR StackPush
-  LDA #$00
-  JSR StackPush
-  LDA #$00 ; MSB
-  JSR StackPush
-  JSR SdCardRead ; 512 byte block from address on user-stack into $6000.
+.PROC calculateFatOffset
+  ; FatFatOffset
+  ;   FatSectorSize [assume 512] * FatReservedSectors
+  ;   FatReservedSectors << 9
+  ; First left-shift by entire byte.
+  LDA #0
+  STA FatFatOffset + 0       ; product[0] <- 0
+  LDA FatReservedSectors + 0 ; input LSB
+  ASL                        ; shift left one more bit to make <<9
+  STA FatFatOffset + 1       ; product[1] <- input[0]
+  LDA FatReservedSectors + 1
+  ROL                        ; shift left with carry from ASL
+  STA FatFatOffset + 2       ; product[2] <- input[1]
+  LDA #0                     ; if carry clear
+  BCC storeHighByte
+  LDA #1                     ; else if carry set
+storeHighByte:
+  STA FatFatOffset + 3       ; product[3] <- carry ? 1 : 0
   RTS
 .ENDPROC

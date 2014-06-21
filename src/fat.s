@@ -18,8 +18,9 @@ FatSectorsPerFat: .dword 0
 FatRootCluster: .dword 0
 
 ; Calculated parameters
-FatFatOffset: .dword 0
-FatFatSize: .dword 0
+FatFatOffset: .dword 0    ; location of first FAT
+FatFatSize: .dword 0      ; size in bytes of each FAT
+FatFatTotalSize: .dword 0 ; total size of FATs (count x size)
 
 
 .segment "kernal"
@@ -107,6 +108,7 @@ FatFatSize: .dword 0
 .PROC calculateFatParameters
   JSR calculateFatOffset
   JSR calculateFatSize
+  JSR calculateFatTotalSize
   RTS
 .ENDPROC
 
@@ -146,5 +148,28 @@ storeHighByte:
   LDA FatSectorsPerFat + 2
   ROL                        ; shift left with carry from ASL
   STA FatFatSize + 3       ; product[3] <- input[2]<<1
+  RTS
+.ENDPROC
+
+; Calculate the total size of the FATs.
+.PROC calculateFatTotalSize
+  LDX FatFatCount
+loop:
+  BEQ loopDone
+  LDA FatFatSize + 0
+  ASL
+  STA FatFatTotalSize + 0
+  LDA FatFatSize + 1
+  ROL
+  STA FatFatTotalSize + 1
+  LDA FatFatSize + 2
+  ROL
+  STA FatFatTotalSize + 2
+  LDA FatFatSize + 3
+  ROL
+  STA FatFatTotalSize + 3
+  DEX
+  JMP loop
+loopDone:
   RTS
 .ENDPROC

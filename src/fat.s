@@ -23,6 +23,7 @@ FatFatSize: .dword 0      ; size in bytes of each FAT
 FatFatTotalSize: .dword 0 ; total size of FATs (count x size)
 FatDataAddress: .dword 0  ; location of data (first cluster)
 FatClusterSize: .word 0   ; size of each cluster in bytes
+FatRootAddress: .dword 0  ; location of first cluster of root directory
 
 
 .segment "kernal"
@@ -114,6 +115,7 @@ FatClusterSize: .word 0   ; size of each cluster in bytes
   JSR calculateFatTotalSize
   JSR calculateDataAddress
   JSR calculateClusterSize
+  JSR calculateRootAddress
   RTS
 .ENDPROC
 
@@ -210,5 +212,41 @@ loopDone:
   LDA FatSectorsPerCluster + 0 ; input LSB
   ASL                          ; shift left one more bit to make <<9
   STA FatClusterSize + 1       ; product[1] <- input[0]<<1
+  RTS
+.ENDPROC
+
+; Calculate location first cluster of root directory.
+; (uint32)FatDataAddress + (uint32)FatRootCluster * (uint16)FatClusterSize
+; Assume FatRootCluster == 2 for now.
+; (uint32)FatDataAddress + (uint32)FatClusterSize * 2
+; (uint32)FatDataAddress + (uint32)FatClusterSize<<1
+.PROC calculateRootAddress
+  ; Load FatClusterSize<<1 into FatRootAddress
+  LDA FatClusterSize + 0
+  ASL
+  STA FatRootAddress + 0
+  LDA FatClusterSize + 1
+  ROL
+  STA FatRootAddress + 1
+  LDA FatClusterSize + 2
+  ROL
+  STA FatRootAddress + 2
+  LDA FatClusterSize + 3
+  ROL
+  STA FatRootAddress + 3
+  ; Add FatDataAddress to FatRootAddress
+  CLC
+  LDA FatRootAddress + 0
+  ADC FatDataAddress + 0
+  STA FatRootAddress + 0
+  LDA FatRootAddress + 1
+  ADC FatDataAddress + 1
+  STA FatRootAddress + 1
+  LDA FatRootAddress + 2
+  ADC FatDataAddress + 2
+  STA FatRootAddress + 2
+  LDA FatRootAddress + 3
+  ADC FatDataAddress + 3
+  STA FatRootAddress + 3
   RTS
 .ENDPROC

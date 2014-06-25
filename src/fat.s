@@ -2,6 +2,8 @@
 
 .export FatInit
 
+.export FatRootAddress
+
 .import SdCardRead
 .import StackPush
 

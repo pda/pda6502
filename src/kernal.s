@@ -14,6 +14,9 @@
 .import SsdNextSegment
 .import Ssd1306WriteCharacter
 
+; fat
+.import FatRootAddress
+
 ; font
 .import FontSelectChar
 
@@ -52,6 +55,18 @@ Main:
   JSR SdCardReset
 
   JSR FatInit
+
+  ; Read first block of root directory into RAM.
+  LDA FatRootAddress + 0
+  JSR StackPush
+  LDA FatRootAddress + 1
+  JSR StackPush
+  LDA FatRootAddress + 2
+  JSR StackPush
+  LDA FatRootAddress + 3
+  JSR StackPush
+  JSR SdCardRead
+
 
   JMP Halt
 

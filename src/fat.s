@@ -1,11 +1,19 @@
 ; asmsyntax=asmM6502 (http://cc65.github.io/cc65/)
 
+; subroutines
 .export FatInit
+.export FatReadFile
 
-.export FatRootAddress
+; vars
+.export FatSearchFilename
 
 .import SdCardRead
 .import StackPush
+
+.import Uint32Multiply
+.import Uint32Multiplicand
+.import Uint32Multiplier
+.import Uint32Product
 
 sd_buffer = $6000
 
@@ -29,6 +37,13 @@ FatDataAddress: .dword 0  ; cluster #0 address (but first valid cluster is #2)
 FatClusterSize: .word 0   ; size of each cluster in bytes
 FatRootAddress: .dword 0  ; location of first cluster of root directory
 
+; public API vars
+FatSearchFilename: .byte 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+
+; internal vars
+currentFileSize: .dword 0
+currentFileFirstCluster: .dword 0
+currentFileAddress: .dword 0
 
 .segment "kernal"
 
@@ -37,6 +52,167 @@ FatRootAddress: .dword 0  ; location of first cluster of root directory
   JSR readMbrParameters
   JSR readFatParameters
   JSR calculateFatParameters
+  RTS
+.ENDPROC
+
+; Read file named by FatSearchFilename from the root directory.
+; TODO: look further than the first 256 bytes of dir entry.
+; TODO: read more than the first 512-byte block of data.
+; TODO: read more than the first FAT32 cluster.
+; TODO: some kind of filehandle-style solution for the above?
+.PROC FatReadFile
+  LDA $10
+  PHA
+  LDA $11
+  PHA
+  ; Read first block of root directory into RAM.
+  LDA FatRootAddress + 0
+  JSR StackPush
+  LDA FatRootAddress + 1
+  JSR StackPush
+  LDA FatRootAddress + 2
+  JSR StackPush
+  LDA FatRootAddress + 3
+  JSR StackPush
+  JSR SdCardRead
+
+  JSR compareFilenames
+  BCC notFound
+found:
+
+  ; Load index of first cluster of file.
+  LDY #$1A    ; low two bytes of first cluster
+  LDA ($10),Y
+  STA currentFileFirstCluster
+  INY
+  LDA ($10),Y
+  STA currentFileFirstCluster + 1
+  LDY #$14    ; high two bytes of first cluster
+  LDA ($10),Y
+  STA currentFileFirstCluster + 2
+  INY
+  LDA ($10),Y
+  STA currentFileFirstCluster + 3
+
+  ; Load file size.
+  LDY #$1C
+  LDA ($10),Y
+  STA currentFileSize
+  INY
+  LDA ($10),Y
+  STA currentFileSize + 1
+  INY
+  LDA ($10),Y
+  STA currentFileSize + 2
+  INY
+  LDA ($10),Y
+  STA currentFileSize + 3
+
+  JSR calculateCurrentFileAddress
+
+  JSR readBlockFromCurrentFileAddress
+
+notFound:
+done:
+  PLA
+  STA $11
+  PLA
+  STA $10
+  RTS
+.ENDPROC
+
+.PROC calculateCurrentFileAddress
+  ; calculate address of first cluster of file.
+  ; Move currentFileFirstCluster into Uint32Multiplicand
+  LDA currentFileFirstCluster + 0
+  STA Uint32Multiplicand + 0
+  LDA currentFileFirstCluster + 1
+  STA Uint32Multiplicand + 1
+  LDA currentFileFirstCluster + 2
+  STA Uint32Multiplicand + 2
+  LDA currentFileFirstCluster + 3
+  STA Uint32Multiplicand + 3
+  ; Multiply by FatClusterSize
+  LDA FatClusterSize + 0
+  STA Uint32Multiplier + 0
+  LDA FatClusterSize + 1
+  STA Uint32Multiplier + 1
+  LDA FatClusterSize + 2
+  STA Uint32Multiplier + 2
+  LDA FatClusterSize + 3
+  STA Uint32Multiplier + 3
+  JSR Uint32Multiply
+  ; Add FatDataAddress to product, store in currentFileAddress
+  CLC
+  LDA Uint32Product + 0
+  ADC FatDataAddress + 0
+  STA currentFileAddress + 0
+  LDA Uint32Product + 1
+  ADC FatDataAddress + 1
+  STA currentFileAddress + 1
+  LDA Uint32Product + 2
+  ADC FatDataAddress + 2
+  STA currentFileAddress + 2
+  LDA Uint32Product + 3
+  ADC FatDataAddress + 3
+  STA currentFileAddress + 3
+  RTS
+.ENDPROC
+
+.PROC readBlockFromCurrentFileAddress
+  LDA currentFileAddress + 0
+  JSR StackPush
+  LDA currentFileAddress + 1
+  JSR StackPush
+  LDA currentFileAddress + 2
+  JSR StackPush
+  LDA currentFileAddress + 3
+  JSR StackPush
+  JSR SdCardRead
+  RTS
+.ENDPROC
+
+; TODO: search more than first 256-bytes of directory.
+.PROC compareFilenames
+  LDX #0 ; offset into directory data.
+loop:
+  CLC
+  TXA                     ; data offset into sd_buffer
+  STA $10                 ; as low byte of pointer at $10
+  LDA #.HIBYTE(sd_buffer) ; high byte of sd_buffer
+  STA $11                 ; as high byte of pointer at $11
+  JSR compareFilename
+  BCS found ; carry flag indicates a match
+  TXA
+  ADC #32 ; size of directory entries
+  TAX
+  BCS notFound; carry after ADC indicates we're done here.
+  JMP loop
+found:
+  SEC
+  JMP done
+notFound:
+  CLC
+done:
+  RTS
+.ENDPROC
+
+; called by compareFilenames
+; expect ptr to filename at $10,$11.
+.PROC compareFilename
+  SEC ; carry indicates a match
+  LDY #0 ; index of filename character to compare
+loop:
+  LDA FatSearchFilename,Y
+  CMP ($10),Y
+  BNE mismatch
+  INY
+  CPY #11 ; length of 8.3 filename.
+  BNE loop
+  JMP done ; match
+mismatch:
+  CLC
+done:
   RTS
 .ENDPROC
 

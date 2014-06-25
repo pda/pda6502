@@ -21,7 +21,7 @@ FatRootCluster: .dword 0
 FatFatOffset: .dword 0    ; location of first FAT
 FatFatSize: .dword 0      ; size in bytes of each FAT
 FatFatTotalSize: .dword 0 ; total size of FATs (count x size)
-FatDataAddress: .dword 0  ; location of data (first cluster)
+FatDataAddress: .dword 0  ; cluster #0 address (but first valid cluster is #2)
 FatClusterSize: .word 0   ; size of each cluster in bytes
 FatRootAddress: .dword 0  ; location of first cluster of root directory
 
@@ -113,8 +113,8 @@ FatRootAddress: .dword 0  ; location of first cluster of root directory
   JSR calculateFatOffset
   JSR calculateFatSize
   JSR calculateFatTotalSize
-  JSR calculateDataAddress
   JSR calculateClusterSize
+  JSR calculateDataAddress
   JSR calculateRootAddress
   RTS
 .ENDPROC
@@ -182,8 +182,10 @@ loopDone:
   RTS
 .ENDPROC
 
-; Calculate the address of the first cluster.
-; (uint32)FatFatOffset + (uint32)FatFatTotalSize
+; Calculate the base address for cluster-indexed data.
+; The first valid cluster is #2, being (FatDataAddress + 2*FatClusterSize).
+; So, this base address is actually 2*FatClusterSize before the data region.
+; (uint32)FatFatOffset + (uint32)FatFatTotalSize - 2*(uint16)FatClusterSize
 .PROC calculateDataAddress
   CLC
   LDA FatFatOffset + 0
@@ -198,6 +200,26 @@ loopDone:
   LDA FatFatOffset + 3
   ADC FatFatTotalSize + 3
   STA FatDataAddress + 3
+
+  ; subtract 16-bit 2*FatClusterSize from 32-bit FatDataAddress
+  ; Compensates for the two special/reserved clusters which have no data.
+  LDX #2
+subtractClusterSizeLoop:
+  BEQ subtractClusterSizeDone
+  SEC
+  LDA FatDataAddress + 0
+  SBC FatClusterSize + 0
+  STA FatDataAddress + 0
+  LDA FatDataAddress + 1
+  SBC FatClusterSize + 1
+  STA FatDataAddress + 1
+  LDA FatDataAddress + 2
+  SBC #0
+  STA FatDataAddress + 2
+  DEX
+  JMP subtractClusterSizeLoop
+subtractClusterSizeDone:
+
   RTS
 .ENDPROC
 

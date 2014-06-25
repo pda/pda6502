@@ -49,20 +49,6 @@ FatRootAddress: .dword 0  ; location of first cluster of root directory
   RTS
 .ENDPROC
 
-.PROC readSecondBlock
-  ; push (uint32)$200 onto user-stack.
-  LDA #$00 ; LSB
-  JSR StackPush
-  LDA #$02
-  JSR StackPush
-  LDA #$00
-  JSR StackPush
-  LDA #$00 ; MSB
-  JSR StackPush
-  JSR SdCardRead ; 512 byte block from address on user-stack into $6000.
-  RTS
-.ENDPROC
-
 .PROC readFatParameters
   JSR readFirstBlock
 

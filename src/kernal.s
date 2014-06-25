@@ -15,7 +15,8 @@
 .import Ssd1306WriteCharacter
 
 ; fat
-.import FatRootAddress
+.import FatReadFile
+.import FatSearchFilename
 
 ; font
 .import FontSelectChar
@@ -56,17 +57,16 @@ Main:
 
   JSR FatInit
 
-  ; Read first block of root directory into RAM.
-  LDA FatRootAddress + 0
-  JSR StackPush
-  LDA FatRootAddress + 1
-  JSR StackPush
-  LDA FatRootAddress + 2
-  JSR StackPush
-  LDA FatRootAddress + 3
-  JSR StackPush
-  JSR SdCardRead
+  LDX #0
+filenameLoop:
+  LDA SplashFilename,X
+  STA FatSearchFilename,X
+  INX
+  CPX #11
+  BNE filenameLoop
+  JSR FatReadFile
 
+  JSR displayText
 
   JMP Halt
 
@@ -128,6 +128,8 @@ loop:
   JSR SsdNextSegment         ; move to next screen buffer segment
   RTS
 .ENDPROC
+
+SplashFilename: .byte "SPLASH  TXT"
 
 message_length = 64
 Message:

@@ -18,6 +18,8 @@ FatSectorsPerFat: .dword 0
 FatRootCluster: .dword 0
 
 ; Calculated parameters
+; Addresses are relative to the entire device, not the partition.
+FatStartAddress: .dword 0 ; first partition according to MBR LBA field.
 FatFatOffset: .dword 0    ; location of first FAT
 FatFatSize: .dword 0      ; size in bytes of each FAT
 FatFatTotalSize: .dword 0 ; total size of FATs (count x size)
@@ -30,6 +32,7 @@ FatRootAddress: .dword 0  ; location of first cluster of root directory
 
 ; Read and calculate FAT parameters.
 .PROC FatInit
+  JSR readMbrParameters
   JSR readFatParameters
   JSR calculateFatParameters
   RTS
@@ -49,8 +52,37 @@ FatRootAddress: .dword 0  ; location of first cluster of root directory
   RTS
 .ENDPROC
 
-.PROC readFatParameters
+.PROC readMbrParameters
+  dir_entry = sd_buffer + $01BE
+  first_sector = dir_entry + 8
+  ; Load LBA start address; first sector.
+  ; Store as start byte address; assume 512-byte sectors.
   JSR readFirstBlock
+  LDA #0
+  STA FatStartAddress + 0
+  LDA first_sector + 0
+  ASL
+  STA FatStartAddress + 1
+  LDA first_sector + 1
+  ROL
+  STA FatStartAddress + 2
+  LDA first_sector + 2
+  ROL
+  STA FatStartAddress + 3
+  RTS
+.ENDPROC
+
+.PROC readFatParameters
+  ; Read first block of FAT partition.
+  LDA FatStartAddress + 0
+  JSR StackPush
+  LDA FatStartAddress + 1
+  JSR StackPush
+  LDA FatStartAddress + 2
+  JSR StackPush
+  LDA FatStartAddress + 3
+  JSR StackPush
+  JSR SdCardRead
 
   ; FatSectorSize
   LDA sd_buffer + $000B
@@ -171,7 +203,10 @@ loopDone:
 ; Calculate the base address for cluster-indexed data.
 ; The first valid cluster is #2, being (FatDataAddress + 2*FatClusterSize).
 ; So, this base address is actually 2*FatClusterSize before the data region.
-; (uint32)FatFatOffset + (uint32)FatFatTotalSize - 2*(uint16)FatClusterSize
+; (uint32)FatStartAddress
+; + (uint32)FatFatOffset
+; + (uint32)FatFatTotalSize
+; - 2*(uint16)FatClusterSize
 .PROC calculateDataAddress
   CLC
   LDA FatFatOffset + 0
@@ -185,6 +220,20 @@ loopDone:
   STA FatDataAddress + 2
   LDA FatFatOffset + 3
   ADC FatFatTotalSize + 3
+  STA FatDataAddress + 3
+
+  ; Add to FatStartAddress (start of filesystem / partition)
+  LDA FatDataAddress + 0
+  ADC FatStartAddress + 0
+  STA FatDataAddress + 0
+  LDA FatDataAddress + 1
+  ADC FatStartAddress + 1
+  STA FatDataAddress + 1
+  LDA FatDataAddress + 2
+  ADC FatStartAddress + 2
+  STA FatDataAddress + 2
+  LDA FatDataAddress + 3
+  ADC FatStartAddress + 3
   STA FatDataAddress + 3
 
   ; subtract 16-bit 2*FatClusterSize from 32-bit FatDataAddress

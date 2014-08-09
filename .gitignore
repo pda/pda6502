@@ -3,3 +3,8 @@
 
 # Final build artifacts.
 /build/*
+
+# Eagle auto-save and temporary files.
+*.s#*
+*.l#*
+*~renumsch.scr

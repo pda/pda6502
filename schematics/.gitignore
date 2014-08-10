@@ -1,0 +1,6 @@
+# Eagle auto-save and temporary files.
+*.b#*
+*.l#*
+*.s#*
+*~renumsch.scr
+*.pro

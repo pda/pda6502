@@ -19,6 +19,10 @@ cable can be used to interleave ground wires between each signal wire.
 Notes / TODO
 ------------
 
+* 6502 RWB to 6522 RWB.
+* 6502 RWB to RAM WE.
+* Tie OE and CE together on ROM and RAM.
+* VIA CS1 HIGH.
 * power connector (9V barrel?)
 * voltage regulator.
 * power capacitor.
@@ -27,4 +31,16 @@ Notes / TODO
 * power headers
 * glue logic headers
 * CPU headers
-* reset circuit - DS1813 + button.
+* reset circuit for 6502 and 6522 ; DS1813 + button.
+
+Memory mapping logic
+--------------------
+
+Six inputs:
+Clock: PH1O, PH2O
+Address: A12, A13, A14, A15
+
+Three outputs:
+RAM: OE+CE
+ROM: OE+CE
+VIA: CS2B

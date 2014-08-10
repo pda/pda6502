@@ -23,7 +23,6 @@ Notes / TODO
 * power connector (9V barrel?)
 * voltage regulator.
 * power capacitor.
-* decoupling capacitors - 0805 SMD 0.1uf
 * crystal oscillator - half can
 * power headers
 * glue logic headers

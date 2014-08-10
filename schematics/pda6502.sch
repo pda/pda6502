@@ -1559,6 +1559,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="JP2" library="adafruit" deviceset="PINHD-2X20" device=""/>
 <part name="GND6" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND7" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="SUPPLY5" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -1582,6 +1583,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <instance part="JP2" gate="A" x="30.48" y="124.46" rot="R180"/>
 <instance part="GND6" gate="1" x="38.1" y="86.36"/>
 <instance part="GND7" gate="1" x="7.62" y="124.46"/>
+<instance part="SUPPLY5" gate="G$1" x="172.72" y="114.3"/>
 </instances>
 <busses>
 <bus name="DATA[0..7]">
@@ -2165,6 +2167,11 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="205.74" y1="111.76" x2="210.82" y2="111.76" width="0.1524" layer="91"/>
 <pinref part="SUPPLY3" gate="G$1" pin="5V"/>
 <pinref part="U3" gate="G$1" pin="VCC"/>
+</segment>
+<segment>
+<pinref part="U3" gate="G$1" pin="!WE"/>
+<pinref part="SUPPLY5" gate="G$1" pin="5V"/>
+<wire x1="172.72" y1="114.3" x2="175.26" y2="114.3" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="PA0" class="0">

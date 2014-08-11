@@ -4891,6 +4891,87 @@ Source: AVX .. aphvc.pdf</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="ds1813">
+<description>DS1813: 5V EconoReset with Pushbutton</description>
+<packages>
+<package name="TO-92">
+<description>&lt;b&gt;TO-92&lt;/b&gt; Pads In Line</description>
+<wire x1="-2.095" y1="-1.651" x2="2.095" y2="-1.651" width="0.127" layer="21"/>
+<wire x1="-2.413" y1="1.1359" x2="2.413" y2="1.1359" width="0.127" layer="21" curve="-129.583345" cap="flat"/>
+<wire x1="1.136" y1="-0.127" x2="-1.136" y2="-0.127" width="0.127" layer="51"/>
+<wire x1="-2.413" y1="1.1359" x2="-2.413" y2="-1.1359" width="0.127" layer="51" curve="50.416655" cap="flat"/>
+<wire x1="-1.404" y1="-0.127" x2="-2.664" y2="-0.127" width="0.127" layer="51"/>
+<wire x1="-2.4135" y1="-1.1359" x2="-2.095" y2="-1.651" width="0.127" layer="21" curve="13.038528" cap="flat"/>
+<wire x1="-1.136" y1="-0.127" x2="-1.404" y2="-0.127" width="0.127" layer="21"/>
+<wire x1="2.413" y1="-1.1359" x2="2.413" y2="1.1359" width="0.127" layer="51" curve="50.416655" cap="flat"/>
+<wire x1="2.664" y1="-0.127" x2="1.404" y2="-0.127" width="0.127" layer="51"/>
+<wire x1="1.404" y1="-0.127" x2="1.136" y2="-0.127" width="0.127" layer="21"/>
+<wire x1="2.095" y1="-1.651" x2="2.4247" y2="-1.1118" width="0.127" layer="21" curve="13.609443" cap="flat"/>
+<pad name="2" x="0" y="0" drill="0.8128" shape="long" rot="R90"/>
+<pad name="1" x="-2.54" y="0" drill="0.8128" shape="long" rot="R90"/>
+<pad name="3" x="2.54" y="0" drill="0.8128" shape="long" rot="R90"/>
+<text x="-2.54" y="3.048" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="-2.54" y="-3.302" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
+</package>
+<package name="SOT-23">
+<description>&lt;b&gt;SOT-23&lt;/b&gt;</description>
+<wire x1="1.4224" y1="0.6604" x2="1.4224" y2="-0.6604" width="0.1524" layer="51"/>
+<wire x1="1.4224" y1="-0.6604" x2="-1.4224" y2="-0.6604" width="0.1524" layer="51"/>
+<wire x1="-1.4224" y1="-0.6604" x2="-1.4224" y2="0.6604" width="0.1524" layer="51"/>
+<wire x1="-1.4224" y1="0.6604" x2="1.4224" y2="0.6604" width="0.1524" layer="51"/>
+<smd name="3" x="0" y="1.1" dx="1" dy="1.4" layer="1"/>
+<smd name="2" x="0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
+<smd name="1" x="-0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
+<text x="-1.905" y="1.905" size="1.27" layer="25">&gt;NAME</text>
+<text x="-1.905" y="-3.175" size="1.27" layer="27">&gt;VALUE</text>
+<rectangle x1="-0.2286" y1="0.7112" x2="0.2286" y2="1.2954" layer="51"/>
+<rectangle x1="0.7112" y1="-1.2954" x2="1.1684" y2="-0.7112" layer="51"/>
+<rectangle x1="-1.1684" y1="-1.2954" x2="-0.7112" y2="-0.7112" layer="51"/>
+</package>
+</packages>
+<symbols>
+<symbol name="DS1813">
+<wire x1="7.62" y1="7.62" x2="-2.54" y2="7.62" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="7.62" x2="-2.54" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="-7.62" x2="7.62" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="7.62" y1="-7.62" x2="7.62" y2="7.62" width="0.254" layer="94"/>
+<text x="-2.54" y="-10.16" size="1.27" layer="95">&gt;NAME</text>
+<text x="-2.54" y="-12.7" size="1.27" layer="96">&gt;VALUE</text>
+<pin name="+5V" x="12.7" y="5.08" length="middle" direction="pwr" rot="R180"/>
+<pin name="GND" x="12.7" y="-5.08" length="middle" direction="pwr" rot="R180"/>
+<pin name="/RST" x="12.7" y="0" length="middle" direction="pas" function="dot" rot="R180"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="DS1813" prefix="IC">
+<gates>
+<gate name="G$1" symbol="DS1813" x="-5.08" y="2.54"/>
+</gates>
+<devices>
+<device name="" package="TO-92">
+<connects>
+<connect gate="G$1" pin="+5V" pad="2"/>
+<connect gate="G$1" pin="/RST" pad="1"/>
+<connect gate="G$1" pin="GND" pad="3"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="-SMD" package="SOT-23">
+<connects>
+<connect gate="G$1" pin="+5V" pad="2"/>
+<connect gate="G$1" pin="/RST" pad="1"/>
+<connect gate="G$1" pin="GND" pad="3"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -4927,6 +5008,9 @@ Source: AVX .. aphvc.pdf</description>
 <part name="C2" library="rcl" deviceset="C-EU" device="C0805" value="0.1μF"/>
 <part name="C3" library="rcl" deviceset="C-EU" device="C0805" value="0.1μF"/>
 <part name="C4" library="rcl" deviceset="C-EU" device="C0805" value="0.1μF"/>
+<part name="IC1" library="ds1813" deviceset="DS1813" device="-SMD"/>
+<part name="SUPPLY6" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
+<part name="GND5" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -4959,6 +5043,9 @@ Source: AVX .. aphvc.pdf</description>
 <instance part="C2" gate="G$1" x="137.16" y="93.98"/>
 <instance part="C3" gate="G$1" x="213.36" y="114.3"/>
 <instance part="C4" gate="G$1" x="261.62" y="96.52"/>
+<instance part="IC1" gate="G$1" x="17.78" y="43.18"/>
+<instance part="SUPPLY6" gate="G$1" x="30.48" y="48.26"/>
+<instance part="GND5" gate="1" x="30.48" y="35.56"/>
 </instances>
 <busses>
 <bus name="DATA[0..7]">
@@ -5533,6 +5620,10 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="208.28" y1="109.22" x2="213.36" y2="109.22" width="0.1524" layer="91"/>
 <junction x="213.36" y="109.22"/>
 </segment>
+<segment>
+<pinref part="IC1" gate="G$1" pin="GND"/>
+<pinref part="GND5" gate="1" pin="GND"/>
+</segment>
 </net>
 <net name="5V" class="0">
 <segment>
@@ -5570,6 +5661,10 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="261.62" y1="99.06" x2="261.62" y2="101.6" width="0.1524" layer="91"/>
 <junction x="261.62" y="99.06"/>
 <pinref part="C4" gate="G$1" pin="1"/>
+</segment>
+<segment>
+<pinref part="IC1" gate="G$1" pin="+5V"/>
+<pinref part="SUPPLY6" gate="G$1" pin="5V"/>
 </segment>
 </net>
 <net name="PA0" class="0">
@@ -5816,6 +5911,23 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="231.14" y1="91.44" x2="226.06" y2="91.44" width="0.1524" layer="91"/>
 <wire x1="226.06" y1="91.44" x2="226.06" y2="88.9" width="0.1524" layer="91"/>
 <junction x="226.06" y="88.9"/>
+</segment>
+</net>
+<net name="RESB" class="0">
+<segment>
+<pinref part="IC1" gate="G$1" pin="/RST"/>
+<wire x1="30.48" y1="43.18" x2="33.02" y2="43.18" width="0.1524" layer="91"/>
+<label x="33.02" y="43.18" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U1" gate="G$1" pin="RESB"/>
+<wire x1="76.2" y1="154.94" x2="78.74" y2="154.94" width="0.1524" layer="91"/>
+<label x="78.74" y="154.94" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U2" gate="G$1" pin="RESB"/>
+<wire x1="101.6" y1="132.08" x2="99.06" y2="132.08" width="0.1524" layer="91"/>
+<label x="91.44" y="132.08" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>

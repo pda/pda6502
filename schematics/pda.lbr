@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.025" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
@@ -746,7 +746,7 @@
 <gate name="G$1" symbol="W65C02S" x="0" y="0"/>
 </gates>
 <devices>
-<device name="" package="DIP40">
+<device name="DIP40" package="DIP40">
 <connects>
 <connect gate="G$1" pin="A0" pad="9"/>
 <connect gate="G$1" pin="A1" pad="10"/>
@@ -788,6 +788,53 @@
 <connect gate="G$1" pin="VDD" pad="8"/>
 <connect gate="G$1" pin="VPB" pad="1"/>
 <connect gate="G$1" pin="VSS" pad="21"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="PLCC44" package="PLCC44-SOCKET">
+<connects>
+<connect gate="G$1" pin="A0" pad="10"/>
+<connect gate="G$1" pin="A1" pad="11"/>
+<connect gate="G$1" pin="A10" pad="21"/>
+<connect gate="G$1" pin="A11" pad="22"/>
+<connect gate="G$1" pin="A12" pad="25"/>
+<connect gate="G$1" pin="A13" pad="26"/>
+<connect gate="G$1" pin="A14" pad="27"/>
+<connect gate="G$1" pin="A15" pad="28"/>
+<connect gate="G$1" pin="A2" pad="13"/>
+<connect gate="G$1" pin="A3" pad="14"/>
+<connect gate="G$1" pin="A4" pad="15"/>
+<connect gate="G$1" pin="A5" pad="16"/>
+<connect gate="G$1" pin="A6" pad="17"/>
+<connect gate="G$1" pin="A7" pad="18"/>
+<connect gate="G$1" pin="A8" pad="19"/>
+<connect gate="G$1" pin="A9" pad="20"/>
+<connect gate="G$1" pin="BE" pad="40"/>
+<connect gate="G$1" pin="D0" pad="36"/>
+<connect gate="G$1" pin="D1" pad="35"/>
+<connect gate="G$1" pin="D2" pad="34"/>
+<connect gate="G$1" pin="D3" pad="33"/>
+<connect gate="G$1" pin="D4" pad="32"/>
+<connect gate="G$1" pin="D5" pad="31"/>
+<connect gate="G$1" pin="D6" pad="30"/>
+<connect gate="G$1" pin="D7" pad="29"/>
+<connect gate="G$1" pin="IRQB" pad="5"/>
+<connect gate="G$1" pin="MLB" pad="6"/>
+<connect gate="G$1" pin="NC" pad="12 39"/>
+<connect gate="G$1" pin="NMIB" pad="7"/>
+<connect gate="G$1" pin="PH1O" pad="4"/>
+<connect gate="G$1" pin="PHI2" pad="41"/>
+<connect gate="G$1" pin="PHI2O" pad="43"/>
+<connect gate="G$1" pin="RDY" pad="3"/>
+<connect gate="G$1" pin="RESB" pad="44"/>
+<connect gate="G$1" pin="RWB" pad="38"/>
+<connect gate="G$1" pin="SOB" pad="42"/>
+<connect gate="G$1" pin="SYNC" pad="8"/>
+<connect gate="G$1" pin="VDD" pad="9 37"/>
+<connect gate="G$1" pin="VPB" pad="2"/>
+<connect gate="G$1" pin="VSS" pad="1 23 24"/>
 </connects>
 <technologies>
 <technology name=""/>

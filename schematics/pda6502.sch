@@ -660,7 +660,7 @@ Standard A4 size frame in Landscape</description>
 </package>
 </packages>
 <symbols>
-<symbol name="W65C02S">
+<symbol name="W65C02">
 <wire x1="10.16" y1="-33.02" x2="10.16" y2="33.02" width="0.254" layer="94"/>
 <wire x1="10.16" y1="33.02" x2="-10.16" y2="33.02" width="0.254" layer="94"/>
 <wire x1="-10.16" y1="33.02" x2="-10.16" y2="-33.02" width="0.254" layer="94"/>
@@ -694,7 +694,7 @@ Standard A4 size frame in Landscape</description>
 <pin name="PHI2O" x="15.24" y="-17.78" length="middle" direction="out" rot="R180"/>
 <pin name="SOB" x="15.24" y="10.16" length="middle" direction="in" function="dot" rot="R180"/>
 <pin name="RESB" x="15.24" y="30.48" length="middle" direction="in" function="dot" rot="R180"/>
-<pin name="PH1O" x="15.24" y="-15.24" length="middle" direction="out" rot="R180"/>
+<pin name="PHI1O" x="15.24" y="-15.24" length="middle" direction="out" rot="R180"/>
 <pin name="PHI2" x="15.24" y="-12.7" length="middle" direction="in" function="clk" rot="R180"/>
 <pin name="NMIB" x="15.24" y="12.7" length="middle" direction="in" function="dot" rot="R180"/>
 <pin name="IRQB" x="15.24" y="15.24" length="middle" direction="in" function="dot" rot="R180"/>
@@ -830,10 +830,10 @@ Standard A4 size frame in Landscape</description>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="W65C02S" prefix="U" uservalue="yes">
+<deviceset name="W65C02" prefix="U" uservalue="yes">
 <description>8-bit microprocessor based on MOS 6502.</description>
 <gates>
-<gate name="G$1" symbol="W65C02S" x="0" y="0"/>
+<gate name="G$1" symbol="W65C02" x="0" y="0"/>
 </gates>
 <devices>
 <device name="DIP40" package="DIP40">
@@ -867,7 +867,7 @@ Standard A4 size frame in Landscape</description>
 <connect gate="G$1" pin="MLB" pad="5"/>
 <connect gate="G$1" pin="NC" pad="35"/>
 <connect gate="G$1" pin="NMIB" pad="6"/>
-<connect gate="G$1" pin="PH1O" pad="3"/>
+<connect gate="G$1" pin="PHI1O" pad="3"/>
 <connect gate="G$1" pin="PHI2" pad="37"/>
 <connect gate="G$1" pin="PHI2O" pad="39"/>
 <connect gate="G$1" pin="RDY" pad="2"/>
@@ -914,7 +914,7 @@ Standard A4 size frame in Landscape</description>
 <connect gate="G$1" pin="MLB" pad="6"/>
 <connect gate="G$1" pin="NC" pad="12 39"/>
 <connect gate="G$1" pin="NMIB" pad="7"/>
-<connect gate="G$1" pin="PH1O" pad="4"/>
+<connect gate="G$1" pin="PHI1O" pad="4"/>
 <connect gate="G$1" pin="PHI2" pad="41"/>
 <connect gate="G$1" pin="PHI2O" pad="43"/>
 <connect gate="G$1" pin="RDY" pad="3"/>
@@ -5647,7 +5647,7 @@ SMT- SWCH-08247</description>
 <attribute name="CREVISION" value="1.0"/>
 <attribute name="DESIGNER" value="pda"/>
 </part>
-<part name="U1" library="pda" deviceset="W65C02S" device="PLCC44" value="W65C02S"/>
+<part name="U1" library="pda" deviceset="W65C02" device="PLCC44" value="W65C02S"/>
 <part name="GND1" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND4" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY1" library="SparkFun-Aesthetics" deviceset="5V" device=""/>

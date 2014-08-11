@@ -19,7 +19,6 @@ cable can be used to interleave ground wires between each signal wire.
 Notes / TODO
 ------------
 
-* button for reset circuit.
 * VIA CS1 HIGH.
 * power connector (9V barrel?)
 * voltage regulator.

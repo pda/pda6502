@@ -5354,7 +5354,7 @@ SMT- SWCH-08247</description>
 <instance part="GND5" gate="1" x="25.4" y="50.8"/>
 <instance part="QG1" gate="G$1" x="22.86" y="22.86"/>
 <instance part="SUPPLY7" gate="G$1" x="10.16" y="27.94"/>
-<instance part="GND8" gate="1" x="10.16" y="15.24"/>
+<instance part="GND8" gate="1" x="7.62" y="15.24"/>
 <instance part="S1" gate="S" x="35.56" y="55.88"/>
 <instance part="GND9" gate="1" x="43.18" y="50.8"/>
 <instance part="SUPPLY8" gate="G$1" x="93.98" y="96.52"/>
@@ -5937,14 +5937,15 @@ SMT- SWCH-08247</description>
 <pinref part="GND5" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="QG1" gate="G$1" pin="GND"/>
-<pinref part="GND8" gate="1" pin="GND"/>
-</segment>
-<segment>
 <pinref part="S1" gate="S" pin="3"/>
 <pinref part="GND9" gate="1" pin="GND"/>
 <wire x1="40.64" y1="55.88" x2="43.18" y2="55.88" width="0.1524" layer="91"/>
 <wire x1="43.18" y1="55.88" x2="43.18" y2="53.34" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="QG1" gate="G$1" pin="GND"/>
+<pinref part="GND8" gate="1" pin="GND"/>
+<wire x1="10.16" y1="17.78" x2="7.62" y2="17.78" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="5V" class="0">
@@ -6272,13 +6273,14 @@ SMT- SWCH-08247</description>
 <label x="38.1" y="22.86" size="1.778" layer="95"/>
 </segment>
 <segment>
-<wire x1="76.2" y1="111.76" x2="81.28" y2="111.76" width="0.1524" layer="91"/>
-<label x="81.28" y="111.76" size="1.778" layer="95"/>
-</segment>
-<segment>
 <pinref part="U2" gate="G$1" pin="PHI2"/>
 <wire x1="101.6" y1="127" x2="99.06" y2="127" width="0.1524" layer="91"/>
 <label x="93.98" y="127" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U1" gate="G$1" pin="PHI2"/>
+<wire x1="76.2" y1="111.76" x2="81.28" y2="111.76" width="0.1524" layer="91"/>
+<label x="81.28" y="111.76" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>

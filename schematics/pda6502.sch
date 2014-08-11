@@ -952,7 +952,7 @@ an Interrupt Enable Register and two Function Control Registers.</description>
 <gate name="G$1" symbol="W65C22" x="0" y="0"/>
 </gates>
 <devices>
-<device name="" package="DIP40">
+<device name="DIP40" package="DIP40">
 <connects>
 <connect gate="G$1" pin="CA1" pad="40"/>
 <connect gate="G$1" pin="CA2" pad="39"/>
@@ -993,6 +993,53 @@ an Interrupt Enable Register and two Function Control Registers.</description>
 <connect gate="G$1" pin="RS3" pad="35"/>
 <connect gate="G$1" pin="RWB" pad="22"/>
 <connect gate="G$1" pin="VDD" pad="20"/>
+<connect gate="G$1" pin="VSS" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="PLCC44-SOCKET" package="PLCC44-SOCKET">
+<connects>
+<connect gate="G$1" pin="CA1" pad="44"/>
+<connect gate="G$1" pin="CA2" pad="43"/>
+<connect gate="G$1" pin="CB1" pad="19"/>
+<connect gate="G$1" pin="CB2" pad="20"/>
+<connect gate="G$1" pin="CS1" pad="26"/>
+<connect gate="G$1" pin="CS2B" pad="25"/>
+<connect gate="G$1" pin="D0" pad="36"/>
+<connect gate="G$1" pin="D1" pad="35"/>
+<connect gate="G$1" pin="D2" pad="34"/>
+<connect gate="G$1" pin="D3" pad="32"/>
+<connect gate="G$1" pin="D4" pad="31"/>
+<connect gate="G$1" pin="D5" pad="30"/>
+<connect gate="G$1" pin="D6" pad="29"/>
+<connect gate="G$1" pin="D7" pad="28"/>
+<connect gate="G$1" pin="IRQB" pad="23"/>
+<connect gate="G$1" pin="PA0" pad="2"/>
+<connect gate="G$1" pin="PA1" pad="3"/>
+<connect gate="G$1" pin="PA2" pad="4"/>
+<connect gate="G$1" pin="PA3" pad="5"/>
+<connect gate="G$1" pin="PA4" pad="6"/>
+<connect gate="G$1" pin="PA5" pad="7"/>
+<connect gate="G$1" pin="PA6" pad="8"/>
+<connect gate="G$1" pin="PA7" pad="9"/>
+<connect gate="G$1" pin="PB0" pad="10"/>
+<connect gate="G$1" pin="PB1" pad="12"/>
+<connect gate="G$1" pin="PB2" pad="13"/>
+<connect gate="G$1" pin="PB3" pad="14"/>
+<connect gate="G$1" pin="PB4" pad="15"/>
+<connect gate="G$1" pin="PB5" pad="16"/>
+<connect gate="G$1" pin="PB6" pad="17"/>
+<connect gate="G$1" pin="PB7" pad="18"/>
+<connect gate="G$1" pin="PHI2" pad="27"/>
+<connect gate="G$1" pin="RESB" pad="37"/>
+<connect gate="G$1" pin="RS0" pad="42"/>
+<connect gate="G$1" pin="RS1" pad="41"/>
+<connect gate="G$1" pin="RS2" pad="40"/>
+<connect gate="G$1" pin="RS3" pad="39"/>
+<connect gate="G$1" pin="RWB" pad="24"/>
+<connect gate="G$1" pin="VDD" pad="21"/>
 <connect gate="G$1" pin="VSS" pad="1"/>
 </connects>
 <technologies>
@@ -5652,7 +5699,7 @@ SMT- SWCH-08247</description>
 <part name="GND4" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY1" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
 <part name="SUPPLY4" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
-<part name="U2" library="pda" deviceset="W65C22" device="" value="W65C22S"/>
+<part name="U2" library="pda" deviceset="W65C22" device="PLCC44-SOCKET" value="W65C22S"/>
 <part name="GND2" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY2" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
 <part name="U4" library="pda" deviceset="UM61256AK-12" device="" value="UM61256AK-12"/>

@@ -19,21 +19,21 @@ cable can be used to interleave ground wires between each signal wire.
 Notes / TODO
 ------------
 
-* power connector (9V barrel?)
-* voltage regulator.
-* power capacitor.
-* power headers
-* glue logic headers
-* CPU headers
+* power supply; jack, regulator, capacitor, LED, headers.
+* memory mapping logic headers
+* CPU misc signal headers
+* size issue; PLCC chips? board larger than 10x8? split into base+shield?
 
 Memory mapping logic
 --------------------
 
-Six inputs:
-Clock: PH1O, PH2O
-Address: A12, A13, A14, A15
-
-Three outputs:
-RAM: OE+CE
-ROM: OE+CE
-VIA: CS2B
+IN:  CPU A12
+IN:  CPU A13
+IN:  CPU A14
+IN:  CPU A15
+IN:  CPU PHI2
+IN:  CPU PHI1O
+IN:  CPU RWB
+OUT: RAM OE+CE
+OUT: ROM OE+CE
+OUT: VIA CS2B

@@ -24,7 +24,6 @@ Notes / TODO
 * power connector (9V barrel?)
 * voltage regulator.
 * power capacitor.
-* crystal oscillator - half can
 * power headers
 * glue logic headers
 * CPU headers

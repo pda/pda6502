@@ -5316,6 +5316,7 @@ SMT- SWCH-08247</description>
 <part name="GND8" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="S1" library="SparkFun-Electromechanical" deviceset="TAC_SWITCH" device="SMD"/>
 <part name="GND9" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="SUPPLY8" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -5356,6 +5357,7 @@ SMT- SWCH-08247</description>
 <instance part="GND8" gate="1" x="10.16" y="15.24"/>
 <instance part="S1" gate="S" x="35.56" y="55.88"/>
 <instance part="GND9" gate="1" x="43.18" y="50.8"/>
+<instance part="SUPPLY8" gate="G$1" x="93.98" y="96.52"/>
 </instances>
 <busses>
 <bus name="DATA[0..7]">
@@ -5989,6 +5991,11 @@ SMT- SWCH-08247</description>
 <segment>
 <pinref part="QG1" gate="G$1" pin="VCC"/>
 <pinref part="SUPPLY7" gate="G$1" pin="5V"/>
+</segment>
+<segment>
+<pinref part="U2" gate="G$1" pin="CS1"/>
+<pinref part="SUPPLY8" gate="G$1" pin="5V"/>
+<wire x1="101.6" y1="96.52" x2="93.98" y2="96.52" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="PA0" class="0">

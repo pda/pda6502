@@ -4901,7 +4901,11 @@ Source: AVX .. aphvc.pdf</description>
 </class>
 </classes>
 <parts>
-<part name="FRAME1" library="SparkFun-Aesthetics" deviceset="FRAME-A4L" device=""/>
+<part name="FRAME1" library="SparkFun-Aesthetics" deviceset="FRAME-A4L" device="">
+<attribute name="CNAME" value="pda"/>
+<attribute name="CREVISION" value="1.0"/>
+<attribute name="DESIGNER" value="pda"/>
+</part>
 <part name="U1" library="pda" deviceset="W65C02S" device="" value="W65C02S"/>
 <part name="GND1" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND4" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
@@ -4929,7 +4933,11 @@ Source: AVX .. aphvc.pdf</description>
 <plain>
 </plain>
 <instances>
-<instance part="FRAME1" gate="G$1" x="0" y="0"/>
+<instance part="FRAME1" gate="G$1" x="0" y="0">
+<attribute name="CNAME" x="0" y="0" size="1.778" layer="96" display="off"/>
+<attribute name="CREVISION" x="0" y="0" size="1.778" layer="96" display="off"/>
+<attribute name="DESIGNER" x="0" y="0" size="1.778" layer="96" display="off"/>
+</instance>
 <instance part="U1" gate="G$1" x="60.96" y="124.46"/>
 <instance part="GND1" gate="1" x="76.2" y="86.36"/>
 <instance part="GND4" gate="1" x="261.62" y="83.82"/>

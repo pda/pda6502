@@ -6351,6 +6351,9 @@ SMT- SWCH-08247</description>
 <pinref part="GND9" gate="1" pin="GND"/>
 <wire x1="40.64" y1="55.88" x2="43.18" y2="55.88" width="0.1524" layer="91"/>
 <wire x1="43.18" y1="55.88" x2="43.18" y2="53.34" width="0.1524" layer="91"/>
+<pinref part="S1" gate="S" pin="4"/>
+<wire x1="40.64" y1="53.34" x2="40.64" y2="55.88" width="0.1524" layer="91"/>
+<junction x="40.64" y="55.88"/>
 </segment>
 <segment>
 <pinref part="QG1" gate="G$1" pin="GND"/>
@@ -6667,6 +6670,9 @@ SMT- SWCH-08247</description>
 <junction x="30.48" y="58.42"/>
 <pinref part="S1" gate="S" pin="1"/>
 <label x="30.48" y="66.04" size="1.778" layer="95"/>
+<pinref part="S1" gate="S" pin="2"/>
+<wire x1="30.48" y1="55.88" x2="30.48" y2="53.34" width="0.1524" layer="91"/>
+<junction x="30.48" y="55.88"/>
 </segment>
 </net>
 <net name="PHI2" class="0">

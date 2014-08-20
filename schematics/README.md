@@ -22,7 +22,6 @@ Notes / TODO
 * power supply; jack, regulator, capacitor, LED, headers.
 * memory mapping logic headers
 * CPU misc signal headers
-* size issue; PLCC chips? board larger than 10x8? split into base+shield?
 
 Memory mapping logic
 --------------------
@@ -37,3 +36,15 @@ IN:  CPU RWB
 OUT: RAM OE+CE
 OUT: ROM OE+CE
 OUT: VIA CS2B
+
+Power characteristics
+---------------------
+
+Assuming 8 MHz:
+
+65C02: 12 mA ; 1.5 mA per MHz supply current (loaded)
+65C22:  4 mA ; 0.5 mA per MHz supply current (loaded)
+28C64: 30 mA max.
+SRAM: 200 mA max; 80 mA typical
+      ==========
+      246 mA max (chips)

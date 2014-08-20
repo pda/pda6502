@@ -1327,6 +1327,23 @@ an Interrupt Enable Register and two Function Control Registers.</description>
 </device>
 </devices>
 </deviceset>
+<deviceset name="L7805-VREG-D2PAK">
+<gates>
+<gate name="G$1" symbol="L7805-VREG" x="2.54" y="0"/>
+</gates>
+<devices>
+<device name="L7805-SMD-D2PAK" package="TO-263-D2PAK">
+<connects>
+<connect gate="G$1" pin="GND" pad="TAB"/>
+<connect gate="G$1" pin="VI" pad="1"/>
+<connect gate="G$1" pin="VO" pad="3"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
 </devicesets>
 </library>
 </drawing>

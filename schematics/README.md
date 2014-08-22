@@ -19,9 +19,9 @@ cable can be used to interleave ground wires between each signal wire.
 Notes / TODO
 ------------
 
-* power supply; jack, capacitor, LED, headers, switch.
-* memory mapping logic headers
-* CPU misc signal headers
+* power headers.
+* memory mapping logic headers.
+* CPU misc signal headers.
 
 Diode:
 STPS2L40AF 2A 40V SMAflat, 0.39V drop
@@ -47,7 +47,7 @@ OUT: VIA CS2B
 Power characteristics
 ---------------------
 
-Based on the following, a [1A 5V 7805][vreg] will be fine.
+Designing for maximum of 1A current should be plenty:
 
 [vreg]: http://www.mouser.com/Search/ProductDetail.aspx?R=MC7805CDTRKGvirtualkey58410000virtualkey863-MC7805CDTRKG
 

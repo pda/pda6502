@@ -30,6 +30,13 @@ B340A 3A 40V SMA, 0.5V drop
 http://www.mouser.com/ProductDetail/Diodes-Incorporated/B340A-13-F/?qs=sGAEpiMZZMtQ8nqTKtFS%2fLDoMakfJd%2f0jr6cVnY7CxE%3d
 http://www.mouser.com/ProductDetail/Vishay-Semiconductors/B340A-E3-61T/?qs=sGAEpiMZZMtQ8nqTKtFS%2fJkHNs4hgXaDNz7G8vLeA%2fM%3d
 
+Micro B USB socket:
+Dangerous Prototypes Eagle library.
+Device: CONN-USB-MICRO-B
+USB micro-b connector SMT 0.65 mm pitch, 1.45mm from center to PCB edge, Based on TE part number 1981568-1
+http://www.mouser.com/ProductDetail/TE-Connectivity-AMP/1981568-1/?qs=zxTme0yW/baAfvOKTKC5hw==
+
+
 Memory mapping logic
 --------------------
 

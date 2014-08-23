@@ -18,6 +18,7 @@ Notes / TODO
 * power headers.
 * CPU misc signal headers?
 * VIA IRQ connection / header / jumper.
+* provision for 28C256 by tying A13, A14 (pin 26, 1) to GND?
 
 Diode:
 STPS2L40AF 2A 40V SMAflat, 0.39V drop
@@ -46,6 +47,27 @@ IN:  CPU RWB
 OUT: RAM OE+CE
 OUT: ROM OE+CE
 OUT: VIA CS2B
+
+
+Logic chips:
+
+74HC00 (quad NAND) acting as inverter, NAND gate, and AND gate.
+74HC138 (3-bit decoder) to split the upper-half of address space.
+
+Propagation times:
+
+74HC00 gates: typical 8 ns, max 23 ns.
+74HC138: typical 15 ns, max 38 ns.
+
+RAM: invert (NAND) + NAND = typical 16 ns, max 46 ns.
+VIA: 74HC138 = typical 15 ns, max 38 ns.
+ROM: 74HC138 + (NAND + NAND) = typical 31 ns, max 84 ns.
+
+RAM speed: 12 ns
+ROM speed: 250 ns or 120 ns? 150 ns for Atmel AT28C256-15
+
+
+
 
 Power characteristics
 ---------------------

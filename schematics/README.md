@@ -12,10 +12,6 @@ external via headers.
 
 A 2x10 header exposes the 6522 VIA ports A and B and their control lines.
 
-A 2x20 header exposes the address and data bus in a way compatible with
-40-pin ribbon PATA cables. As the ground connections match, an 80-conductor
-cable can be used to interleave ground wires between each signal wire.
-
 Notes / TODO
 ------------
 

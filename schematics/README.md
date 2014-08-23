@@ -18,7 +18,6 @@ Notes / TODO
 * power headers.
 * CPU misc signal headers?
 * VIA IRQ connection / header / jumper.
-* provision for 28C256 by tying A13, A14 (pin 26, 1) to GND?
 
 Diode:
 STPS2L40AF 2A 40V SMAflat, 0.39V drop

@@ -1326,7 +1326,7 @@ an Interrupt Enable Register and two Function Control Registers.</description>
 <gate name="G$1" symbol="28C256" x="0" y="0"/>
 </gates>
 <devices>
-<device name="ZIF" package="ZIF28-6-WIDE">
+<device name="-ZIF" package="ZIF28-6-WIDE">
 <connects>
 <connect gate="G$1" pin="!CE" pad="20"/>
 <connect gate="G$1" pin="!OE" pad="22"/>

@@ -8991,7 +8991,6 @@ type 0309, grid 2.5 mm</description>
 <part name="S1" library="SparkFun-Electromechanical" deviceset="TAC_SWITCH" device="SMD"/>
 <part name="GND9" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY8" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
-<part name="C3" library="rcl" deviceset="C-EU" device="C0805" value="0.1μF"/>
 <part name="C2" library="rcl" deviceset="C-EU" device="C0805" value="0.1μF"/>
 <part name="C1" library="rcl" deviceset="C-EU" device="C0805" value="0.1μF"/>
 <part name="GND10" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
@@ -9004,6 +9003,7 @@ type 0309, grid 2.5 mm</description>
 <part name="GND12" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="USB1" library="dangerousprototypes_devices" deviceset="CON-USB-F" device="-MICRO-B"/>
 <part name="JP3" library="jumper" deviceset="JP1Q" device="" value="PWR"/>
+<part name="GND6" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -9016,9 +9016,9 @@ type 0309, grid 2.5 mm</description>
 <attribute name="DESIGNER" x="0" y="0" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="U1" gate="G$1" x="22.86" y="137.16"/>
-<instance part="GND1" gate="1" x="30.48" y="83.82"/>
+<instance part="GND1" gate="1" x="38.1" y="99.06"/>
 <instance part="GND4" gate="1" x="259.08" y="116.84"/>
-<instance part="SUPPLY1" gate="G$1" x="45.72" y="109.22"/>
+<instance part="SUPPLY1" gate="G$1" x="43.18" y="111.76"/>
 <instance part="SUPPLY4" gate="G$1" x="259.08" y="134.62"/>
 <instance part="U2" gate="G$1" x="93.98" y="137.16"/>
 <instance part="GND2" gate="1" x="109.22" y="99.06"/>
@@ -9041,9 +9041,8 @@ type 0309, grid 2.5 mm</description>
 <instance part="S1" gate="S" x="251.46" y="78.74"/>
 <instance part="GND9" gate="1" x="259.08" y="73.66"/>
 <instance part="SUPPLY8" gate="G$1" x="93.98" y="109.22"/>
-<instance part="C3" gate="G$1" x="43.18" y="83.82" rot="R270"/>
-<instance part="C2" gate="G$1" x="43.18" y="93.98" rot="R270"/>
-<instance part="C1" gate="G$1" x="43.18" y="104.14" rot="R270"/>
+<instance part="C2" gate="G$1" x="48.26" y="99.06" rot="R270"/>
+<instance part="C1" gate="G$1" x="48.26" y="109.22" rot="R270"/>
 <instance part="GND10" gate="1" x="215.9" y="27.94"/>
 <instance part="C7" gate="C" x="236.22" y="40.64"/>
 <instance part="C8" gate="C" x="246.38" y="40.64"/>
@@ -9054,6 +9053,7 @@ type 0309, grid 2.5 mm</description>
 <instance part="GND12" gate="1" x="261.62" y="27.94"/>
 <instance part="USB1" gate="USB" x="185.42" y="45.72"/>
 <instance part="JP3" gate="A" x="226.06" y="48.26" rot="R270"/>
+<instance part="GND6" gate="1" x="50.8" y="91.44"/>
 </instances>
 <busses>
 <bus name="DATA[0..7]">
@@ -9544,34 +9544,18 @@ type 0309, grid 2.5 mm</description>
 </segment>
 <segment>
 <pinref part="GND1" gate="1" pin="GND"/>
-<wire x1="30.48" y1="86.36" x2="30.48" y2="93.98" width="0.1524" layer="91"/>
-<pinref part="U1" gate="G$1" pin="VSS"/>
-<wire x1="38.1" y1="106.68" x2="38.1" y2="104.14" width="0.1524" layer="91"/>
-<wire x1="38.1" y1="104.14" x2="38.1" y2="93.98" width="0.1524" layer="91"/>
-<pinref part="C2" gate="G$1" pin="2"/>
-<pinref part="C1" gate="G$1" pin="2"/>
-<junction x="38.1" y="104.14"/>
-<junction x="38.1" y="93.98"/>
-<pinref part="C3" gate="G$1" pin="2"/>
-<wire x1="38.1" y1="83.82" x2="38.1" y2="93.98" width="0.1524" layer="91"/>
-<wire x1="30.48" y1="93.98" x2="38.1" y2="93.98" width="0.1524" layer="91"/>
+<wire x1="38.1" y1="101.6" x2="38.1" y2="106.68" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="C1" gate="G$1" pin="1"/>
+<pinref part="C2" gate="G$1" pin="1"/>
+<wire x1="50.8" y1="109.22" x2="50.8" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="50.8" y1="99.06" x2="50.8" y2="93.98" width="0.1524" layer="91"/>
+<junction x="50.8" y="99.06"/>
+<pinref part="GND6" gate="1" pin="GND"/>
 </segment>
 </net>
 <net name="5V" class="0">
-<segment>
-<pinref part="U1" gate="G$1" pin="VDD"/>
-<wire x1="38.1" y1="109.22" x2="45.72" y2="109.22" width="0.1524" layer="91"/>
-<pinref part="SUPPLY1" gate="G$1" pin="5V"/>
-<pinref part="C1" gate="G$1" pin="1"/>
-<wire x1="45.72" y1="109.22" x2="45.72" y2="104.14" width="0.1524" layer="91"/>
-<junction x="45.72" y="109.22"/>
-<pinref part="C2" gate="G$1" pin="1"/>
-<wire x1="45.72" y1="104.14" x2="45.72" y2="93.98" width="0.1524" layer="91"/>
-<junction x="45.72" y="104.14"/>
-<pinref part="C3" gate="G$1" pin="1"/>
-<wire x1="45.72" y1="93.98" x2="45.72" y2="83.82" width="0.1524" layer="91"/>
-<junction x="45.72" y="93.98"/>
-</segment>
 <segment>
 <wire x1="109.22" y1="109.22" x2="114.3" y2="109.22" width="0.1524" layer="91"/>
 <pinref part="SUPPLY2" gate="G$1" pin="5V"/>
@@ -9631,6 +9615,16 @@ type 0309, grid 2.5 mm</description>
 <pinref part="R1" gate="G$1" pin="1"/>
 <wire x1="241.3" y1="48.26" x2="251.46" y2="48.26" width="0.1524" layer="91"/>
 <pinref part="JP3" gate="A" pin="2"/>
+</segment>
+<segment>
+<pinref part="C1" gate="G$1" pin="2"/>
+<pinref part="C2" gate="G$1" pin="2"/>
+<wire x1="43.18" y1="109.22" x2="43.18" y2="99.06" width="0.1524" layer="91"/>
+<pinref part="U1" gate="G$1" pin="VDD"/>
+<wire x1="38.1" y1="109.22" x2="43.18" y2="109.22" width="0.1524" layer="91"/>
+<junction x="43.18" y="109.22"/>
+<pinref part="SUPPLY1" gate="G$1" pin="5V"/>
+<wire x1="43.18" y1="111.76" x2="43.18" y2="109.22" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="PA0" class="0">

@@ -16,8 +16,8 @@ Notes / TODO
 ------------
 
 * power headers.
-* memory mapping logic headers.
-* CPU misc signal headers.
+* CPU misc signal headers?
+* VIA IRQ connection / header / jumper.
 
 Diode:
 STPS2L40AF 2A 40V SMAflat, 0.39V drop

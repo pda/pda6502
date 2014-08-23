@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="dots" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="dots" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="no" active="no"/>
@@ -8967,43 +8967,43 @@ type 0309, grid 2.5 mm</description>
 </part>
 <part name="U1" library="pda" deviceset="W65C02" device="PLCC44" value="W65C02S"/>
 <part name="GND1" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="GND4" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="GND9" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY1" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
-<part name="SUPPLY4" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
+<part name="SUPPLY9" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
 <part name="U2" library="pda" deviceset="W65C22" device="PLCC44-SOCKET" value="W65C22S"/>
-<part name="GND2" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="SUPPLY2" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
-<part name="U4" library="pda" deviceset="UM61256AK-12" device="" value="UM61256AK-12"/>
-<part name="U3" library="pda" deviceset="28C64" device="ZIF28-6-WIDE" value="KM28C64A-25"/>
 <part name="GND3" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY3" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
-<part name="JP1" library="SparkFun-Connectors" deviceset="PINHD-2X10" device=""/>
-<part name="SUPPLY5" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
-<part name="C4" library="rcl" deviceset="C-EU" device="C0805" value="0.1μF"/>
-<part name="C5" library="rcl" deviceset="C-EU" device="C0805" value="0.1μF"/>
-<part name="C6" library="rcl" deviceset="C-EU" device="C0805" value="0.1μF"/>
-<part name="IC1" library="ds1813" deviceset="DS1813" device="-SMD"/>
-<part name="SUPPLY6" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
+<part name="U4" library="pda" deviceset="UM61256AK-12" device="" value="UM61256AK-12"/>
+<part name="U3" library="pda" deviceset="28C64" device="ZIF28-6-WIDE" value="KM28C64A-25"/>
 <part name="GND5" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="QG1" library="crystal" deviceset="XO-" device="8" value="1 MHz"/>
+<part name="SUPPLY6" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
+<part name="JP1" library="SparkFun-Connectors" deviceset="PINHD-2X10" device=""/>
+<part name="SUPPLY4" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
+<part name="C3" library="rcl" deviceset="C-EU" device="C0805" value="0.1μF"/>
+<part name="C4" library="rcl" deviceset="C-EU" device="C0805" value="0.1μF"/>
+<part name="C7" library="rcl" deviceset="C-EU" device="C0805" value="0.1μF"/>
+<part name="IC1" library="ds1813" deviceset="DS1813" device="-SMD"/>
 <part name="SUPPLY7" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
-<part name="GND8" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="GND7" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="QG1" library="crystal" deviceset="XO-" device="8" value="1 MHz"/>
+<part name="SUPPLY5" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
+<part name="GND4" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="S1" library="SparkFun-Electromechanical" deviceset="TAC_SWITCH" device="SMD"/>
-<part name="GND9" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="SUPPLY8" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
+<part name="GND10" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="SUPPLY2" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
 <part name="C2" library="rcl" deviceset="C-EU" device="C0805" value="0.1μF"/>
 <part name="C1" library="rcl" deviceset="C-EU" device="C0805" value="0.1μF"/>
-<part name="GND10" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="C7" library="dangerousprototypes_devices" deviceset="CAPACITOR_POL" device="-CASE_B" value="47uF"/>
-<part name="C8" library="dangerousprototypes_devices" deviceset="CAPACITOR_POL" device="-CASE_B" value="47uF"/>
-<part name="R1" library="resistor" deviceset="R-US_" device="R0805" value="1K"/>
-<part name="SUPPLY9" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
-<part name="GND11" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="LED1" library="dangerousprototypes_devices" deviceset="LED" device="-0805" value="GREEN"/>
-<part name="GND12" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="USB1" library="dangerousprototypes_devices" deviceset="CON-USB-F" device="-MICRO-B"/>
-<part name="JP3" library="jumper" deviceset="JP1Q" device="" value="PWR"/>
 <part name="GND6" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="C5" library="dangerousprototypes_devices" deviceset="CAPACITOR_POL" device="-CASE_B" value="47uF"/>
+<part name="C6" library="dangerousprototypes_devices" deviceset="CAPACITOR_POL" device="-CASE_B" value="47uF"/>
+<part name="R1" library="resistor" deviceset="R-US_" device="R0805" value="1K"/>
+<part name="SUPPLY8" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
+<part name="GND8" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="LED1" library="dangerousprototypes_devices" deviceset="LED" device="-0805" value="GREEN"/>
+<part name="GND11" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="USB1" library="dangerousprototypes_devices" deviceset="CON-USB-F" device="-MICRO-B"/>
+<part name="JP2" library="jumper" deviceset="JP1Q" device="" value="PWR"/>
+<part name="GND2" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -9017,43 +9017,43 @@ type 0309, grid 2.5 mm</description>
 </instance>
 <instance part="U1" gate="G$1" x="22.86" y="137.16"/>
 <instance part="GND1" gate="1" x="38.1" y="99.06"/>
-<instance part="GND4" gate="1" x="259.08" y="116.84"/>
+<instance part="GND9" gate="1" x="259.08" y="116.84"/>
 <instance part="SUPPLY1" gate="G$1" x="43.18" y="111.76"/>
-<instance part="SUPPLY4" gate="G$1" x="259.08" y="134.62"/>
+<instance part="SUPPLY9" gate="G$1" x="259.08" y="134.62"/>
 <instance part="U2" gate="G$1" x="93.98" y="137.16"/>
-<instance part="GND2" gate="1" x="109.22" y="99.06"/>
-<instance part="SUPPLY2" gate="G$1" x="114.3" y="109.22"/>
+<instance part="GND3" gate="1" x="109.22" y="99.06"/>
+<instance part="SUPPLY3" gate="G$1" x="114.3" y="109.22"/>
 <instance part="U4" gate="G$1" x="243.84" y="149.86"/>
 <instance part="U3" gate="G$1" x="177.8" y="144.78"/>
-<instance part="GND3" gate="1" x="198.12" y="119.38"/>
-<instance part="SUPPLY3" gate="G$1" x="198.12" y="132.08"/>
+<instance part="GND5" gate="1" x="198.12" y="119.38"/>
+<instance part="SUPPLY6" gate="G$1" x="198.12" y="132.08"/>
 <instance part="JP1" gate="A" x="129.54" y="144.78" rot="MR270"/>
-<instance part="SUPPLY5" gate="G$1" x="154.94" y="127"/>
-<instance part="C4" gate="G$1" x="114.3" y="106.68"/>
-<instance part="C5" gate="G$1" x="198.12" y="127"/>
-<instance part="C6" gate="G$1" x="259.08" y="129.54"/>
+<instance part="SUPPLY4" gate="G$1" x="154.94" y="127"/>
+<instance part="C3" gate="G$1" x="114.3" y="106.68"/>
+<instance part="C4" gate="G$1" x="198.12" y="127"/>
+<instance part="C7" gate="G$1" x="259.08" y="129.54"/>
 <instance part="IC1" gate="G$1" x="228.6" y="81.28"/>
-<instance part="SUPPLY6" gate="G$1" x="241.3" y="86.36"/>
-<instance part="GND5" gate="1" x="241.3" y="73.66"/>
+<instance part="SUPPLY7" gate="G$1" x="241.3" y="86.36"/>
+<instance part="GND7" gate="1" x="241.3" y="73.66"/>
 <instance part="QG1" gate="G$1" x="195.58" y="81.28"/>
-<instance part="SUPPLY7" gate="G$1" x="182.88" y="88.9"/>
-<instance part="GND8" gate="1" x="182.88" y="71.12"/>
+<instance part="SUPPLY5" gate="G$1" x="182.88" y="88.9"/>
+<instance part="GND4" gate="1" x="182.88" y="71.12"/>
 <instance part="S1" gate="S" x="251.46" y="78.74"/>
-<instance part="GND9" gate="1" x="259.08" y="73.66"/>
-<instance part="SUPPLY8" gate="G$1" x="93.98" y="109.22"/>
+<instance part="GND10" gate="1" x="259.08" y="73.66"/>
+<instance part="SUPPLY2" gate="G$1" x="93.98" y="109.22"/>
 <instance part="C2" gate="G$1" x="48.26" y="99.06" rot="R270"/>
 <instance part="C1" gate="G$1" x="48.26" y="109.22" rot="R270"/>
-<instance part="GND10" gate="1" x="215.9" y="27.94"/>
-<instance part="C7" gate="C" x="236.22" y="40.64"/>
-<instance part="C8" gate="C" x="246.38" y="40.64"/>
+<instance part="GND6" gate="1" x="215.9" y="27.94"/>
+<instance part="C5" gate="C" x="236.22" y="40.64"/>
+<instance part="C6" gate="C" x="246.38" y="40.64"/>
 <instance part="R1" gate="G$1" x="256.54" y="48.26"/>
-<instance part="SUPPLY9" gate="G$1" x="241.3" y="53.34"/>
-<instance part="GND11" gate="1" x="241.3" y="27.94"/>
+<instance part="SUPPLY8" gate="G$1" x="241.3" y="53.34"/>
+<instance part="GND8" gate="1" x="241.3" y="27.94"/>
 <instance part="LED1" gate="LED" x="261.62" y="40.64"/>
-<instance part="GND12" gate="1" x="261.62" y="27.94"/>
+<instance part="GND11" gate="1" x="261.62" y="27.94"/>
 <instance part="USB1" gate="USB" x="185.42" y="45.72"/>
-<instance part="JP3" gate="A" x="226.06" y="48.26" rot="R270"/>
-<instance part="GND6" gate="1" x="50.8" y="91.44"/>
+<instance part="JP2" gate="A" x="226.06" y="48.26" rot="R270"/>
+<instance part="GND2" gate="1" x="50.8" y="91.44"/>
 </instances>
 <busses>
 <bus name="DATA[0..7]">
@@ -9480,35 +9480,35 @@ type 0309, grid 2.5 mm</description>
 <net name="GND" class="0">
 <segment>
 <wire x1="109.22" y1="106.68" x2="109.22" y2="101.6" width="0.1524" layer="91"/>
-<pinref part="GND2" gate="1" pin="GND"/>
+<pinref part="GND3" gate="1" pin="GND"/>
 <pinref part="U2" gate="G$1" pin="VSS"/>
-<pinref part="C4" gate="G$1" pin="2"/>
+<pinref part="C3" gate="G$1" pin="2"/>
 <wire x1="114.3" y1="101.6" x2="109.22" y2="101.6" width="0.1524" layer="91"/>
 <junction x="109.22" y="101.6"/>
 </segment>
 <segment>
-<pinref part="C6" gate="G$1" pin="2"/>
+<pinref part="C7" gate="G$1" pin="2"/>
 <wire x1="259.08" y1="124.46" x2="259.08" y2="121.92" width="0.1524" layer="91"/>
-<pinref part="GND4" gate="1" pin="GND"/>
+<pinref part="GND9" gate="1" pin="GND"/>
 <pinref part="U4" gate="G$1" pin="GND"/>
 <wire x1="259.08" y1="121.92" x2="259.08" y2="119.38" width="0.1524" layer="91"/>
 <wire x1="256.54" y1="121.92" x2="259.08" y2="121.92" width="0.1524" layer="91"/>
 <junction x="259.08" y="121.92"/>
 </segment>
 <segment>
-<pinref part="C5" gate="G$1" pin="2"/>
-<pinref part="GND3" gate="1" pin="GND"/>
+<pinref part="C4" gate="G$1" pin="2"/>
+<pinref part="GND5" gate="1" pin="GND"/>
 <pinref part="U3" gate="G$1" pin="GND"/>
 <wire x1="193.04" y1="121.92" x2="198.12" y2="121.92" width="0.1524" layer="91"/>
 <junction x="198.12" y="121.92"/>
 </segment>
 <segment>
 <pinref part="IC1" gate="G$1" pin="GND"/>
-<pinref part="GND5" gate="1" pin="GND"/>
+<pinref part="GND7" gate="1" pin="GND"/>
 </segment>
 <segment>
 <pinref part="S1" gate="S" pin="3"/>
-<pinref part="GND9" gate="1" pin="GND"/>
+<pinref part="GND10" gate="1" pin="GND"/>
 <wire x1="256.54" y1="78.74" x2="259.08" y2="78.74" width="0.1524" layer="91"/>
 <wire x1="259.08" y1="78.74" x2="259.08" y2="76.2" width="0.1524" layer="91"/>
 <pinref part="S1" gate="S" pin="4"/>
@@ -9517,29 +9517,29 @@ type 0309, grid 2.5 mm</description>
 </segment>
 <segment>
 <pinref part="QG1" gate="G$1" pin="GND"/>
-<pinref part="GND8" gate="1" pin="GND"/>
+<pinref part="GND4" gate="1" pin="GND"/>
 <wire x1="182.88" y1="76.2" x2="182.88" y2="73.66" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="GND10" gate="1" pin="GND"/>
+<pinref part="GND6" gate="1" pin="GND"/>
 <wire x1="215.9" y1="50.8" x2="215.9" y2="30.48" width="0.1524" layer="91"/>
 <pinref part="USB1" gate="USB" pin="GND"/>
 <wire x1="215.9" y1="50.8" x2="190.5" y2="50.8" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C7" gate="C" pin="-"/>
+<pinref part="C5" gate="C" pin="-"/>
 <wire x1="236.22" y1="35.56" x2="236.22" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="236.22" y1="33.02" x2="241.3" y2="33.02" width="0.1524" layer="91"/>
-<pinref part="C8" gate="C" pin="-"/>
+<pinref part="C6" gate="C" pin="-"/>
 <wire x1="241.3" y1="33.02" x2="246.38" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="246.38" y1="33.02" x2="246.38" y2="35.56" width="0.1524" layer="91"/>
-<pinref part="GND11" gate="1" pin="GND"/>
+<pinref part="GND8" gate="1" pin="GND"/>
 <wire x1="241.3" y1="30.48" x2="241.3" y2="33.02" width="0.1524" layer="91"/>
 <junction x="241.3" y="33.02"/>
 </segment>
 <segment>
 <pinref part="LED1" gate="LED" pin="C"/>
-<pinref part="GND12" gate="1" pin="GND"/>
+<pinref part="GND11" gate="1" pin="GND"/>
 <wire x1="261.62" y1="35.56" x2="261.62" y2="30.48" width="0.1524" layer="91"/>
 </segment>
 <segment>
@@ -9552,26 +9552,26 @@ type 0309, grid 2.5 mm</description>
 <wire x1="50.8" y1="109.22" x2="50.8" y2="99.06" width="0.1524" layer="91"/>
 <wire x1="50.8" y1="99.06" x2="50.8" y2="93.98" width="0.1524" layer="91"/>
 <junction x="50.8" y="99.06"/>
-<pinref part="GND6" gate="1" pin="GND"/>
+<pinref part="GND2" gate="1" pin="GND"/>
 </segment>
 </net>
 <net name="5V" class="0">
 <segment>
 <wire x1="109.22" y1="109.22" x2="114.3" y2="109.22" width="0.1524" layer="91"/>
-<pinref part="SUPPLY2" gate="G$1" pin="5V"/>
+<pinref part="SUPPLY3" gate="G$1" pin="5V"/>
 <pinref part="U2" gate="G$1" pin="VDD"/>
-<pinref part="C4" gate="G$1" pin="1"/>
+<pinref part="C3" gate="G$1" pin="1"/>
 <junction x="114.3" y="109.22"/>
 </segment>
 <segment>
 <pinref part="U3" gate="G$1" pin="!WE"/>
-<pinref part="SUPPLY5" gate="G$1" pin="5V"/>
+<pinref part="SUPPLY4" gate="G$1" pin="5V"/>
 <wire x1="154.94" y1="127" x2="162.56" y2="127" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <wire x1="198.12" y1="132.08" x2="198.12" y2="129.54" width="0.1524" layer="91"/>
-<pinref part="SUPPLY3" gate="G$1" pin="5V"/>
-<pinref part="C5" gate="G$1" pin="1"/>
+<pinref part="SUPPLY6" gate="G$1" pin="5V"/>
+<pinref part="C4" gate="G$1" pin="1"/>
 <pinref part="U3" gate="G$1" pin="VCC"/>
 <wire x1="193.04" y1="124.46" x2="193.04" y2="129.54" width="0.1524" layer="91"/>
 <wire x1="193.04" y1="129.54" x2="198.12" y2="129.54" width="0.1524" layer="91"/>
@@ -9580,41 +9580,41 @@ type 0309, grid 2.5 mm</description>
 <segment>
 <pinref part="U4" gate="G$1" pin="VCC"/>
 <wire x1="256.54" y1="132.08" x2="259.08" y2="132.08" width="0.1524" layer="91"/>
-<pinref part="SUPPLY4" gate="G$1" pin="5V"/>
+<pinref part="SUPPLY9" gate="G$1" pin="5V"/>
 <wire x1="259.08" y1="132.08" x2="259.08" y2="134.62" width="0.1524" layer="91"/>
 <junction x="259.08" y="132.08"/>
-<pinref part="C6" gate="G$1" pin="1"/>
+<pinref part="C7" gate="G$1" pin="1"/>
 </segment>
 <segment>
 <pinref part="IC1" gate="G$1" pin="+5V"/>
-<pinref part="SUPPLY6" gate="G$1" pin="5V"/>
+<pinref part="SUPPLY7" gate="G$1" pin="5V"/>
 </segment>
 <segment>
 <pinref part="QG1" gate="G$1" pin="VCC"/>
-<pinref part="SUPPLY7" gate="G$1" pin="5V"/>
+<pinref part="SUPPLY5" gate="G$1" pin="5V"/>
 <wire x1="182.88" y1="88.9" x2="182.88" y2="86.36" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U2" gate="G$1" pin="CS1"/>
-<pinref part="SUPPLY8" gate="G$1" pin="5V"/>
+<pinref part="SUPPLY2" gate="G$1" pin="5V"/>
 <wire x1="78.74" y1="109.22" x2="93.98" y2="109.22" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <wire x1="233.68" y1="48.26" x2="241.3" y2="48.26" width="0.1524" layer="91"/>
 <wire x1="241.3" y1="48.26" x2="241.3" y2="45.72" width="0.1524" layer="91"/>
-<pinref part="C7" gate="C" pin="+"/>
+<pinref part="C5" gate="C" pin="+"/>
 <wire x1="236.22" y1="43.18" x2="236.22" y2="45.72" width="0.1524" layer="91"/>
 <wire x1="236.22" y1="45.72" x2="241.3" y2="45.72" width="0.1524" layer="91"/>
 <wire x1="241.3" y1="45.72" x2="246.38" y2="45.72" width="0.1524" layer="91"/>
 <junction x="241.3" y="45.72"/>
-<pinref part="C8" gate="C" pin="+"/>
+<pinref part="C6" gate="C" pin="+"/>
 <wire x1="246.38" y1="45.72" x2="246.38" y2="43.18" width="0.1524" layer="91"/>
 <wire x1="241.3" y1="48.26" x2="241.3" y2="53.34" width="0.1524" layer="91"/>
 <junction x="241.3" y="48.26"/>
-<pinref part="SUPPLY9" gate="G$1" pin="5V"/>
+<pinref part="SUPPLY8" gate="G$1" pin="5V"/>
 <pinref part="R1" gate="G$1" pin="1"/>
 <wire x1="241.3" y1="48.26" x2="251.46" y2="48.26" width="0.1524" layer="91"/>
-<pinref part="JP3" gate="A" pin="2"/>
+<pinref part="JP2" gate="A" pin="2"/>
 </segment>
 <segment>
 <pinref part="C1" gate="G$1" pin="2"/>
@@ -9917,7 +9917,7 @@ type 0309, grid 2.5 mm</description>
 <net name="N$4" class="0">
 <segment>
 <pinref part="USB1" gate="USB" pin="VUSB"/>
-<pinref part="JP3" gate="A" pin="1"/>
+<pinref part="JP2" gate="A" pin="1"/>
 <wire x1="190.5" y1="48.26" x2="218.44" y2="48.26" width="0.1524" layer="91"/>
 </segment>
 </net>

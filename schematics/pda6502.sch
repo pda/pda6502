@@ -9486,6 +9486,11 @@ Based on the following sources:
 <part name="JP4" library="jumper" deviceset="JP2E" device=""/>
 <part name="SUPPLY13" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
 <part name="GND16" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="SUPPLY14" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
+<part name="SUPPLY15" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
+<part name="SUPPLY16" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
+<part name="R2" library="resistor" deviceset="R-US_" device="R0805" value="10K"/>
+<part name="SUPPLY17" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -9556,6 +9561,11 @@ Based on the following sources:
 <instance part="JP4" gate="1" x="160.02" y="121.92"/>
 <instance part="SUPPLY13" gate="G$1" x="165.1" y="121.92"/>
 <instance part="GND16" gate="1" x="154.94" y="116.84"/>
+<instance part="SUPPLY14" gate="G$1" x="45.72" y="147.32" rot="R270"/>
+<instance part="SUPPLY15" gate="G$1" x="38.1" y="149.86" rot="R270"/>
+<instance part="SUPPLY16" gate="G$1" x="38.1" y="160.02" rot="R270"/>
+<instance part="R2" gate="G$1" x="48.26" y="162.56"/>
+<instance part="SUPPLY17" gate="G$1" x="53.34" y="162.56" rot="R270"/>
 </instances>
 <busses>
 <bus name="DATA[0..7]">
@@ -10221,6 +10231,23 @@ Based on the following sources:
 <pinref part="SUPPLY8" gate="G$1" pin="5V"/>
 <junction x="213.36" y="109.22"/>
 </segment>
+<segment>
+<pinref part="U1" gate="G$1" pin="SOB"/>
+<pinref part="SUPPLY14" gate="G$1" pin="5V"/>
+<wire x1="45.72" y1="147.32" x2="38.1" y2="147.32" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="G$1" pin="NMIB"/>
+<pinref part="SUPPLY15" gate="G$1" pin="5V"/>
+</segment>
+<segment>
+<pinref part="U1" gate="G$1" pin="BE"/>
+<pinref part="SUPPLY16" gate="G$1" pin="5V"/>
+</segment>
+<segment>
+<pinref part="R2" gate="G$1" pin="2"/>
+<pinref part="SUPPLY17" gate="G$1" pin="5V"/>
+</segment>
 </net>
 <net name="PA0" class="0">
 <segment>
@@ -10597,6 +10624,22 @@ Based on the following sources:
 <wire x1="160.02" y1="119.38" x2="160.02" y2="116.84" width="0.1524" layer="91"/>
 <pinref part="U3" gate="G$1" pin="A14"/>
 <wire x1="160.02" y1="116.84" x2="177.8" y2="116.84" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$8" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="IRQB"/>
+<wire x1="38.1" y1="152.4" x2="76.2" y2="152.4" width="0.1524" layer="91"/>
+<wire x1="76.2" y1="152.4" x2="76.2" y2="134.62" width="0.1524" layer="91"/>
+<pinref part="U2" gate="G$1" pin="IRQB"/>
+<wire x1="76.2" y1="134.62" x2="91.44" y2="134.62" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$9" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="RDY"/>
+<pinref part="R2" gate="G$1" pin="1"/>
+<wire x1="38.1" y1="162.56" x2="43.18" y2="162.56" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

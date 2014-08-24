@@ -18,14 +18,6 @@ Notes / TODO
 * power headers.
 * mounting holes.
 * display header for https://www.adafruit.com/products/1480 maybe?
-* expand VIA headers; one per port, each 2x7 pin, with GND and 5V.
-
-Diode:
-STPS2L40AF 2A 40V SMAflat, 0.39V drop
-http://www.mouser.com/ProductDetail/STMicroelectronics/STPS2L40AF/?qs=xEJ61ozf1a1/e1UEQFOFcw==
-B340A 3A 40V SMA, 0.5V drop
-http://www.mouser.com/ProductDetail/Diodes-Incorporated/B340A-13-F/?qs=sGAEpiMZZMtQ8nqTKtFS%2fLDoMakfJd%2f0jr6cVnY7CxE%3d
-http://www.mouser.com/ProductDetail/Vishay-Semiconductors/B340A-E3-61T/?qs=sGAEpiMZZMtQ8nqTKtFS%2fJkHNs4hgXaDNz7G8vLeA%2fM%3d
 
 Micro B USB socket:
 Dangerous Prototypes Eagle library.

@@ -16,8 +16,9 @@ Notes / TODO
 ------------
 
 * power headers.
-* CPU misc signal headers?
-* VIA IRQ connection / header / jumper.
+* mounting holes.
+* display header for https://www.adafruit.com/products/1480 maybe?
+* expand VIA headers; one per port, each 2x7 pin, with GND and 5V.
 
 Diode:
 STPS2L40AF 2A 40V SMAflat, 0.39V drop

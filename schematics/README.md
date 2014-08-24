@@ -15,8 +15,12 @@ A 2x10 header exposes the 6522 VIA ports A and B and their control lines.
 Notes / TODO
 ------------
 
-* power headers.
-* mounting holes.
+* Use three spare pins on 40-pin expansion header.
+    * 6522 control ports? For timers etc?
+* Decoupling caps on expansion header 5V lines.
+* 6502 BE pull-up? http://wilsonminesco.com/6502primer/MysteryPins.html
+* Jumper on TFT+SD BL to 6522 CB2 to disconnect if undesired?
+
 
 Micro B USB socket:
 Dangerous Prototypes Eagle library.

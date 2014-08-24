@@ -17,7 +17,6 @@ Notes / TODO
 
 * power headers.
 * mounting holes.
-* display header for https://www.adafruit.com/products/1480 maybe?
 
 Micro B USB socket:
 Dangerous Prototypes Eagle library.

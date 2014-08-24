@@ -1321,7 +1321,7 @@ an Interrupt Enable Register and two Function Control Registers.</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="28C256">
+<deviceset name="28C256" prefix="U">
 <gates>
 <gate name="G$1" symbol="28C256" x="0" y="0"/>
 </gates>

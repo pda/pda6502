@@ -11466,7 +11466,7 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <label x="175.26" y="172.72" size="1.778" layer="95"/>
 </segment>
 </bus>
-<bus name="ADDRESS[0..15]">
+<bus name="ADDR[0..15]">
 <segment>
 <wire x1="5.08" y1="144.78" x2="5.08" y2="99.06" width="0.762" layer="92"/>
 <wire x1="5.08" y1="99.06" x2="22.86" y2="99.06" width="0.762" layer="92"/>
@@ -11667,7 +11667,7 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <label x="142.24" y="88.9" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="ADDRESS0" class="0">
+<net name="ADDR0" class="0">
 <segment>
 <wire x1="5.08" y1="144.78" x2="7.62" y2="144.78" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="A0"/>
@@ -11690,7 +11690,7 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <label x="142.24" y="63.5" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="ADDRESS1" class="0">
+<net name="ADDR1" class="0">
 <segment>
 <wire x1="5.08" y1="142.24" x2="7.62" y2="142.24" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="A1"/>
@@ -11718,7 +11718,7 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <label x="142.24" y="60.96" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="ADDRESS2" class="0">
+<net name="ADDR2" class="0">
 <segment>
 <wire x1="5.08" y1="139.7" x2="7.62" y2="139.7" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="A2"/>
@@ -11741,7 +11741,7 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <label x="142.24" y="58.42" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="ADDRESS3" class="0">
+<net name="ADDR3" class="0">
 <segment>
 <wire x1="5.08" y1="137.16" x2="7.62" y2="137.16" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="A3"/>
@@ -11764,7 +11764,7 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <label x="142.24" y="55.88" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="ADDRESS4" class="0">
+<net name="ADDR4" class="0">
 <segment>
 <wire x1="5.08" y1="134.62" x2="7.62" y2="134.62" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="A4"/>
@@ -11783,7 +11783,7 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <label x="142.24" y="53.34" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="ADDRESS5" class="0">
+<net name="ADDR5" class="0">
 <segment>
 <wire x1="5.08" y1="132.08" x2="7.62" y2="132.08" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="A5"/>
@@ -11802,7 +11802,7 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <label x="142.24" y="50.8" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="ADDRESS6" class="0">
+<net name="ADDR6" class="0">
 <segment>
 <wire x1="5.08" y1="129.54" x2="7.62" y2="129.54" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="A6"/>
@@ -11821,7 +11821,7 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <label x="142.24" y="48.26" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="ADDRESS7" class="0">
+<net name="ADDR7" class="0">
 <segment>
 <wire x1="5.08" y1="127" x2="7.62" y2="127" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="A7"/>
@@ -11840,7 +11840,7 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <label x="142.24" y="45.72" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="ADDRESS8" class="0">
+<net name="ADDR8" class="0">
 <segment>
 <wire x1="5.08" y1="124.46" x2="7.62" y2="124.46" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="A8"/>
@@ -11856,10 +11856,10 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <segment>
 <pinref part="JP6" gate="A" pin="4"/>
 <wire x1="129.54" y1="45.72" x2="121.92" y2="45.72" width="0.1524" layer="91"/>
-<label x="109.22" y="45.72" size="1.778" layer="95"/>
+<label x="114.3" y="45.72" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="ADDRESS9" class="0">
+<net name="ADDR9" class="0">
 <segment>
 <wire x1="5.08" y1="121.92" x2="7.62" y2="121.92" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="A9"/>
@@ -11875,10 +11875,10 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <segment>
 <pinref part="JP6" gate="A" pin="6"/>
 <wire x1="129.54" y1="48.26" x2="121.92" y2="48.26" width="0.1524" layer="91"/>
-<label x="109.22" y="48.26" size="1.778" layer="95"/>
+<label x="114.3" y="48.26" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="ADDRESS10" class="0">
+<net name="ADDR10" class="0">
 <segment>
 <wire x1="5.08" y1="119.38" x2="7.62" y2="119.38" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="A10"/>
@@ -11894,10 +11894,10 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <segment>
 <pinref part="JP6" gate="A" pin="8"/>
 <wire x1="129.54" y1="50.8" x2="121.92" y2="50.8" width="0.1524" layer="91"/>
-<label x="109.22" y="50.8" size="1.778" layer="95"/>
+<label x="114.3" y="50.8" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="ADDRESS11" class="0">
+<net name="ADDR11" class="0">
 <segment>
 <wire x1="5.08" y1="116.84" x2="7.62" y2="116.84" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="A11"/>
@@ -11913,10 +11913,10 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <segment>
 <pinref part="JP6" gate="A" pin="10"/>
 <wire x1="129.54" y1="53.34" x2="121.92" y2="53.34" width="0.1524" layer="91"/>
-<label x="109.22" y="53.34" size="1.778" layer="95"/>
+<label x="114.3" y="53.34" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="ADDRESS12" class="0">
+<net name="ADDR12" class="0">
 <segment>
 <wire x1="5.08" y1="114.3" x2="7.62" y2="114.3" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="A12"/>
@@ -11937,10 +11937,10 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <segment>
 <pinref part="JP6" gate="A" pin="12"/>
 <wire x1="129.54" y1="55.88" x2="121.92" y2="55.88" width="0.1524" layer="91"/>
-<label x="109.22" y="55.88" size="1.778" layer="95"/>
+<label x="114.3" y="55.88" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="ADDRESS13" class="0">
+<net name="ADDR13" class="0">
 <segment>
 <wire x1="5.08" y1="111.76" x2="7.62" y2="111.76" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="A13"/>
@@ -11957,10 +11957,10 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <segment>
 <pinref part="JP6" gate="A" pin="14"/>
 <wire x1="129.54" y1="58.42" x2="121.92" y2="58.42" width="0.1524" layer="91"/>
-<label x="109.22" y="58.42" size="1.778" layer="95"/>
+<label x="114.3" y="58.42" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="ADDRESS14" class="0">
+<net name="ADDR14" class="0">
 <segment>
 <wire x1="5.08" y1="109.22" x2="7.62" y2="109.22" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="A14"/>
@@ -11977,10 +11977,10 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <segment>
 <pinref part="JP6" gate="A" pin="16"/>
 <wire x1="129.54" y1="60.96" x2="121.92" y2="60.96" width="0.1524" layer="91"/>
-<label x="109.22" y="60.96" size="1.778" layer="95"/>
+<label x="114.3" y="60.96" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="ADDRESS15" class="0">
+<net name="ADDR15" class="0">
 <segment>
 <wire x1="5.08" y1="106.68" x2="7.62" y2="106.68" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="A15"/>
@@ -12002,7 +12002,7 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <segment>
 <pinref part="JP6" gate="A" pin="18"/>
 <wire x1="129.54" y1="63.5" x2="121.92" y2="63.5" width="0.1524" layer="91"/>
-<label x="109.22" y="63.5" size="1.778" layer="95"/>
+<label x="114.3" y="63.5" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="GND" class="0">

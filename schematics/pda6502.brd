@@ -4171,8 +4171,14 @@ design rules under a new name.</description>
 <wire x1="25.4" y1="53.34" x2="25.4" y2="49.53" width="0.3048" layer="16"/>
 <wire x1="25.4" y1="49.53" x2="24.13" y2="48.26" width="0.3048" layer="16"/>
 <wire x1="24.13" y1="48.26" x2="24.13" y2="45.72" width="0.3048" layer="16"/>
+<wire x1="45.72" y1="5.08" x2="42.418" y2="1.778" width="0.3048" layer="16"/>
+<wire x1="42.418" y1="1.778" x2="23.114" y2="1.778" width="0.3048" layer="16"/>
+<wire x1="23.114" y1="1.778" x2="20.447" y2="4.445" width="0.3048" layer="16"/>
+<wire x1="20.447" y1="4.445" x2="20.447" y2="25.527" width="0.3048" layer="16"/>
+<wire x1="20.447" y1="25.527" x2="22.86" y2="27.94" width="0.3048" layer="16"/>
+<wire x1="22.86" y1="27.94" x2="25.4" y2="27.94" width="0.3048" layer="16"/>
+<wire x1="25.4" y1="27.94" x2="26.67" y2="29.21" width="0.3048" layer="16"/>
 <wire x1="45.72" y1="5.08" x2="80.01" y2="34.29" width="0" layer="19" extent="1-1"/>
-<wire x1="26.67" y1="29.21" x2="45.72" y2="5.08" width="0" layer="19" extent="1-1"/>
 <wire x1="24.13" y1="45.72" x2="26.67" y2="29.21" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="ADDR1">
@@ -4189,8 +4195,12 @@ design rules under a new name.</description>
 <wire x1="26.67" y1="71.12" x2="26.67" y2="57.15" width="0.3048" layer="16"/>
 <wire x1="26.67" y1="57.15" x2="27.94" y2="55.88" width="0.3048" layer="16"/>
 <wire x1="27.94" y1="55.88" x2="27.94" y2="53.34" width="0.3048" layer="16"/>
+<wire x1="43.18" y1="5.08" x2="40.386" y2="2.286" width="0.3048" layer="16"/>
+<wire x1="40.386" y1="2.286" x2="23.368" y2="2.286" width="0.3048" layer="16"/>
+<wire x1="23.368" y1="2.286" x2="20.955" y2="4.699" width="0.3048" layer="16"/>
+<wire x1="20.955" y1="4.699" x2="20.955" y2="23.495" width="0.3048" layer="16"/>
+<wire x1="20.955" y1="23.495" x2="24.13" y2="26.67" width="0.3048" layer="16"/>
 <wire x1="43.18" y1="5.08" x2="82.55" y2="31.75" width="0" layer="19" extent="1-1"/>
-<wire x1="24.13" y1="26.67" x2="43.18" y2="5.08" width="0" layer="19" extent="1-1"/>
 <wire x1="26.67" y1="45.72" x2="24.13" y2="26.67" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="ADDR2">
@@ -4207,8 +4217,12 @@ design rules under a new name.</description>
 <wire x1="30.48" y1="53.34" x2="30.48" y2="49.53" width="0.3048" layer="16"/>
 <wire x1="30.48" y1="49.53" x2="29.21" y2="48.26" width="0.3048" layer="16"/>
 <wire x1="29.21" y1="48.26" x2="29.21" y2="45.72" width="0.3048" layer="16"/>
+<wire x1="40.64" y1="5.08" x2="38.354" y2="2.794" width="0.3048" layer="16"/>
+<wire x1="38.354" y1="2.794" x2="23.622" y2="2.794" width="0.3048" layer="16"/>
+<wire x1="23.622" y1="2.794" x2="21.59" y2="4.826" width="0.3048" layer="16"/>
+<wire x1="21.59" y1="4.826" x2="21.59" y2="21.59" width="0.3048" layer="16"/>
+<wire x1="21.59" y1="21.59" x2="24.13" y2="24.13" width="0.3048" layer="16"/>
 <wire x1="40.64" y1="5.08" x2="82.55" y2="34.29" width="0" layer="19" extent="1-1"/>
-<wire x1="24.13" y1="24.13" x2="40.64" y2="5.08" width="0" layer="19" extent="1-1"/>
 <wire x1="29.21" y1="45.72" x2="24.13" y2="24.13" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="ADDR3">
@@ -4225,9 +4239,14 @@ design rules under a new name.</description>
 <wire x1="33.02" y1="53.34" x2="33.02" y2="49.53" width="0.3048" layer="16"/>
 <wire x1="33.02" y1="49.53" x2="31.75" y2="48.26" width="0.3048" layer="16"/>
 <wire x1="31.75" y1="48.26" x2="31.75" y2="45.72" width="0.3048" layer="16"/>
-<wire x1="38.1" y1="5.08" x2="85.09" y2="31.75" width="0" layer="19" extent="1-1"/>
-<wire x1="26.67" y1="24.13" x2="38.1" y2="5.08" width="0" layer="19" extent="1-1"/>
-<wire x1="31.75" y1="45.72" x2="26.67" y2="24.13" width="0" layer="19" extent="16-16"/>
+<wire x1="38.1" y1="5.08" x2="36.83" y2="6.35" width="0.3048" layer="16"/>
+<wire x1="36.83" y1="6.35" x2="36.83" y2="11.43" width="0.3048" layer="16"/>
+<wire x1="36.83" y1="11.43" x2="33.02" y2="15.24" width="0.3048" layer="16"/>
+<wire x1="33.02" y1="15.24" x2="33.02" y2="20.32" width="0.3048" layer="16"/>
+<wire x1="33.02" y1="20.32" x2="29.21" y2="24.13" width="0.3048" layer="16"/>
+<wire x1="29.21" y1="24.13" x2="26.67" y2="24.13" width="0.3048" layer="16"/>
+<wire x1="36.83" y1="11.43" x2="85.09" y2="31.75" width="0" layer="19" extent="16-16"/>
+<wire x1="31.75" y1="45.72" x2="29.21" y2="24.13" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="ADDR4">
 <contactref element="U1" pad="15"/>
@@ -4242,8 +4261,12 @@ design rules under a new name.</description>
 <wire x1="35.56" y1="53.34" x2="35.56" y2="49.53" width="0.3048" layer="16"/>
 <wire x1="35.56" y1="49.53" x2="34.29" y2="48.26" width="0.3048" layer="16"/>
 <wire x1="34.29" y1="48.26" x2="34.29" y2="45.72" width="0.3048" layer="16"/>
+<wire x1="35.56" y1="5.08" x2="33.782" y2="3.302" width="0.3048" layer="16"/>
+<wire x1="33.782" y1="3.302" x2="23.876" y2="3.302" width="0.3048" layer="16"/>
+<wire x1="23.876" y1="3.302" x2="22.225" y2="4.953" width="0.3048" layer="16"/>
+<wire x1="22.225" y1="4.953" x2="22.225" y2="19.812" width="0.3048" layer="16"/>
+<wire x1="22.225" y1="19.812" x2="24.13" y2="21.59" width="0.3048" layer="16"/>
 <wire x1="24.13" y1="21.59" x2="34.29" y2="45.72" width="0" layer="19" extent="16-16"/>
-<wire x1="35.56" y1="5.08" x2="24.13" y2="21.59" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ADDR5">
 <contactref element="U1" pad="16"/>
@@ -4258,8 +4281,16 @@ design rules under a new name.</description>
 <wire x1="38.1" y1="53.34" x2="38.1" y2="49.53" width="0.3048" layer="16"/>
 <wire x1="38.1" y1="49.53" x2="36.83" y2="48.26" width="0.3048" layer="16"/>
 <wire x1="36.83" y1="48.26" x2="36.83" y2="45.72" width="0.3048" layer="16"/>
+<wire x1="33.02" y1="5.08" x2="31.75" y2="6.35" width="0.3048" layer="16"/>
+<wire x1="31.75" y1="6.35" x2="31.75" y2="11.43" width="0.3048" layer="16"/>
+<wire x1="31.75" y1="11.43" x2="30.226" y2="13.081" width="0.3048" layer="16"/>
+<wire x1="30.226" y1="13.081" x2="30.226" y2="17.272" width="0.3048" layer="16"/>
+<wire x1="30.226" y1="17.272" x2="29.591" y2="17.907" width="0.3048" layer="16"/>
+<wire x1="29.591" y1="17.907" x2="28.702" y2="17.907" width="0.3048" layer="16"/>
+<wire x1="28.702" y1="17.907" x2="27.94" y2="18.669" width="0.3048" layer="16"/>
+<wire x1="27.94" y1="18.669" x2="27.94" y2="20.32" width="0.3048" layer="16"/>
+<wire x1="27.94" y1="20.32" x2="26.67" y2="21.59" width="0.3048" layer="16"/>
 <wire x1="26.67" y1="21.59" x2="36.83" y2="45.72" width="0" layer="19" extent="16-16"/>
-<wire x1="33.02" y1="5.08" x2="26.67" y2="21.59" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ADDR6">
 <contactref element="U1" pad="17"/>
@@ -4274,8 +4305,12 @@ design rules under a new name.</description>
 <wire x1="40.64" y1="53.34" x2="40.64" y2="49.53" width="0.3048" layer="16"/>
 <wire x1="40.64" y1="49.53" x2="39.37" y2="48.26" width="0.3048" layer="16"/>
 <wire x1="39.37" y1="48.26" x2="39.37" y2="45.72" width="0.3048" layer="16"/>
+<wire x1="30.48" y1="5.08" x2="29.21" y2="3.81" width="0.3048" layer="16"/>
+<wire x1="29.21" y1="3.81" x2="24.13" y2="3.81" width="0.3048" layer="16"/>
+<wire x1="24.13" y1="3.81" x2="22.86" y2="5.08" width="0.3048" layer="16"/>
+<wire x1="22.86" y1="5.08" x2="22.86" y2="17.78" width="0.3048" layer="16"/>
+<wire x1="22.86" y1="17.78" x2="24.13" y2="19.05" width="0.3048" layer="16"/>
 <wire x1="24.13" y1="19.05" x2="39.37" y2="45.72" width="0" layer="19" extent="16-16"/>
-<wire x1="30.48" y1="5.08" x2="24.13" y2="19.05" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ADDR7">
 <contactref element="U1" pad="18"/>
@@ -4290,8 +4325,9 @@ design rules under a new name.</description>
 <wire x1="43.18" y1="53.34" x2="43.18" y2="49.53" width="0.3048" layer="16"/>
 <wire x1="43.18" y1="49.53" x2="41.91" y2="48.26" width="0.3048" layer="16"/>
 <wire x1="41.91" y1="48.26" x2="41.91" y2="45.72" width="0.3048" layer="16"/>
+<wire x1="26.67" y1="16.51" x2="26.67" y2="6.35" width="0.3048" layer="16"/>
+<wire x1="26.67" y1="6.35" x2="27.94" y2="5.08" width="0.3048" layer="16"/>
 <wire x1="26.67" y1="16.51" x2="41.91" y2="45.72" width="0" layer="19" extent="16-16"/>
-<wire x1="27.94" y1="5.08" x2="26.67" y2="16.51" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ADDR8">
 <contactref element="U1" pad="19"/>
@@ -4303,8 +4339,9 @@ design rules under a new name.</description>
 <wire x1="41.91" y1="49.53" x2="41.91" y2="55.88" width="0.3048" layer="16"/>
 <wire x1="41.91" y1="55.88" x2="40.64" y2="57.15" width="0.3048" layer="16"/>
 <wire x1="40.64" y1="57.15" x2="40.64" y2="59.69" width="0.3048" layer="16"/>
+<wire x1="27.94" y1="7.62" x2="27.94" y2="17.78" width="0.3048" layer="16"/>
+<wire x1="27.94" y1="17.78" x2="26.67" y2="19.05" width="0.3048" layer="16"/>
 <wire x1="26.67" y1="19.05" x2="40.64" y2="45.72" width="0" layer="19" extent="1-1"/>
-<wire x1="27.94" y1="7.62" x2="26.67" y2="19.05" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ADDR9">
 <contactref element="U1" pad="20"/>
@@ -4316,8 +4353,10 @@ design rules under a new name.</description>
 <wire x1="39.37" y1="49.53" x2="39.37" y2="55.88" width="0.3048" layer="16"/>
 <wire x1="39.37" y1="55.88" x2="38.1" y2="57.15" width="0.3048" layer="16"/>
 <wire x1="38.1" y1="57.15" x2="38.1" y2="59.69" width="0.3048" layer="16"/>
+<wire x1="29.21" y1="16.51" x2="29.21" y2="12.7" width="0.3048" layer="16"/>
+<wire x1="29.21" y1="12.7" x2="30.48" y2="11.43" width="0.3048" layer="16"/>
+<wire x1="30.48" y1="11.43" x2="30.48" y2="7.62" width="0.3048" layer="16"/>
 <wire x1="29.21" y1="16.51" x2="38.1" y2="45.72" width="0" layer="19" extent="1-1"/>
-<wire x1="30.48" y1="7.62" x2="29.21" y2="16.51" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ADDR10">
 <contactref element="U1" pad="21"/>
@@ -4329,8 +4368,11 @@ design rules under a new name.</description>
 <wire x1="31.75" y1="49.53" x2="31.75" y2="55.88" width="0.3048" layer="16"/>
 <wire x1="31.75" y1="55.88" x2="30.48" y2="57.15" width="0.3048" layer="16"/>
 <wire x1="30.48" y1="57.15" x2="30.48" y2="59.69" width="0.3048" layer="16"/>
+<wire x1="33.02" y1="7.62" x2="33.02" y2="12.7" width="0.3048" layer="16"/>
+<wire x1="33.02" y1="12.7" x2="30.734" y2="14.986" width="0.3048" layer="16"/>
+<wire x1="30.734" y1="14.986" x2="30.734" y2="17.526" width="0.3048" layer="16"/>
+<wire x1="30.734" y1="17.526" x2="29.21" y2="19.05" width="0.3048" layer="16"/>
 <wire x1="29.21" y1="19.05" x2="30.48" y2="45.72" width="0" layer="19" extent="1-1"/>
-<wire x1="33.02" y1="7.62" x2="29.21" y2="19.05" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ADDR11">
 <contactref element="U1" pad="22"/>
@@ -4342,8 +4384,10 @@ design rules under a new name.</description>
 <wire x1="36.83" y1="49.53" x2="36.83" y2="55.88" width="0.3048" layer="16"/>
 <wire x1="36.83" y1="55.88" x2="35.56" y2="57.15" width="0.3048" layer="16"/>
 <wire x1="35.56" y1="57.15" x2="35.56" y2="59.69" width="0.3048" layer="16"/>
+<wire x1="31.75" y1="16.51" x2="31.75" y2="15.24" width="0.3048" layer="16"/>
+<wire x1="31.75" y1="15.24" x2="35.56" y2="11.43" width="0.3048" layer="16"/>
+<wire x1="35.56" y1="11.43" x2="35.56" y2="7.62" width="0.3048" layer="16"/>
 <wire x1="31.75" y1="16.51" x2="35.56" y2="45.72" width="0" layer="19" extent="1-1"/>
-<wire x1="35.56" y1="7.62" x2="31.75" y2="16.51" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ADDR12">
 <contactref element="U1" pad="25"/>
@@ -4359,8 +4403,11 @@ design rules under a new name.</description>
 <wire x1="45.72" y1="53.34" x2="45.72" y2="49.53" width="0.3048" layer="16"/>
 <wire x1="45.72" y1="49.53" x2="44.45" y2="48.26" width="0.3048" layer="16"/>
 <wire x1="44.45" y1="48.26" x2="44.45" y2="45.72" width="0.3048" layer="16"/>
+<wire x1="38.1" y1="7.62" x2="38.1" y2="12.7" width="0.3048" layer="16"/>
+<wire x1="38.1" y1="12.7" x2="35.56" y2="15.24" width="0.3048" layer="16"/>
+<wire x1="35.56" y1="15.24" x2="35.56" y2="17.78" width="0.3048" layer="16"/>
+<wire x1="35.56" y1="17.78" x2="34.29" y2="19.05" width="0.3048" layer="16"/>
 <wire x1="34.29" y1="19.05" x2="44.45" y2="45.72" width="0" layer="19" extent="16-16"/>
-<wire x1="38.1" y1="7.62" x2="34.29" y2="19.05" width="0" layer="19" extent="1-1"/>
 <wire x1="10.6934" y1="34.925" x2="34.29" y2="19.05" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="ADDR13">
@@ -4368,8 +4415,10 @@ design rules under a new name.</description>
 <contactref element="U4" pad="26"/>
 <contactref element="IC2" pad="2"/>
 <contactref element="JP6" pad="14"/>
+<wire x1="40.64" y1="7.62" x2="40.64" y2="11.43" width="0.3048" layer="16"/>
+<wire x1="40.64" y1="11.43" x2="36.83" y2="15.24" width="0.3048" layer="16"/>
+<wire x1="36.83" y1="15.24" x2="36.83" y2="16.51" width="0.3048" layer="16"/>
 <wire x1="36.83" y1="16.51" x2="43.18" y2="45.72" width="0" layer="19" extent="1-1"/>
-<wire x1="40.64" y1="7.62" x2="36.83" y2="16.51" width="0" layer="19" extent="1-1"/>
 <wire x1="10.6934" y1="36.195" x2="36.83" y2="16.51" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="ADDR14">
@@ -4377,8 +4426,11 @@ design rules under a new name.</description>
 <contactref element="U4" pad="1"/>
 <contactref element="IC2" pad="1"/>
 <contactref element="JP6" pad="16"/>
+<wire x1="43.18" y1="7.62" x2="43.18" y2="10.16" width="0.3048" layer="16"/>
+<wire x1="43.18" y1="10.16" x2="38.1" y2="15.24" width="0.3048" layer="16"/>
+<wire x1="38.1" y1="15.24" x2="38.1" y2="17.78" width="0.3048" layer="16"/>
+<wire x1="38.1" y1="17.78" x2="36.83" y2="19.05" width="0.3048" layer="16"/>
 <wire x1="36.83" y1="19.05" x2="48.26" y2="53.34" width="0" layer="19" extent="1-1"/>
-<wire x1="43.18" y1="7.62" x2="36.83" y2="19.05" width="0" layer="19" extent="1-1"/>
 <wire x1="10.6934" y1="37.465" x2="36.83" y2="19.05" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="ADDR15">
@@ -4387,7 +4439,9 @@ design rules under a new name.</description>
 <contactref element="IC1" pad="1"/>
 <contactref element="IC2" pad="6"/>
 <contactref element="JP6" pad="18"/>
-<wire x1="45.72" y1="7.62" x2="39.37" y2="16.51" width="0" layer="19" extent="1-1"/>
+<wire x1="39.37" y1="16.51" x2="39.37" y2="15.24" width="0.3048" layer="16"/>
+<wire x1="39.37" y1="15.24" x2="45.72" y2="8.89" width="0.3048" layer="16"/>
+<wire x1="45.72" y1="8.89" x2="45.72" y2="7.62" width="0.3048" layer="16"/>
 <wire x1="10.6934" y1="19.05" x2="39.37" y2="16.51" width="0" layer="19" extent="16-16"/>
 <wire x1="10.6934" y1="20.32" x2="10.6934" y2="19.05" width="0" layer="19" extent="16-16"/>
 <wire x1="10.6934" y1="31.115" x2="10.6934" y2="20.32" width="0" layer="19" extent="16-16"/>
@@ -4451,6 +4505,7 @@ design rules under a new name.</description>
 <vertex x="100.33" y="0"/>
 <vertex x="100.33" y="80.01"/>
 </polygon>
+<wire x1="97.57" y1="69.85" x2="95.25" y2="60.96" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="5V">
 <contactref element="U2" pad="21"/>

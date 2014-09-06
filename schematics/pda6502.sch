@@ -11358,6 +11358,8 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <part name="SUPPLY21" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
 <part name="SUPPLY22" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
 <part name="C13" library="rcl" deviceset="C-EU" device="C0805" value="0.1μF"/>
+<part name="C14" library="rcl" deviceset="C-EU" device="C0805" value="0.1μF"/>
+<part name="GND25" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -11453,6 +11455,8 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <instance part="SUPPLY21" gate="G$1" x="114.3" y="66.04"/>
 <instance part="SUPPLY22" gate="G$1" x="149.86" y="91.44" rot="R270"/>
 <instance part="C13" gate="G$1" x="149.86" y="96.52"/>
+<instance part="C14" gate="G$1" x="109.22" y="60.96" rot="R180"/>
+<instance part="GND25" gate="1" x="109.22" y="55.88"/>
 </instances>
 <busses>
 <bus name="DATA[0..7]">
@@ -12185,6 +12189,10 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <wire x1="137.16" y1="66.04" x2="157.48" y2="66.04" width="0.1524" layer="91"/>
 <pinref part="GND22" gate="1" pin="GND"/>
 </segment>
+<segment>
+<pinref part="C14" gate="G$1" pin="1"/>
+<pinref part="GND25" gate="1" pin="GND"/>
+</segment>
 </net>
 <net name="5V" class="0">
 <segment>
@@ -12325,6 +12333,9 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <pinref part="SUPPLY21" gate="G$1" pin="5V"/>
 <pinref part="JP6" gate="A" pin="20"/>
 <wire x1="114.3" y1="66.04" x2="129.54" y2="66.04" width="0.1524" layer="91"/>
+<pinref part="C14" gate="G$1" pin="2"/>
+<wire x1="114.3" y1="66.04" x2="109.22" y2="66.04" width="0.1524" layer="91"/>
+<junction x="114.3" y="66.04"/>
 </segment>
 <segment>
 <pinref part="JP6" gate="A" pin="39"/>

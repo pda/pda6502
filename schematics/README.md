@@ -22,6 +22,7 @@ Notes / TODO
 * replace large SMD capacitors with TH?
 * verify USB port alignment with edge of board.
 * tent vias - https://www.sparkfun.com/tutorials/115
+* Check drill size for ROM ZIF socket; giant pins.
 
 
 Micro B USB socket:

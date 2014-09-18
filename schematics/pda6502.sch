@@ -11332,7 +11332,6 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <part name="SUPPLY11" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
 <part name="GND8" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY4" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
-<part name="SUPPLY2" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
 <part name="SUPPLY1" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
 <part name="R1" library="resistor" deviceset="R-US_" device="R0805" value="3.3K"/>
 <part name="SUPPLY6" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
@@ -11361,6 +11360,8 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <part name="C14" library="rcl" deviceset="C-EU" device="C0805" value="0.1μF"/>
 <part name="GND25" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="R3" library="resistor" deviceset="R-US_" device="R0805" value="3.3K"/>
+<part name="R4" library="resistor" deviceset="R-US_" device="R0805" value="3.3K"/>
+<part name="SUPPLY2" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -11430,7 +11431,6 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <instance part="SUPPLY11" gate="G$1" x="129.54" y="134.62"/>
 <instance part="GND8" gate="1" x="116.84" y="132.08"/>
 <instance part="SUPPLY4" gate="G$1" x="45.72" y="147.32" rot="R270"/>
-<instance part="SUPPLY2" gate="G$1" x="38.1" y="149.86" rot="R270"/>
 <instance part="SUPPLY1" gate="G$1" x="53.34" y="157.48" rot="R270"/>
 <instance part="R1" gate="G$1" x="48.26" y="162.56"/>
 <instance part="SUPPLY6" gate="G$1" x="53.34" y="162.56" rot="R270"/>
@@ -11459,6 +11459,8 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <instance part="C14" gate="G$1" x="109.22" y="60.96" rot="R180"/>
 <instance part="GND25" gate="1" x="109.22" y="55.88"/>
 <instance part="R3" gate="G$1" x="43.18" y="157.48"/>
+<instance part="R4" gate="G$1" x="157.48" y="76.2"/>
+<instance part="SUPPLY2" gate="G$1" x="162.56" y="76.2" rot="R270"/>
 </instances>
 <busses>
 <bus name="DATA[0..7]">
@@ -12275,10 +12277,6 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <wire x1="45.72" y1="147.32" x2="38.1" y2="147.32" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U1" gate="G$1" pin="NMIB"/>
-<pinref part="SUPPLY2" gate="G$1" pin="5V"/>
-</segment>
-<segment>
 <pinref part="R1" gate="G$1" pin="2"/>
 <pinref part="SUPPLY6" gate="G$1" pin="5V"/>
 </segment>
@@ -12346,6 +12344,10 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <pinref part="R3" gate="G$1" pin="2"/>
 <pinref part="SUPPLY1" gate="G$1" pin="5V"/>
 <wire x1="48.26" y1="157.48" x2="53.34" y2="157.48" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R4" gate="G$1" pin="2"/>
+<pinref part="SUPPLY2" gate="G$1" pin="5V"/>
 </segment>
 </net>
 <net name="PA0" class="0">
@@ -12816,6 +12818,23 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <pinref part="U1" gate="G$1" pin="BE"/>
 <pinref part="R3" gate="G$1" pin="1"/>
 <wire x1="38.1" y1="160.02" x2="38.1" y2="157.48" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="NMIB" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="NMIB"/>
+<wire x1="38.1" y1="149.86" x2="43.18" y2="149.86" width="0.1524" layer="91"/>
+<label x="43.18" y="149.86" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="JP6" gate="A" pin="25"/>
+<wire x1="137.16" y1="73.66" x2="142.24" y2="73.66" width="0.1524" layer="91"/>
+<label x="144.78" y="73.66" size="1.778" layer="95"/>
+<wire x1="142.24" y1="73.66" x2="149.86" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="142.24" y1="73.66" x2="142.24" y2="76.2" width="0.1524" layer="91"/>
+<junction x="142.24" y="73.66"/>
+<wire x1="142.24" y1="76.2" x2="152.4" y2="76.2" width="0.1524" layer="91"/>
+<pinref part="R4" gate="G$1" pin="1"/>
 </segment>
 </net>
 </nets>

@@ -15,9 +15,8 @@ A 2x10 header exposes the 6522 VIA ports A and B and their control lines.
 Notes / TODO
 ------------
 
-* Use three spare pins on 40-pin expansion header?
-    * 6522 control ports? For timers etc?
-    * (it would be a routing nightmare)
+* Two spare pins on 40-pin expansion header.
+    * routing them is difficult.
 * Jumper on TFT+SD BL to 6522 CB2 to disconnect if undesired?
 * replace large SMD capacitors with TH?
 * verify USB port alignment with edge of board.

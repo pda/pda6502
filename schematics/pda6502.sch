@@ -633,54 +633,20 @@ Standard A4 size frame in Landscape</description>
 <wire x1="-17.36" y1="2.12" x2="-17.13" y2="2.35" width="0.1016" layer="21" curve="-90"/>
 <wire x1="-17.13" y1="2.35" x2="-16.9" y2="2.12" width="0.1016" layer="21" curve="-90"/>
 <wire x1="-16.9" y1="2.12" x2="-16.9" y2="1.57" width="0.1016" layer="21"/>
-<wire x1="-12.92" y1="-1.67" x2="-12.92" y2="-0.88" width="0.1016" layer="21"/>
-<wire x1="-12.91" y1="-1.27" x2="-11.88" y2="-1.27" width="0.1016" layer="21"/>
-<wire x1="-12.92" y1="0.09" x2="-12.92" y2="-0.61" width="0.1016" layer="21"/>
-<wire x1="-12.92" y1="-0.61" x2="-11.88" y2="-0.61" width="0.1016" layer="21"/>
-<wire x1="-11.88" y1="-0.61" x2="-11.88" y2="0.12" width="0.1016" layer="21"/>
-<wire x1="-12.41" y1="0.03" x2="-12.41" y2="-0.57" width="0.1016" layer="21"/>
-<wire x1="-12.92" y1="0.43" x2="-11.88" y2="1.15" width="0.1016" layer="21"/>
-<wire x1="-12.92" y1="1.15" x2="-11.88" y2="0.43" width="0.1016" layer="21"/>
-<wire x1="-12.92" y1="1.39" x2="-12.92" y2="2.17" width="0.1016" layer="21"/>
-<wire x1="-12.9" y1="1.79" x2="-11.88" y2="1.79" width="0.1016" layer="21"/>
-<wire x1="-12.46" y1="2.37" x2="-12.46" y2="3.31" width="0.1016" layer="21" curve="-180"/>
 <wire x1="-19.22" y1="-6.44" x2="-15.97" y2="-6.44" width="0.2032" layer="21"/>
 <wire x1="-15.97" y1="-6.44" x2="-13.97" y2="-8.39" width="0.2032" layer="21" curve="-88.551843"/>
 <wire x1="-13.97" y1="-8.39" x2="-13.97" y2="-9.04" width="0.2032" layer="21"/>
 <wire x1="-13.97" y1="-9.04" x2="-12.92" y2="-10.04" width="0.2032" layer="21" curve="92.794362"/>
-<wire x1="-17.62" y1="-7.79" x2="-23.53" y2="-7.79" width="0.2032" layer="21"/>
-<wire x1="-17.62" y1="-9.34" x2="-23.53" y2="-9.34" width="0.2032" layer="21"/>
-<wire x1="-30.63" y1="-6.47" x2="-31.63" y2="-7.47" width="0.2032" layer="21" curve="90"/>
-<wire x1="-31.63" y1="-7.47" x2="-31.63" y2="-9.61" width="0.2032" layer="21"/>
-<wire x1="-31.63" y1="-9.61" x2="-30.63" y2="-10.61" width="0.2032" layer="21" curve="90"/>
-<wire x1="-30.63" y1="-6.47" x2="-24.58" y2="-6.47" width="0.2032" layer="21"/>
-<wire x1="-24.58" y1="-6.47" x2="-23.58" y2="-7.47" width="0.2032" layer="21" curve="-90"/>
-<wire x1="-23.58" y1="-7.47" x2="-23.58" y2="-9.61" width="0.2032" layer="21"/>
-<wire x1="-23.58" y1="-9.61" x2="-24.58" y2="-10.61" width="0.2032" layer="21" curve="-90"/>
-<wire x1="-24.58" y1="-10.61" x2="-30.63" y2="-10.61" width="0.2032" layer="21"/>
-<wire x1="-12.33" y1="3.31" x2="-12.33" y2="2.37" width="0.1016" layer="21" curve="-180"/>
-<wire x1="-12.46" y1="2.37" x2="-12.33" y2="2.37" width="0.1016" layer="21"/>
-<wire x1="-12.46" y1="3.31" x2="-12.33" y2="3.31" width="0.1016" layer="21"/>
-<wire x1="-12.46" y1="3.6" x2="-12.46" y2="4.54" width="0.1016" layer="21" curve="-180"/>
-<wire x1="-12.33" y1="4.54" x2="-12.33" y2="3.6" width="0.1016" layer="21" curve="-180"/>
-<wire x1="-12.46" y1="3.6" x2="-12.33" y2="3.6" width="0.1016" layer="21"/>
-<wire x1="-12.46" y1="4.54" x2="-12.33" y2="4.54" width="0.1016" layer="21"/>
-<wire x1="-12.94" y1="4.88" x2="-11.89" y2="4.88" width="0.1016" layer="21"/>
-<wire x1="-11.89" y1="4.88" x2="-11.89" y2="5.45" width="0.1016" layer="21"/>
-<wire x1="-12.38" y1="6.39" x2="-12.26" y2="6.6" width="0.1016" layer="21" curve="-59.503197"/>
-<wire x1="-12.26" y1="6.6" x2="-11.98" y2="6.58" width="0.1016" layer="21" curve="-69.184577"/>
-<wire x1="-11.98" y1="6.58" x2="-11.87" y2="6.38" width="0.1016" layer="21" curve="-45.05399"/>
-<wire x1="-11.87" y1="6.38" x2="-11.88" y2="6.19" width="0.1016" layer="21" curve="-18.591512"/>
-<wire x1="-11.88" y1="6.19" x2="-12.11" y2="6.01" width="0.1016" layer="21" curve="-79.366741"/>
-<wire x1="-12.38" y1="6.3" x2="-12.38" y2="6.39" width="0.1016" layer="21"/>
-<wire x1="-12.38" y1="6.39" x2="-12.5" y2="6.57" width="0.1016" layer="21" curve="67.380135"/>
-<wire x1="-12.5" y1="6.57" x2="-12.77" y2="6.55" width="0.1016" layer="21" curve="53.592163"/>
-<wire x1="-12.77" y1="6.55" x2="-12.88" y2="6.38" width="0.1016" layer="21" curve="51.993738"/>
-<wire x1="-12.88" y1="6.38" x2="-12.63" y2="6.03" width="0.1016" layer="21" curve="84.904147"/>
-<wire x1="-11.88" y1="6.93" x2="-12.91" y2="6.93" width="0.1016" layer="21"/>
-<wire x1="-12.91" y1="6.93" x2="-11.88" y2="7.4" width="0.1016" layer="21"/>
-<wire x1="-11.88" y1="7.4" x2="-12.92" y2="7.88" width="0.1016" layer="21"/>
-<wire x1="-12.92" y1="7.88" x2="-11.88" y2="7.88" width="0.1016" layer="21"/>
+<wire x1="-17.62" y1="-7.79" x2="-26.07" y2="-7.79" width="0.2032" layer="21"/>
+<wire x1="-17.62" y1="-9.34" x2="-26.07" y2="-9.34" width="0.2032" layer="21"/>
+<wire x1="-33.17" y1="-6.47" x2="-34.17" y2="-7.47" width="0.2032" layer="21" curve="90"/>
+<wire x1="-34.17" y1="-7.47" x2="-34.17" y2="-9.61" width="0.2032" layer="21"/>
+<wire x1="-34.17" y1="-9.61" x2="-33.17" y2="-10.61" width="0.2032" layer="21" curve="90"/>
+<wire x1="-33.17" y1="-6.47" x2="-27.12" y2="-6.47" width="0.2032" layer="21"/>
+<wire x1="-27.12" y1="-6.47" x2="-26.12" y2="-7.47" width="0.2032" layer="21" curve="-90"/>
+<wire x1="-26.12" y1="-7.47" x2="-26.12" y2="-9.61" width="0.2032" layer="21"/>
+<wire x1="-26.12" y1="-9.61" x2="-27.12" y2="-10.61" width="0.2032" layer="21" curve="-90"/>
+<wire x1="-27.12" y1="-10.61" x2="-33.17" y2="-10.61" width="0.2032" layer="21"/>
 <wire x1="-17.44" y1="1.04" x2="-17.98" y2="1.04" width="0.1016" layer="21"/>
 <wire x1="-17.98" y1="1.04" x2="-18.21" y2="1.27" width="0.1016" layer="21" curve="-90"/>
 <wire x1="-18.21" y1="1.27" x2="-17.98" y2="1.5" width="0.1016" layer="21" curve="-90"/>
@@ -759,10 +725,6 @@ Standard A4 size frame in Landscape</description>
 <wire x1="5.461" y1="3.302" x2="5.461" y2="10.414" width="0.1016" layer="51"/>
 <wire x1="25.781" y1="11.43" x2="25.019" y2="10.414" width="0.1016" layer="21"/>
 <wire x1="-9.779" y1="10.414" x2="-10.541" y2="11.43" width="0.1016" layer="21"/>
-<wire x1="-0.762" y1="2.54" x2="11.049" y2="2.54" width="0.1016" layer="21"/>
-<wire x1="11.049" y1="2.54" x2="11.049" y2="0" width="0.1016" layer="21"/>
-<wire x1="11.049" y1="0" x2="-0.762" y2="0" width="0.1016" layer="21"/>
-<wire x1="-0.762" y1="0" x2="-0.762" y2="2.54" width="0.1016" layer="21"/>
 <wire x1="7.239" y1="-0.762" x2="7.239" y2="-7.874" width="0.1016" layer="51"/>
 <wire x1="8.001" y1="-0.762" x2="8.001" y2="-7.874" width="0.1016" layer="51"/>
 <wire x1="8.001" y1="3.302" x2="8.001" y2="10.414" width="0.1016" layer="51"/>
@@ -824,7 +786,28 @@ Standard A4 size frame in Landscape</description>
 <pad name="28" x="-8.89" y="8.89" drill="0.9" shape="long" rot="R90"/>
 <text x="-17.78" y="-12.7" size="1.27" layer="25">&gt;NAME</text>
 <text x="-8.89" y="-12.7" size="1.27" layer="27">&gt;VALUE</text>
-<text x="10.033" y="1.778" size="1.016" layer="21" font="vector" rot="SR180">228-1277-00</text>
+</package>
+<package name="JMP-1X2">
+<wire x1="-0.635" y1="1.27" x2="0.635" y2="1.27" width="0.2032" layer="21"/>
+<wire x1="0.635" y1="1.27" x2="1.27" y2="0.635" width="0.2032" layer="21"/>
+<wire x1="1.27" y1="-0.635" x2="0.635" y2="-1.27" width="0.2032" layer="21"/>
+<wire x1="1.27" y1="0.635" x2="1.905" y2="1.27" width="0.2032" layer="21"/>
+<wire x1="1.905" y1="1.27" x2="3.175" y2="1.27" width="0.2032" layer="21"/>
+<wire x1="3.175" y1="1.27" x2="3.81" y2="0.635" width="0.2032" layer="21"/>
+<wire x1="3.81" y1="-0.635" x2="3.175" y2="-1.27" width="0.2032" layer="21"/>
+<wire x1="3.175" y1="-1.27" x2="1.905" y2="-1.27" width="0.2032" layer="21"/>
+<wire x1="1.905" y1="-1.27" x2="1.27" y2="-0.635" width="0.2032" layer="21"/>
+<wire x1="-1.27" y1="0.635" x2="-1.27" y2="-0.635" width="0.2032" layer="21"/>
+<wire x1="-0.635" y1="1.27" x2="-1.27" y2="0.635" width="0.2032" layer="21"/>
+<wire x1="-1.27" y1="-0.635" x2="-0.635" y2="-1.27" width="0.2032" layer="21"/>
+<wire x1="0.635" y1="-1.27" x2="-0.635" y2="-1.27" width="0.2032" layer="21"/>
+<wire x1="3.81" y1="0.635" x2="3.81" y2="-0.635" width="0.2032" layer="21"/>
+<pad name="1" x="0" y="0" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="2" x="2.54" y="0" drill="1.016" diameter="1.8796" rot="R90"/>
+<text x="-1.3462" y="1.8288" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="-1.27" y="-3.175" size="1.27" layer="27">&gt;VALUE</text>
+<rectangle x1="2.286" y1="-0.254" x2="2.794" y2="0.254" layer="51"/>
+<rectangle x1="-0.254" y1="-0.254" x2="0.254" y2="0.254" layer="51"/>
 </package>
 </packages>
 <symbols>
@@ -995,6 +978,20 @@ Standard A4 size frame in Landscape</description>
 <pin name="A12" x="-15.24" y="-7.62" length="middle" direction="in"/>
 <pin name="A13" x="-15.24" y="-10.16" length="middle" direction="in"/>
 <pin name="A14" x="-15.24" y="-12.7" length="middle" direction="in"/>
+</symbol>
+<symbol name="JMP-1X2">
+<wire x1="0" y1="2.54" x2="0" y2="3.81" width="0.4064" layer="94"/>
+<wire x1="0" y1="3.81" x2="0" y2="5.08" width="0.1524" layer="94"/>
+<wire x1="0" y1="-2.54" x2="0" y2="-3.81" width="0.4064" layer="94"/>
+<wire x1="0" y1="-3.81" x2="0" y2="-5.08" width="0.1524" layer="94"/>
+<wire x1="-1.905" y1="5.08" x2="1.905" y2="5.08" width="0.4064" layer="94"/>
+<wire x1="1.905" y1="5.08" x2="1.905" y2="-5.08" width="0.4064" layer="94"/>
+<wire x1="1.905" y1="-5.08" x2="-1.905" y2="-5.08" width="0.4064" layer="94"/>
+<wire x1="-1.905" y1="-5.08" x2="-1.905" y2="5.08" width="0.4064" layer="94"/>
+<text x="-2.54" y="-5.08" size="1.778" layer="95" rot="R90">&gt;NAME</text>
+<text x="4.445" y="-5.08" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
+<pin name="1" x="0" y="-7.62" visible="pad" length="short" direction="pas" rot="R90"/>
+<pin name="2" x="0" y="7.62" visible="pad" length="short" direction="pas" rot="R270"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -1294,6 +1291,23 @@ an Interrupt Enable Register and two Function Control Registers.</description>
 <connect gate="G$1" pin="D7" pad="19"/>
 <connect gate="G$1" pin="GND" pad="14"/>
 <connect gate="G$1" pin="VCC" pad="28"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="JMP-1X2" prefix="JP" uservalue="yes">
+<description>&lt;b&gt;JUMPER&lt;/b&gt;</description>
+<gates>
+<gate name="A" symbol="JMP-1X2" x="0" y="0"/>
+</gates>
+<devices>
+<device name="TH" package="JMP-1X2">
+<connects>
+<connect gate="A" pin="1" pad="1"/>
+<connect gate="A" pin="2" pad="2"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -8773,29 +8787,6 @@ type 0309, grid 2.5 mm</description>
 <description>&lt;b&gt;Jumpers&lt;/b&gt;&lt;p&gt;
 &lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
 <packages>
-<package name="JP1">
-<description>&lt;b&gt;JUMPER&lt;/b&gt;</description>
-<wire x1="-1.016" y1="0" x2="-1.27" y2="0.254" width="0.1524" layer="21"/>
-<wire x1="-1.016" y1="0" x2="-1.27" y2="-0.254" width="0.1524" layer="21"/>
-<wire x1="1.016" y1="0" x2="1.27" y2="0.254" width="0.1524" layer="21"/>
-<wire x1="1.016" y1="0" x2="1.27" y2="-0.254" width="0.1524" layer="21"/>
-<wire x1="1.27" y1="-0.254" x2="1.27" y2="-2.286" width="0.1524" layer="21"/>
-<wire x1="1.016" y1="-2.54" x2="1.27" y2="-2.286" width="0.1524" layer="21"/>
-<wire x1="1.27" y1="2.286" x2="1.016" y2="2.54" width="0.1524" layer="21"/>
-<wire x1="1.27" y1="2.286" x2="1.27" y2="0.254" width="0.1524" layer="21"/>
-<wire x1="1.016" y1="2.54" x2="-1.016" y2="2.54" width="0.1524" layer="21"/>
-<wire x1="-1.27" y1="2.286" x2="-1.016" y2="2.54" width="0.1524" layer="21"/>
-<wire x1="-1.27" y1="2.286" x2="-1.27" y2="0.254" width="0.1524" layer="21"/>
-<wire x1="-1.27" y1="-0.254" x2="-1.27" y2="-2.286" width="0.1524" layer="21"/>
-<wire x1="-1.016" y1="-2.54" x2="-1.27" y2="-2.286" width="0.1524" layer="21"/>
-<wire x1="-1.016" y1="-2.54" x2="1.016" y2="-2.54" width="0.1524" layer="21"/>
-<pad name="1" x="0" y="-1.27" drill="0.9144" shape="long"/>
-<pad name="2" x="0" y="1.27" drill="0.9144" shape="long"/>
-<text x="-1.651" y="-2.54" size="1.27" layer="25" ratio="10" rot="R90">&gt;NAME</text>
-<text x="2.921" y="-2.54" size="1.27" layer="27" ratio="10" rot="R90">&gt;VALUE</text>
-<rectangle x1="-0.3048" y1="0.9652" x2="0.3048" y2="1.5748" layer="51"/>
-<rectangle x1="-0.3048" y1="-1.5748" x2="0.3048" y2="-0.9652" layer="51"/>
-</package>
 <package name="JP2">
 <description>&lt;b&gt;JUMPER&lt;/b&gt;</description>
 <wire x1="-3.81" y1="-1.016" x2="-3.81" y2="1.016" width="0.1524" layer="21"/>
@@ -8832,20 +8823,6 @@ type 0309, grid 2.5 mm</description>
 </package>
 </packages>
 <symbols>
-<symbol name="J1">
-<wire x1="0" y1="2.54" x2="0" y2="3.81" width="0.4064" layer="94"/>
-<wire x1="0" y1="3.81" x2="0" y2="5.08" width="0.1524" layer="94"/>
-<wire x1="0" y1="-2.54" x2="0" y2="-3.81" width="0.4064" layer="94"/>
-<wire x1="0" y1="-3.81" x2="0" y2="-5.08" width="0.1524" layer="94"/>
-<wire x1="-1.905" y1="5.08" x2="1.905" y2="5.08" width="0.4064" layer="94"/>
-<wire x1="1.905" y1="5.08" x2="1.905" y2="-5.08" width="0.4064" layer="94"/>
-<wire x1="1.905" y1="-5.08" x2="-1.905" y2="-5.08" width="0.4064" layer="94"/>
-<wire x1="-1.905" y1="-5.08" x2="-1.905" y2="5.08" width="0.4064" layer="94"/>
-<text x="-2.54" y="-5.08" size="1.778" layer="95" rot="R90">&gt;NAME</text>
-<text x="4.445" y="-5.08" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
-<pin name="1" x="0" y="-7.62" visible="pad" length="short" direction="pas" rot="R90"/>
-<pin name="2" x="0" y="7.62" visible="pad" length="short" direction="pas" rot="R270"/>
-</symbol>
 <symbol name="JP3E">
 <wire x1="2.54" y1="0" x2="2.54" y2="1.27" width="0.1524" layer="94"/>
 <wire x1="0" y1="0" x2="0" y2="1.27" width="0.1524" layer="94"/>
@@ -8865,23 +8842,6 @@ type 0309, grid 2.5 mm</description>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="JP1Q" prefix="JP" uservalue="yes">
-<description>&lt;b&gt;JUMPER&lt;/b&gt;</description>
-<gates>
-<gate name="A" symbol="J1" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="JP1">
-<connects>
-<connect gate="A" pin="1" pad="1"/>
-<connect gate="A" pin="2" pad="2"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
 <deviceset name="JP2E" prefix="JP" uservalue="yes">
 <description>&lt;b&gt;JUMPER&lt;/b&gt;</description>
 <gates>
@@ -11315,7 +11275,7 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <part name="LED1" library="dangerousprototypes_devices" deviceset="LED" device="-0805" value="GREEN"/>
 <part name="GND5" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="USB1" library="dangerousprototypes_devices" deviceset="CON-USB-F" device="-MICRO-B" value="MICRO-B"/>
-<part name="JP1" library="jumper" deviceset="JP1Q" device="" value="PWR SW"/>
+<part name="JP1" library="pda" deviceset="JMP-1X2" device="TH" value="PWR SW"/>
 <part name="IC1" library="74xx-eu" deviceset="74*00" device="D" technology="HC"/>
 <part name="IC2" library="74xx-eu" deviceset="74*138" device="D" technology="HC"/>
 <part name="GND1" library="SparkFun-Aesthetics" deviceset="GND" device=""/>

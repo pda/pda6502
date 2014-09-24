@@ -4303,6 +4303,7 @@ design rules under a new name.</description>
 <element name="R4" library="resistor" package="R0805" value="3.3K" x="22.86" y="24.765" rot="MR0"/>
 <element name="U$2" library="pda" package="ADA-TFT-240X230-22INCH" value="" x="67.31" y="27.94"/>
 <element name="U$3" library="pda" package="PDA6502-LOGO" value="" x="1.27" y="36.83" rot="R270"/>
+<element name="U$4" library="pda" package="PDA6502-LOGO" value="" x="90.805" y="67.31" rot="MR0"/>
 </elements>
 <signals>
 <signal name="DATA7">

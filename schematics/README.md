@@ -22,6 +22,8 @@ Notes / TODO
 * verify USB port alignment with edge of board.
 * tent vias - https://www.sparkfun.com/tutorials/115
 * Check drill size for ROM ZIF socket; giant pins.
+* Label top and bottom of all headers.
+* modify breadboard prototype to match schematics.
 
 
 Micro B USB socket:

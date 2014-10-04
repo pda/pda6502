@@ -11297,13 +11297,13 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <part name="SUPPLY6" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
 <part name="J1" library="dangerousprototypes_devices" deviceset="CON_HEADER_2X07" device="-PTH"/>
 <part name="C11" library="rcl" deviceset="C-EU" device="C0805" value="0.1μF"/>
-<part name="C12" library="rcl" deviceset="C-EU" device="C0805" value="0.1μF"/>
+<part name="C12" library="rcl" deviceset="C-EU" device="C0805" value="1μF"/>
 <part name="SUPPLY16" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
 <part name="GND15" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY18" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
 <part name="GND13" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="JP4" library="SparkFun-Connectors" deviceset="M12" device="PTH" value="TFT+SD"/>
-<part name="C9" library="rcl" deviceset="C-EU" device="C0805" value="0.1μF"/>
+<part name="C9" library="rcl" deviceset="C-EU" device="C0805" value="1μF"/>
 <part name="SUPPLY15" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
 <part name="GND12" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="JP5" library="SparkFun-Connectors" deviceset="M02" device="PTH" value="EXT5V"/>
@@ -11316,8 +11316,8 @@ Standard 12-pin 0.1" header. Use with straight break away headers (SKU : PRT-001
 <part name="GND24" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY21" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
 <part name="SUPPLY22" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
-<part name="C13" library="rcl" deviceset="C-EU" device="C0805" value="0.1μF"/>
-<part name="C14" library="rcl" deviceset="C-EU" device="C0805" value="0.1μF"/>
+<part name="C13" library="rcl" deviceset="C-EU" device="C0805" value="1μF"/>
+<part name="C14" library="rcl" deviceset="C-EU" device="C0805" value="1μF"/>
 <part name="GND25" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="R3" library="resistor" deviceset="R-US_" device="R0805" value="3.3K"/>
 <part name="R4" library="resistor" deviceset="R-US_" device="R0805" value="3.3K"/>

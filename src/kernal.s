@@ -14,6 +14,9 @@
 .import SsdNextSegment
 .import Ssd1306WriteCharacter
 
+; ili9340
+.import Ili9340Init
+
 ; fat
 .import FatReadFile
 .import FatSearchFilename
@@ -67,6 +70,8 @@ filenameLoop:
   JSR FatReadFile
 
   JSR displayText
+
+  JSR Ili9340Init
 
   JMP Halt
 

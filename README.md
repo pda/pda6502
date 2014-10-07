@@ -20,6 +20,13 @@ The code is assembled with [ca65][ca65], part of the [cc65][cc65] 6502
 development package.
 
 
+Notes
+-----
+
+ILI9340 SPI performance; filling 200x200 square.
+baseline: 4.5 seconds.
+
+
 Emulator
 --------
 

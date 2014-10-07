@@ -26,8 +26,10 @@ via_base = $C000
 via_port = via_base + $00 ; PB
 via_ddr  = via_base + $02 ; DDRB
 
-width  = 240
-height = 320
+offset_x = 60
+offset_y = 20
+width  = 200
+height = 200
 
 ; pin masks relative to VIA port
 mask_clock = %00000001
@@ -105,6 +107,7 @@ C_WHITE   = $FFFF
   JSR configureSpi
   JSR reset
   JSR initializationCommands
+  JSR initializeRotation
   RTS
 .ENDPROC
 
@@ -112,12 +115,22 @@ C_WHITE   = $FFFF
   JSR spiSelect
   JSR setFullScreen
   JSR dataMode
-infinity:
+  LDA #width
+  BEQ done
+  STA $20
+  LDA #height
+  BEQ done
+  STA $21
+loop:
   LDX #.HIBYTE(C_BLUE)
   JSR SpiByte
   LDX #.LOBYTE(C_BLUE)
   JSR SpiByte
-  JMP infinity ; TODO: something else
+  DEC $20
+  BNE loop
+  DEC $21
+  BNE loop
+done:
   JSR spiDeselect
   RTS
 .ENDPROC
@@ -403,6 +416,18 @@ infinity:
   RTS
 .ENDPROC
 
+.PROC initializeRotation
+  JSR spiSelect
+  JSR commandMode
+  LDX #ILI9340_MADCTL
+  JSR SpiByte
+  JSR dataMode
+  LDX #(ILI9340_MADCTL_MV | ILI9340_MADCTL_BGR)
+  JSR SpiByte
+  JSR spiDeselect
+  RTS
+.ENDPROC
+
 .PROC commandMode
   LDA via_port
   AND #~mask_dc ; D/C low: command mode
@@ -433,31 +458,38 @@ infinity:
 
 .PROC setFullScreen
   JSR commandMode
-  LDX #ILI9340_CASET      ; set column address:
+  ; set column address:
+  LDX #ILI9340_CASET
   JSR SpiByte
   JSR dataMode
-  LDX #0
+  ; set x0
+  LDX #.HIBYTE(offset_x)
   JSR SpiByte
-  LDX #0
-  JSR SpiByte             ; x0 = $0000
-  LDX #.HIBYTE(width)
+  LDX #.LOBYTE(offset_x)
   JSR SpiByte
-  LDX #.LOBYTE(width)
-  JSR SpiByte             ; x1 = width
+  ; set x1
+  LDX #.HIBYTE(offset_x + width)
+  JSR SpiByte
+  LDX #.LOBYTE(offset_x + width)
+  JSR SpiByte
   JSR commandMode
-  LDX #ILI9340_PASET      ; set row address:
+  ; set row address:
+  LDX #ILI9340_PASET
   JSR SpiByte
   JSR dataMode
-  LDX #0
+  ; set y0
+  LDX #.HIBYTE(offset_y)
   JSR SpiByte
-  LDX #0
-  JSR SpiByte             ; y0 = $0000
-  LDX #.HIBYTE(height)
+  LDX #.LOBYTE(offset_y)
   JSR SpiByte
-  LDX #.LOBYTE(height)
-  JSR SpiByte             ; y1 = height
+  ; set y1
+  LDX #.HIBYTE(offset_y + height)
+  JSR SpiByte
+  LDX #.LOBYTE(offset_y + height)
+  JSR SpiByte
   JSR commandMode
-  LDX #ILI9340_RAMWR      ; set write to RAM
+  ; set write to RAM
+  LDX #ILI9340_RAMWR
   JSR SpiByte
   RTS
 .ENDPROC

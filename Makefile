@@ -15,6 +15,10 @@ src/%.o: src/%.s
 clean:
 	$(RM) $(OBJECTS) build/*
 
-burn: build/kernal.rom
+burn: build/kernal.rom writerom verifyrom
+
+writerom:
 	./tools/meepromer.py -c /dev/cu.usbmodem14* -w -f build/kernal.rom
+
+verifyrom:
 	./tools/meepromer.py -c /dev/cu.usbmodem14* -v -f build/kernal.rom

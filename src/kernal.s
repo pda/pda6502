@@ -16,6 +16,7 @@
 
 ; ili9340
 .import Ili9340Init
+.import Ili9340Test
 
 ; fat
 .import FatReadFile
@@ -48,30 +49,31 @@ font_ptr_hi    = $A3
 Main:
 ;--------
 
-  ; Initialize SSD1306 display.
-  JSR Ssd1306Init
-
-  JSR loadSplashScreen
-  JSR displayText
-
-  ; Initialize SD card
-  JSR SdCardInit
-  JSR SdCardReset
-
-  JSR FatInit
-
-  LDX #0
-filenameLoop:
-  LDA SplashFilename,X
-  STA FatSearchFilename,X
-  INX
-  CPX #11
-  BNE filenameLoop
-  JSR FatReadFile
-
-  JSR displayText
+;  ; Initialize SSD1306 display.
+;  JSR Ssd1306Init
+;
+;  JSR loadSplashScreen
+;  JSR displayText
+;
+;  ; Initialize SD card
+;  JSR SdCardInit
+;  JSR SdCardReset
+;
+;  JSR FatInit
+;
+;  LDX #0
+;filenameLoop:
+;  LDA SplashFilename,X
+;  STA FatSearchFilename,X
+;  INX
+;  CPX #11
+;  BNE filenameLoop
+;  JSR FatReadFile
+;
+;  JSR displayText
 
   JSR Ili9340Init
+  JSR Ili9340Test
 
   JMP Halt
 

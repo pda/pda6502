@@ -5,6 +5,7 @@
 ; Code inspired by / ported from https://github.com/adafruit/Adafruit_ILI9340
 
 .export Ili9340Init
+.export Ili9340Test
 
 ; BSS vars
 .import SpiMaskClock
@@ -55,9 +56,9 @@ ILI9340_INVON      = $21
 ILI9340_GAMMASET   = $26 ; gamma curve selected
 ILI9340_DISPOFF    = $28 ; display off
 ILI9340_DISPON     = $29 ; display on
-ILI9340_CASET      = $2A
-ILI9340_PASET      = $2B
-ILI9340_RAMWR      = $2C
+ILI9340_CASET      = $2A ; column address set
+ILI9340_PASET      = $2B ; row address set
+ILI9340_RAMWR      = $2C ; write to RAM
 ILI9340_RAMRD      = $2E
 ILI9340_PTLAR      = $30
 ILI9340_MADCTL     = $36 ; memory access control
@@ -89,15 +90,14 @@ ILI9340_GMCTRP1    = $E0 ; set gamma
 ILI9340_GMCTRN1    = $E1 ; set gamma
 
 ; color constants
-ILI9340_BLACK   = $0000
-ILI9340_BLUE    = $001F
-ILI9340_RED     = $F800
-ILI9340_GREEN   = $07E0
-ILI9340_CYAN    = $07FF
-ILI9340_MAGENTA = $F81F
-ILI9340_YELLOW  = $FFE0
-ILI9340_WHITE   = $FFFF
-
+C_BLACK   = $0000
+C_BLUE    = $001F
+C_RED     = $F800
+C_GREEN   = $07E0
+C_CYAN    = $07FF
+C_MAGENTA = $F81F
+C_YELLOW  = $FFE0
+C_WHITE   = $FFFF
 
 
 .PROC Ili9340Init
@@ -105,6 +105,20 @@ ILI9340_WHITE   = $FFFF
   JSR configureSpi
   JSR reset
   JSR initializationCommands
+  RTS
+.ENDPROC
+
+.PROC Ili9340Test
+  JSR spiSelect
+  JSR setFullScreen
+  JSR dataMode
+infinity:
+  LDX #.HIBYTE(C_BLUE)
+  JSR SpiByte
+  LDX #.LOBYTE(C_BLUE)
+  JSR SpiByte
+  JMP infinity ; TODO: something else
+  JSR spiDeselect
   RTS
 .ENDPROC
 
@@ -414,5 +428,36 @@ ILI9340_WHITE   = $FFFF
   LDA via_port
   AND #~mask_cs
   STA via_port
+  RTS
+.ENDPROC
+
+.PROC setFullScreen
+  JSR commandMode
+  LDX #ILI9340_CASET      ; set column address:
+  JSR SpiByte
+  JSR dataMode
+  LDX #0
+  JSR SpiByte
+  LDX #0
+  JSR SpiByte             ; x0 = $0000
+  LDX #.HIBYTE(width)
+  JSR SpiByte
+  LDX #.LOBYTE(width)
+  JSR SpiByte             ; x1 = width
+  JSR commandMode
+  LDX #ILI9340_PASET      ; set row address:
+  JSR SpiByte
+  JSR dataMode
+  LDX #0
+  JSR SpiByte
+  LDX #0
+  JSR SpiByte             ; y0 = $0000
+  LDX #.HIBYTE(height)
+  JSR SpiByte
+  LDX #.LOBYTE(height)
+  JSR SpiByte             ; y1 = height
+  JSR commandMode
+  LDX #ILI9340_RAMWR      ; set write to RAM
+  JSR SpiByte
   RTS
 .ENDPROC

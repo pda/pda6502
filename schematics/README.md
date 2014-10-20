@@ -15,17 +15,6 @@ A 2x10 header exposes the 6522 VIA ports A and B and their control lines.
 Notes / TODO
 ------------
 
-* Two spare pins on 40-pin expansion header.
-    * routing them is difficult.
-* Jumper on TFT+SD BL to 6522 CB2 to disconnect if undesired?
-* replace large SMD capacitors with TH?
-* verify USB port alignment with edge of board.
-* tent vias - https://www.sparkfun.com/tutorials/115
-* Check drill size for ROM ZIF socket; giant pins.
-* Label top and bottom of all headers.
-* modify breadboard prototype to match schematics.
-
-
 Micro B USB socket:
 Dangerous Prototypes Eagle library.
 Device: CONN-USB-MICRO-B

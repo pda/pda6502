@@ -226,7 +226,7 @@ micro-B</text>
 <wire x1="77.47" y1="8.89" x2="77.47" y2="0.635" width="0.3048" layer="21"/>
 <text x="76.835" y="1.27" size="1.016" layer="21" font="vector" ratio="10" rot="R90">EXPANSION</text>
 <text x="22.86" y="1.905" size="1.27" layer="21" font="vector" ratio="10">1</text>
-<text x="52.07" y="27.305" size="2.032" layer="21" font="vector" ratio="10" align="top-center">pda6502
+<text x="50.8" y="24.765" size="2.032" layer="21" font="vector" ratio="10" align="top-center">pda6502
 Paul Annesley
 @pda 2014</text>
 </plain>

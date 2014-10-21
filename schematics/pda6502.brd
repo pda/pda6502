@@ -229,6 +229,7 @@ micro-B</text>
 <text x="50.8" y="24.765" size="2.032" layer="21" font="vector" ratio="10" align="top-center">pda6502
 Paul Annesley
 @pda 2014</text>
+<text x="89.535" y="2.54" size="1.27" layer="1" font="vector" ratio="10">v1</text>
 </plain>
 <libraries>
 <library name="rcl">

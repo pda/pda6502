@@ -126,10 +126,12 @@ loop:
   JSR SpiByte
   LDX #.LOBYTE(C_BLUE)
   JSR SpiByte
-  DEC $20
-  BNE loop
-  DEC $21
-  BNE loop
+  DEC $20     ; go to next column.
+  BNE loop    ; if more columns, loop,
+  LDA #width  ; else reset column counter..
+  STA $20
+  DEC $21     ; .. and go to next row.
+  BNE loop    ; if more rows loop.
 done:
   JSR spiDeselect
   RTS
@@ -159,7 +161,6 @@ done:
 .ENDPROC
 
 .PROC reset
-  NOP
   LDA via_port
   ORA #(mask_cs | mask_reset)    ; initialize high
   AND #~(mask_clock | mask_mosi) ; initialize low
@@ -468,9 +469,9 @@ done:
   LDX #.LOBYTE(offset_x)
   JSR SpiByte
   ; set x1
-  LDX #.HIBYTE(offset_x + width)
+  LDX #.HIBYTE(offset_x + width - 1)
   JSR SpiByte
-  LDX #.LOBYTE(offset_x + width)
+  LDX #.LOBYTE(offset_x + width - 1)
   JSR SpiByte
   JSR commandMode
   ; set row address:
@@ -483,9 +484,9 @@ done:
   LDX #.LOBYTE(offset_y)
   JSR SpiByte
   ; set y1
-  LDX #.HIBYTE(offset_y + height)
+  LDX #.HIBYTE(offset_y + height - 1)
   JSR SpiByte
-  LDX #.LOBYTE(offset_y + height)
+  LDX #.LOBYTE(offset_y + height - 1)
   JSR SpiByte
   JSR commandMode
   ; set write to RAM

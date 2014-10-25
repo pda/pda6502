@@ -2,6 +2,7 @@
 
 ; subroutines
 .export SpiByte
+.export SpiByteFastPortB
 
 ; BSS vars
 .export SpiMaskClock
@@ -101,3 +102,56 @@ read:
   TAY
   RTS
 .ENDPROC ; SpiByte
+
+; SpiByteFast exchanges register X over SPI.
+; Fixed pin assignments: clock: 0, mosi: 6, miso: 7
+; Clock must be initialized low.
+.PROC SpiByteFastPortB
+  mask_clock = %00000001
+  mask_mosi  = %01000000
+  mask_miso  = %10000000
+  port = $C000
+
+  LDY #8 ; loop for 8 bits
+eachBit:
+  ; write MOSI
+  TXA
+  AND #(1 << 7) ; MSB
+  BEQ writeZero
+writeOne:
+  LDA port
+  ORA #mask_mosi
+  JMP write
+writeZero:
+  LDA port
+  AND #~mask_mosi
+write:
+  STA port ; write
+
+  TXA
+  ASL ; push next most significant bit to front.
+      ; A is now authoritative for the working value.
+
+  ; clock high
+  INC port
+
+  ; read MISO
+  BIT port     ; assign bit 7 to negative flag
+  BMI readOne  ; branch if bit 7 was set
+readZero:
+  AND #~1
+  JMP read
+readOne:
+  ORA #1
+  JMP read
+read:
+  TAX ; new bit set into x[0], which will be shifted left until byte read.
+
+  ; clock low
+  DEC port
+
+  DEY
+  BNE eachBit
+
+  RTS
+.ENDPROC

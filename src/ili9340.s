@@ -19,6 +19,7 @@
 
 ; spi
 .import SpiByte
+.import SpiByteFastPortB
 
 .segment "kernal"
 
@@ -123,9 +124,9 @@ C_WHITE   = $FFFF
   STA $21
 loop:
   LDX $21
-  JSR SpiByte
+  JSR SpiByteFastPortB
   LDX $20
-  JSR SpiByte
+  JSR SpiByteFastPortB
   DEC $20     ; go to next column.
   BNE loop    ; if more columns, loop,
   LDA #width  ; else reset column counter..

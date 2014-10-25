@@ -122,9 +122,9 @@ C_WHITE   = $FFFF
   BEQ done
   STA $21
 loop:
-  LDX #.HIBYTE(C_BLUE)
+  LDX $21
   JSR SpiByte
-  LDX #.LOBYTE(C_BLUE)
+  LDX $20
   JSR SpiByte
   DEC $20     ; go to next column.
   BNE loop    ; if more columns, loop,

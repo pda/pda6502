@@ -79,7 +79,7 @@ readOne:
   JMP read
 readZero:
   TXA
-  AND #~1
+  AND #<~1
 read:
   TAX ; new bit set into x[0], which will be shifted left until byte read.
 
@@ -122,7 +122,7 @@ writeOne:
   JMP write
 writeZero:
   LDA port
-  AND #~mask_mosi
+  AND #<~mask_mosi
 write:
   STA port ; write
 

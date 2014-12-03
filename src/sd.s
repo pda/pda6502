@@ -34,11 +34,11 @@ sd_ddr = via_base + $03 ; DDRA
   ; DDR
   LDA sd_ddr
   ORA #(sd_mask_cs | sd_mask_clock | sd_mask_mosi) ; output
-  AND #~(sd_mask_miso) ; input
+  AND #<~(sd_mask_miso) ; input
   STA sd_ddr
   JSR csHigh  ; deselect
   ; clock low
-  LDA #~sd_mask_clock
+  LDA #<~sd_mask_clock
   AND sd_port
   STA sd_port
   RTS
@@ -276,7 +276,7 @@ loop:
 
 .PROC csLow
   LDA sd_port
-  AND #~sd_mask_cs
+  AND #<~sd_mask_cs
   STA sd_port
   RTS
 .ENDPROC

@@ -141,7 +141,7 @@ done:
 .PROC configureDataDirection
   LDA via_ddr
   ORA #(mask_clock | mask_dc | mask_reset | mask_cs | mask_mosi) ; output
-  AND #~(mask_miso) ; input
+  AND #<~(mask_miso) ; input
   STA via_ddr
   RTS
 .ENDPROC
@@ -164,11 +164,11 @@ done:
 .PROC reset
   LDA via_port
   ORA #(mask_cs | mask_reset)    ; initialize high
-  AND #~(mask_clock | mask_mosi) ; initialize low
+  AND #<~(mask_clock | mask_mosi) ; initialize low
   STA via_port
   JSR SleepOneMs
   LDA via_port
-  AND #~mask_reset ; assert reset
+  AND #<~mask_reset ; assert reset
   STA via_port
   JSR SleepOneMs   ; data sheet says hold at least 10 uS.
   LDA via_port
@@ -432,7 +432,7 @@ done:
 
 .PROC commandMode
   LDA via_port
-  AND #~mask_dc ; D/C low: command mode
+  AND #<~mask_dc ; D/C low: command mode
   STA via_port
   RTS
 .ENDPROC
@@ -453,7 +453,7 @@ done:
 
 .PROC spiSelect
   LDA via_port
-  AND #~mask_cs
+  AND #<~mask_cs
   STA via_port
   RTS
 .ENDPROC

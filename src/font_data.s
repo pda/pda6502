@@ -2,7 +2,7 @@
 
 .export FontData
 
-.segment "kernal"
+.segment "char"
 
 ; Generated with:
 ; head -c512 c64.rb/rom/character.rom | \

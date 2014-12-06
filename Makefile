@@ -6,6 +6,8 @@ CAFLAGS = --debug-info
 LD      = ld65
 LDFLAGS = --mapfile build/memory.map --config memory.conf --dbgfile build/debug
 
+.DUMMY: all
+
 all: $(OBJECTS)
 	$(LD) $(LDFLAGS) $^
 
@@ -15,10 +17,22 @@ src/%.o: src/%.s
 clean:
 	$(RM) $(OBJECTS) build/*
 
-burn: build/kernal.rom writerom verifyrom
 
-writerom:
-	./tools/meepromer.py -c /dev/cu.usbmodem14* -w -f build/kernal.rom
+.DUMMY: burn burnchar burnkernal
+MEEPROMER = ./tools/meepromer.py -c /dev/cu.usbmodem14*
 
-verifyrom:
-	./tools/meepromer.py -c /dev/cu.usbmodem14* -v -f build/kernal.rom
+burn: burnchar burnkernal
+burnchar: writechar verifychar
+burnkernal: writekernal verifykernal
+
+writechar:
+	$(MEEPROMER) -w -a 0x0000 -b 4 -f build/char.rom
+
+verifychar:
+	$(MEEPROMER) -v -a 0x0000 -b 4 -f build/char.rom
+
+writekernal:
+	$(MEEPROMER) -w -a 0x1000 -b 4 -f build/kernal.rom
+
+verifykernal:
+	$(MEEPROMER) -v -a 0x1000 -b 4 -f build/kernal.rom

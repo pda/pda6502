@@ -108,7 +108,7 @@ read:
 ; Clock must be initialized low.
 .PROC SpiByteReadPortB
   mask_mosi  = %01000000
-  port = $C000
+  port = $9000
 
   LDY #8 ; loop for 8 bits
 eachBit:

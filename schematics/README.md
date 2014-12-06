@@ -15,6 +15,17 @@ A 2x10 header exposes the 6522 VIA ports A and B and their control lines.
 Notes / TODO
 ------------
 
+
+ERRORS:
+
+* A,B,C inputs to 74HC138 reversed!
+    * Moves VIA from $C000 to $9000.
+    * Moves lower half of kernal ROM from $E000 to $B000.
+* 47uF cap footprint too small.
+* reset button footprint too small.
+* Expansion font too light for silkscreen printing.
+
+
 Micro B USB socket:
 Dangerous Prototypes Eagle library.
 Device: CONN-USB-MICRO-B

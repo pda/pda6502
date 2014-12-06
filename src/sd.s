@@ -18,9 +18,9 @@
 .import SpiPort
 
 ;----------------------------------------
-; SD card on port A of 6522 VIA at $C000
+; SD card on port A of 6522 VIA at $9000
 
-via_base = $C000
+via_base = $9000
 
 sd_mask_clock = %00010000
 sd_mask_mosi = %00100000

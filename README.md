@@ -88,12 +88,12 @@ Seg  Bits    In  Out  Base    Function
   6  0110             0x6000  RAM
   7  0111             0x7000  RAM
   8  1000   000    0  0x8000
-  9  1001   001    1  0x9000
+  9  1001   100    4  0x9000  IO (VIA) (should be at 0xC000)
   A  1010   010    2  0xA000
-  B  1011   011    3  0xB000
-  C  1100   100    4  0xC000  IO (VIA)
+  B  1011   110    6  0xB000  ROM (KERNAL) (should be at 0xE000)
+  C  1100   001    1  0xC000
   D  1101   101    5  0xD000
-  E  1110   110    6  0xE000  ROM (KERNAL)
+  E  1110   011    3  0xE000
   F  1111   111    7  0xF000  ROM (KERNAL)
 ```
 

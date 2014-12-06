@@ -23,7 +23,7 @@
 
 .segment "kernal"
 
-via_base = $C000
+via_base = $9000
 via_port = via_base + $00 ; PB
 via_ddr  = via_base + $02 ; DDRB
 

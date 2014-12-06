@@ -27,7 +27,7 @@
 .segment "kernal"
 
 ; MOS 6522 VIA parameters.
-via_base = $C000
+via_base = $9000
 via_pcr  = via_base + $0C
 
 ; SSD1306 display parameters & wiring.

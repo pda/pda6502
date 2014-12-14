@@ -36,3 +36,9 @@ writekernal:
 
 verifykernal:
 	$(MEEPROMER) -v -a 0x1000 -b 4 -f build/kernal.rom
+
+verifyrom: build/combined.rom
+	$(MEEPROMER) -v -f build/combined.rom
+
+build/combined.rom: build/kernal.rom build/char.rom
+	cat build/char.rom build/kernal.rom > build/combined.rom

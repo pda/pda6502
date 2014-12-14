@@ -16,6 +16,9 @@
 .import SdCardRead
 .import SdCardReset
 
+; Sleep
+.import SleepXMs
+
 .segment "kernal"
 
 Main:
@@ -28,3 +31,18 @@ Halt:
 ;--------
 NOP
 JMP Halt
+
+
+; Debugging: blink entire port A; 100ms on, 100ms off.
+.PROC blinkOnce
+  LDA #$FF
+  STA $9003 ; port A DDR; all output
+  STA $9001 ; port A; all on.
+  LDX #200
+  JSR SleepXMs
+  LDA #0
+  STA $9001 ; port A; all off.
+  LDX #200
+  JSR SleepXMs
+  RTS
+.ENDPROC

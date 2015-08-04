@@ -19,12 +19,28 @@
 ; Sleep
 .import SleepXMs
 
+; Status
+.import BlinkOnce
+.import HaltWithCodeX
+
 .segment "kernal"
 
 Main:
 ;--------
 
-  JMP Halt
+  JSR SdCardInit
+
+  JSR SdCardReset
+
+  JSR FatInit
+
+  JSR fatSetFilename
+
+  JSR FatReadFile
+
+  JSR BlinkOnce
+
+  JMP $1000 ; code loaded from SD card.
 
 
 Halt:
@@ -33,16 +49,15 @@ NOP
 JMP Halt
 
 
-; Debugging: blink entire port A; 100ms on, 100ms off.
-.PROC blinkOnce
-  LDA #$FF
-  STA $9003 ; port A DDR; all output
-  STA $9001 ; port A; all on.
-  LDX #200
-  JSR SleepXMs
-  LDA #0
-  STA $9001 ; port A; all off.
-  LDX #200
-  JSR SleepXMs
+RomFilename: .byte "PDA6502 BIN"
+
+.PROC fatSetFilename
+  LDX #0
+filenameLoop:
+  LDA RomFilename,X
+  STA FatSearchFilename,X
+  INX
+  CPX #11
+  BNE filenameLoop
   RTS
 .ENDPROC

@@ -18,27 +18,27 @@
 .import SpiPort
 
 ;----------------------------------------
-; SD card on port A of 6522 VIA at $9000
+; SD card on port B of 6522 VIA at $9000
 
 via_base = $9000
+sd_port = via_base + $00 ; PB
+sd_ddr = via_base + $02 ; DDRB
 
-sd_mask_clock = %00010000
-sd_mask_mosi = %00100000
-sd_mask_miso = %01000000
-sd_mask_cs = %10000000
-sd_port = via_base + $01 ; PA
-sd_ddr = via_base + $03 ; DDRA
+mask_clock = %00000001
+mask_cs    = %00010000
+mask_mosi  = %01000000
+mask_miso  = %10000000
 
 ; Initialize the VIA controller for the SD card.
 .PROC SdCardInit
   ; DDR
   LDA sd_ddr
-  ORA #(sd_mask_cs | sd_mask_clock | sd_mask_mosi) ; output
-  AND #<~(sd_mask_miso) ; input
+  ORA #(mask_cs | mask_clock | mask_mosi) ; output
+  AND #<~(mask_miso) ; input
   STA sd_ddr
   JSR csHigh  ; deselect
   ; clock low
-  LDA #<~sd_mask_clock
+  LDA #<~mask_clock
   AND sd_port
   STA sd_port
   RTS
@@ -137,11 +137,11 @@ sd_send_op_cond_loop:
 
 ; Configure SPI driver parameters to use SD card.
 .PROC configureSpi
-  LDA #sd_mask_clock
+  LDA #mask_clock
   STA SpiMaskClock
-  LDA #sd_mask_mosi
+  LDA #mask_mosi
   STA SpiMaskMosi
-  LDA #sd_mask_miso
+  LDA #mask_miso
   STA SpiMaskMiso
   LDA #.LOBYTE(sd_port)
   STA SpiPort
@@ -169,24 +169,17 @@ initDelayLoop:
 
 ; X: preserved
 ; Y: preserved
+; no timeout; may block forever.
+; seems to need more than 256 iterations for some cards?
 .PROC waitNotBusy
   TXA
   PHA
-  TYA
-  PHA
-  LDY #8 ; Loop limit. Increase?
 loop:
-  LDX #$FF
+  LDX #$FF ; send FF
   JSR SpiByte
-  CPX #$FF
-  BEQ done
-  DEY
+  CPX #$FF ; until response is FF
   BNE loop
-timeout:
-  ; TODO: indicate failure to caller.
 done:
-  PLA
-  TAY
   PLA
   TAX
   RTS
@@ -269,14 +262,14 @@ loop:
 
 .PROC csHigh
   LDA sd_port
-  ORA #sd_mask_cs
+  ORA #mask_cs
   STA sd_port
   RTS
 .ENDPROC
 
 .PROC csLow
   LDA sd_port
-  AND #<~sd_mask_cs
+  AND #<~mask_cs
   STA sd_port
   RTS
 .ENDPROC

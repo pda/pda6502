@@ -1,0 +1,5 @@
+* CS (SPI slave-select) wiring/code for SSD1306.
+* Move SSD1306 and SD card to single 6522 port.
+* Add TFT display.
+* Faster clock? 2 MHz? 4 MHz?
+* Move core to PCB

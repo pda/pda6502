@@ -1,0 +1,151 @@
+Modules list:
+-------------
+bignum.o:
+    kernal_bss        Offs=000000  Size=000010  Align=00001  Fill=0000
+    kernal            Offs=000000  Size=00005E  Align=00001  Fill=0000
+bitwise.o:
+    kernal            Offs=00005E  Size=00001E  Align=00001  Fill=0000
+encoding.o:
+    kernal            Offs=00007C  Size=000023  Align=00001  Fill=0000
+fat.o:
+    kernal_bss        Offs=000010  Size=00003F  Align=00001  Fill=0000
+    kernal            Offs=00009F  Size=0002EA  Align=00001  Fill=0000
+font.o:
+    kernal            Offs=000389  Size=00003A  Align=00001  Fill=0000
+font_data.o:
+    kernal            Offs=0003C3  Size=001000  Align=00001  Fill=0000
+ili9340.o:
+    kernal            Offs=0013C3  Size=00033B  Align=00001  Fill=0000
+kernal.o:
+    kernal            Offs=0016FE  Size=0000A2  Align=00001  Fill=0000
+memory.o:
+    kernal            Offs=0017A0  Size=000027  Align=00001  Fill=0000
+sd.o:
+    kernal            Offs=0017C7  Size=000146  Align=00001  Fill=0000
+sleep.o:
+    kernal            Offs=00190D  Size=000036  Align=00001  Fill=0000
+spi.o:
+    kernal_bss        Offs=00004F  Size=000005  Align=00001  Fill=0000
+    kernal            Offs=001943  Size=00008B  Align=00001  Fill=0000
+ssd1306.o:
+    kernal            Offs=0019CE  Size=0001CB  Align=00001  Fill=0000
+stack.o:
+    kernal            Offs=001B99  Size=000029  Align=00001  Fill=0000
+vectors.o:
+    vectors           Offs=000000  Size=000006  Align=00001  Fill=0000
+    kernal            Offs=001BC2  Size=00000B  Align=00001  Fill=0000
+
+
+Segment list:
+-------------
+Name                   Start     End    Size  Align
+----------------------------------------------------
+kernal_bss            000800  000853  000054  00001
+kernal                00E000  00FBCC  001BCD  00001
+vectors               00FFFA  00FFFF  000006  00001
+
+
+Exports list by name:
+---------------------
+AsciiToPetscii            00E07C RLA    FontData                  00E3C3 RLA    
+FontSelectChar            00E389 RLA    Ili9340Init               00F3C3 RLA    
+Ili9340Test               00F3D3 RLA    Main                      00F6FE RLA    
+SdCardRead                00F7DD RLA    ShiftZpXLeftByY           00E05E RLA    
+ShiftZpXRightByY          00E06D RLA    SleepOneMs                00F939 RLA    
+SleepXMs                  00F92E RLA    SpiByte                   00F943 RLA    
+SpiByteReadPortB          00F9AA RLA    SpiMaskClock              00084F RLA    
+SpiMaskMiso               000850 RLA    SpiMaskMosi               000851 RLA    
+SpiPort                   000852 RLA    Ssd1306WriteCharacter     00FAF3 RLA    
+Ssd1306WriteScreen        00FA75 RLA    SsdNextSegment            00FAE4 RLA    
+StackPop                  00FBB0 RLA    StackPush                 00FB9E RLA    
+Uint32Multiplicand        000800 RLA    Uint32Multiplier          000804 RLA    
+Uint32Multiply            00E000 RLA    Uint32Product             000808 RLA    
+
+
+
+Exports list by value:
+----------------------
+Uint32Multiplicand        000800 RLA    Uint32Multiplier          000804 RLA    
+Uint32Product             000808 RLA    SpiMaskClock              00084F RLA    
+SpiMaskMiso               000850 RLA    SpiMaskMosi               000851 RLA    
+SpiPort                   000852 RLA    Uint32Multiply            00E000 RLA    
+ShiftZpXLeftByY           00E05E RLA    ShiftZpXRightByY          00E06D RLA    
+AsciiToPetscii            00E07C RLA    FontSelectChar            00E389 RLA    
+FontData                  00E3C3 RLA    Ili9340Init               00F3C3 RLA    
+Ili9340Test               00F3D3 RLA    Main                      00F6FE RLA    
+SdCardRead                00F7DD RLA    SleepXMs                  00F92E RLA    
+SleepOneMs                00F939 RLA    SpiByte                   00F943 RLA    
+SpiByteReadPortB          00F9AA RLA    Ssd1306WriteScreen        00FA75 RLA    
+SsdNextSegment            00FAE4 RLA    Ssd1306WriteCharacter     00FAF3 RLA    
+StackPush                 00FB9E RLA    StackPop                  00FBB0 RLA    
+
+
+
+Imports list:
+-------------
+AsciiToPetscii (encoding.o):
+    kernal.o                  src/kernal.s(9)
+FontData (font_data.o):
+    font.o                    src/font.s(3)
+FontSelectChar (font.o):
+    kernal.o                  src/kernal.s(26)
+Ili9340Init (ili9340.o):
+    kernal.o                  src/kernal.s(18)
+Ili9340Test (ili9340.o):
+    kernal.o                  src/kernal.s(19)
+Main (kernal.o):
+    vectors.o                 src/vectors.s(3)
+SdCardRead (sd.o):
+    fat.o                     src/fat.s(10)
+ShiftZpXLeftByY (bitwise.o):
+    ssd1306.o                 src/ssd1306.s(24)
+ShiftZpXRightByY (bitwise.o):
+    ssd1306.o                 src/ssd1306.s(25)
+SleepOneMs (sleep.o):
+    ssd1306.o                 src/ssd1306.s(17)
+    ili9340.o                 src/ili9340.s(17)
+SleepXMs (sleep.o):
+    ssd1306.o                 src/ssd1306.s(18)
+    ili9340.o                 src/ili9340.s(18)
+SpiByte (spi.o):
+    ssd1306.o                 src/ssd1306.s(21)
+    sd.o                      src/sd.s(10)
+    ili9340.o                 src/ili9340.s(21)
+SpiByteReadPortB (spi.o):
+    ili9340.o                 src/ili9340.s(22)
+SpiMaskClock (spi.o):
+    ssd1306.o                 src/ssd1306.s(11)
+    sd.o                      src/sd.s(15)
+    ili9340.o                 src/ili9340.s(11)
+SpiMaskMiso (spi.o):
+    ssd1306.o                 src/ssd1306.s(12)
+    sd.o                      src/sd.s(16)
+    ili9340.o                 src/ili9340.s(12)
+SpiMaskMosi (spi.o):
+    ssd1306.o                 src/ssd1306.s(13)
+    sd.o                      src/sd.s(17)
+    ili9340.o                 src/ili9340.s(13)
+SpiPort (spi.o):
+    ssd1306.o                 src/ssd1306.s(14)
+    sd.o                      src/sd.s(18)
+    ili9340.o                 src/ili9340.s(14)
+Ssd1306WriteCharacter (ssd1306.o):
+    kernal.o                  src/kernal.s(15)
+Ssd1306WriteScreen (ssd1306.o):
+    kernal.o                  src/kernal.s(13)
+SsdNextSegment (ssd1306.o):
+    kernal.o                  src/kernal.s(14)
+StackPop (stack.o):
+    sd.o                      src/sd.s(11)
+StackPush (stack.o):
+    sd.o                      src/sd.s(12)
+    fat.o                     src/fat.s(11)
+Uint32Multiplicand (bignum.o):
+    fat.o                     src/fat.s(14)
+Uint32Multiplier (bignum.o):
+    fat.o                     src/fat.s(15)
+Uint32Multiply (bignum.o):
+    fat.o                     src/fat.s(13)
+Uint32Product (bignum.o):
+    fat.o                     src/fat.s(16)
+

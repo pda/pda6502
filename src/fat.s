@@ -15,7 +15,7 @@
 .import Uint32Multiplier
 .import Uint32Product
 
-sd_buffer = $6000
+sd_buffer = $1000
 
 .segment "kernal_bss"
 
@@ -226,7 +226,7 @@ done:
   JSR StackPush
   LDA #$00 ; MSB
   JSR StackPush
-  JSR SdCardRead ; 512 byte block from address on user-stack into $6000.
+  JSR SdCardRead ; 512 byte block from address on user-stack into $1000.
   RTS
 .ENDPROC
 
